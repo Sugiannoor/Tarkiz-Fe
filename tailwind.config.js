@@ -13,6 +13,8 @@ export default withMT({
     extend: {
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
+        raleway: ['Raleway', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
         custom: {

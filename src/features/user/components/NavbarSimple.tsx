@@ -71,10 +71,10 @@ export const  NavbarSimple: React.FC<Props> = ({children}) => {
   );
  
   return (
-    <div className="max-h-full w-[90%] lg:w-[70%] mx-auto my-4">
+    <div className="max-h-full w-[90%] lg:w-[80%] mx-auto my-4">
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-[30px] px-4 py-4 lg:px-8 lg:py-4" placeholder={""}>
         <div className="flex items-center justify-between text-blue-gray-900">
-        <img src="public\tarkiz-logo.webp" alt="tarkiz-logo" className="w-20 h-auto lg:w-35 lg:h-auto"/>
+        <img src="/tarkiz-logo.webp" alt="tarkiz-logo" className="w-20 h-auto lg:w-35 lg:h-auto"/>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
