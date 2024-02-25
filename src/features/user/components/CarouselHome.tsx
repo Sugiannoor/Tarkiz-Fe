@@ -1,4 +1,4 @@
-import { Carousel, Typography } from "@material-tailwind/react";
+import { Carousel } from "@material-tailwind/react";
 export const CarouselHome = () => {
   return (
     <div className="relative">
@@ -37,7 +37,7 @@ export const CarouselHome = () => {
           className="h-full w-full object-cover"
         />
       </Carousel>
-      <div className="absolute top-20 left-20 text-center font-body lg:text-left">
+      <div className="absolute top-10 lg:top-20 left-1/2 lg:left-72 -translate-x-1/2 text-center font-body lg:text-left">
         <h3 className="lg:text-5xl md:text-5xl text-4xl ">
             <span className="text-[#ffffff]">Informasi Cepat </span>
             <div className="lg:text-6xl text-[#ffffff]">Keputusan Tepat</div>

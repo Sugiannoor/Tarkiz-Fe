@@ -9,14 +9,14 @@ import {
 const Benefit = () => {
   return (
     <div>
-      <div className="font-poppins text-center text-3xl mt-5 font-medium">
+      <div className="font-poppins text-[#005697] text-center text-2xl lg:text-3xl mt-20 mb-3 font-semibold">
         Kenapa Bekerja Sama Dengan Kami ?
       </div>
-      <div className="font-raleway text-center text-xl mb-5">
-        Sebuah Perusahaan Bergerak dibidang IT. Kami akan memberikan layanan IT
-        yang inovatif
+      <div className="font-raleway text-center text-md sm:text-lg lg:text-xl mb-5">
+        Kami akan memberikan layanan IT yang inovatif
       </div>
-      <div className="grid grid-cols-1 place-items-center 2xl:grid-cols-3 gap-5">
+      <div className="border-t-[3.5px] w-1/12 border-[#005697] mx-auto mb-16 rounded-sm"></div>
+      <div className="grid md:grid-cols-2 place-items-center 2xl:grid-cols-3 gap-5">
         <Card
           shadow={false}
           className="relative grid h-[25rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center"
