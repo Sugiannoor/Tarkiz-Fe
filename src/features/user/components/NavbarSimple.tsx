@@ -10,10 +10,11 @@ import { Link } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  fixed?: boolean;
 };
 
-export const NavbarSimple: React.FC<Props> = ({ children }) => {
+export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
   const [openNav, setOpenNav] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -74,7 +75,9 @@ export const NavbarSimple: React.FC<Props> = ({ children }) => {
   return (
     <div className="max-h-full w-[90%] lg:w-[80%] mx-auto my-4">
       <Navbar
-        className="sticky top-0 z-10 h-max max-w-full rounded-[30px] px-4 py-4 lg:px-8 lg:py-4"
+        className={`${
+          fixed ? 'sticky' : 'relative'
+        } top-0 z-10 h-max max-w-full rounded-[30px] px-4 py-4 lg:px-8 lg:py-4`}
         placeholder={""}
       >
         <div className="flex items-center justify-between text-blue-gray-900">

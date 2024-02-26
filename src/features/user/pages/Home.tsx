@@ -13,7 +13,7 @@ import Client from "../components/Client";
 export const Home: React.FC = () => {
     return (
         <>
-        <NavbarSimple>
+        <NavbarSimple fixed>
         <CarouselHome/>
         <Benefit/>
         <ProductList/>

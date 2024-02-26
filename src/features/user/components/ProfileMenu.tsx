@@ -1,23 +1,12 @@
 import { Avatar, Button, Menu, MenuHandler, MenuItem, MenuList, Typography } from '@material-tailwind/react';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaUserCheck } from "react-icons/fa";
 import { IoIosPower } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa";
-
-const profileMenuItems = [
-    {
-      label: "My Profile",
-      icon: FaUserCheck,
-    },
-    {
-      label: "Sign Out",
-      icon: IoIosPower ,
-    },
-  ];
+import { Link } from 'react-router-dom';
 
 const ProfileMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const closeMenu = () => setIsMenuOpen(false);
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -42,33 +31,36 @@ const ProfileMenu = () => {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
-          return (
+        <Link to={"/profile"}>
             <MenuItem
-              key={label}
-              onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
-              }`}
-            >
-              {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
-              })}
+              key="profile"
+              className={`flex items-center gap-2 rounded `}
+              >
+              <FaUserCheck/>
               <Typography
                 as="span"
                 variant="small"
-                className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
-              >
-                {label}
+                className="font-normal font-poppins"
+                color="inherit"
+                >
+                My Profile
               </Typography>
             </MenuItem>
-          );
-        })}
+            </Link>
+            <MenuItem
+              key="Log Out"
+              className={`flex items-center gap-2 rounded hhover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+            >
+              <IoIosPower color='red'/>
+              <Typography
+                as="span"
+                variant="small"
+                className="font-normal font-poppins text-red-500"
+                color="red"
+                >
+                Log Out
+              </Typography>
+            </MenuItem>
       </MenuList>
     </Menu>
   );

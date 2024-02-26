@@ -9,6 +9,9 @@ import { FaCircleUser } from "react-icons/fa6";
 import { FaClock } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { useEffect, useState } from "react";
+import TabDetailProfile from "./TabDetailProfile";
+import { TabHistory } from "./TabHistory";
+import TabEditProfile from "./TabEditProfile";
 
 const datas = [
   {
@@ -33,31 +36,29 @@ const TabProfile = () => {
         };
     
         window.addEventListener('resize', handleResize);
-    
-        // Membersihkan event listener setelah komponen di-unmount
         return () => {
           window.removeEventListener('resize', handleResize);
         };
       }, []);
   return (
     <div className="mt-5">
-      <Tabs value="my_account" orientation={isMobile ? "" : "vertical"}>
-        <TabsHeader className="lg:w-96 w-[100%] ">
+      <Tabs value="my_account" orientation={isMobile ? "horizontal" : "vertical"}>
+        <TabsHeader className="md:w-96 w-[100%] mr-16 ">
           {datas.map(({ label, value }) => (
             <Tab key={value} value={value} className="p-4">
-              <div className="text-left">{label}</div>
+              <div className="font-poppins">{label}</div>
             </Tab>
           ))}
         </TabsHeader>
-        <TabsBody className="mt-5 lg:mt-0">
+        <TabsBody className="mt-5 lg:mt-0 border-l-2 md:pl-7">
           <TabPanel key={"my_account"} value={"my_account"} className="py-0">
-            <div>TestCuy</div>
+            <TabDetailProfile/>
           </TabPanel>
           <TabPanel key={"history"} value={"history"} className="py-0">
-            Test 1
+            <TabHistory/>
           </TabPanel>
           <TabPanel key={"account"} value={"account"} className="py-0">
-            Test 123
+            <TabEditProfile/>
           </TabPanel>
         </TabsBody>
       </Tabs>
