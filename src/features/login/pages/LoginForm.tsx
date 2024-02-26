@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const LoginForm = () => { 
   return (
     
-    <form className=" lg:flex justify-center items-center">
+    <div className=" lg:flex justify-center items-center">
       <div className="absolute top-20 right-50 lg:right-50">
     <img src="public\tarkiz-logo.webp" alt="tarkiz-logo" />
       </div>
@@ -65,7 +65,7 @@ const LoginForm = () => {
         <p className="font-body text-sm text-custom-gray-600 italic">Sign Up? Contact Admin</p>
       </div>
     </Card>
-    </form>
+    </div>
   );
 }
 export default LoginForm;
