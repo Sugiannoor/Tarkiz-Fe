@@ -7,6 +7,7 @@ import Bubble from "../components/Bubble";
 import { Footer } from "../components/Footer";
 import { SpootlightsHome } from "../components/SpootlightsHome";
 import Client from "../components/Client";
+import { BestProduct } from "../../product/pages/BestProduct";
 
 
 
@@ -15,10 +16,10 @@ export const Home: React.FC = () => {
         <>
         <NavbarSimple fixed>
         <CarouselHome/>
-        <Benefit/>
         <ProductList/>
-        <Client/>
         </NavbarSimple>
+        <BestProduct/>
+        <Client/>
         {/* <SpootlightsHome/> */}
         <Footer/>
         <Bubble/>

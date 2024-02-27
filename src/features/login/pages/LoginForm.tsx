@@ -62,7 +62,10 @@ const LoginForm = () => {
       </Link>
       <div className="flex gap-2 justify-center mt-3">
         <RiAccountBoxFill size={20}/>
-        <p className="font-body text-sm text-custom-gray-600 italic">Sign Up? Contact Admin</p>
+        <p className="font-raleway text-sm text-black">Belum Punya Akun? <a href="/register" className="font-semibold hover:text-[#005697]"
+        >Daftar
+        </a>
+        </p>
       </div>
     </Card>
     </div>

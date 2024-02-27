@@ -3,8 +3,9 @@ import { Home } from "../features/user/pages/Home";
 import Login from "../features/login/pages/LoginPage";
 import Complain from "../features/complain/pages/Complain";
 import Profile from "../features/user/pages/Profile";
+import Register from "../features/register/pages/RegisterPage";
 
-export const AppRoutes: React.FC = () => {
+export const AppRoutes: React.FC = () => {  
   return (
     <Router>
       <Routes>
@@ -12,6 +13,7 @@ export const AppRoutes: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/keluhan" element={<Complain/>} />
         <Route path="/profile" element= {<Profile/>} />
+        <Route path="/register" element= {<Register/>} />
       </Routes>
     </Router>
   );
