@@ -88,7 +88,7 @@ import {
               />
             </div>
             <Button placeholder={""} color="indigo" className="mt-6 font-body" fullWidth>
-             REGISTER
+             Daftar
             </Button>
           </form>
           <div className="flex gap-2 justify-center mt-1">

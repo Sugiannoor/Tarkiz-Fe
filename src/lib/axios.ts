@@ -2,7 +2,7 @@ import storage from '@/utils/storage';
 import Axios from 'axios';
 
 
-const baseURL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/';
+const baseURL = import.meta.env.VITE_API_URL ?? 'https://dummyjson.com/';
 
 export const axios = Axios.create({
   baseURL,

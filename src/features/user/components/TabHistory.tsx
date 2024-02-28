@@ -49,6 +49,7 @@ export const TabHistory = () => {
         <div className="flex flex-col items-center justify-end gap-4 md:flex-row">
           <div className="w-full md:w-72">
             <Input
+              crossOrigin={""}
               label="Search"
               icon={<PiMagnifyingGlassLight className="h-5 w-5" />}
             />
@@ -140,12 +141,12 @@ export const TabHistory = () => {
                     </td>
                     <td className={classes}>
                       <Tooltip content="Delete">
-                        <IconButton variant="text">
+                        <IconButton placeholder={""} variant="text">
                           <MdDelete className="h-5 w-5" />
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Detail">
-                        <IconButton variant="text">
+                        <IconButton placeholder={""} variant="text">
                           <CiCircleInfo className="h-5 w-5" />
                         </IconButton>
                       </Tooltip>
@@ -157,7 +158,7 @@ export const TabHistory = () => {
           </tbody>
         </table>
       </CardBody>
-      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+      <CardFooter placeholder={""} className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Typography variant="small" color="blue-gray" className="font-normal">
           Page 1 of 10
         </Typography>

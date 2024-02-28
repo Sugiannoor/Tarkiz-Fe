@@ -16,6 +16,7 @@ const ProfileMenu = () => {
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
           <Avatar
+            placeholder={""}
             variant="circular"
             size="sm"
             alt="tania andrew"
@@ -30,9 +31,10 @@ const ProfileMenu = () => {
           />
         </Button>
       </MenuHandler>
-      <MenuList className="p-1">
+      <MenuList placeholder={""} className="p-1">
         <Link to={"/profile"}>
             <MenuItem
+              placeholder={""}
               key="profile"
               className={`flex items-center gap-2 rounded `}
               >
@@ -48,6 +50,7 @@ const ProfileMenu = () => {
             </MenuItem>
             </Link>
             <MenuItem
+              placeholder={""}
               key="Log Out"
               className={`flex items-center gap-2 rounded hhover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
             >

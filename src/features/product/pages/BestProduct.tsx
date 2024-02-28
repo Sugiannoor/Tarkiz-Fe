@@ -11,7 +11,7 @@ export const BestProduct = () => {
   return (
     <div>
       <Card
-        className={`w-full h-full flex-col lg:flex-row`}
+        className={`mt-5 w-full h-full flex-col lg:flex-row`}
       >
         <CardHeader
           shadow={false}
@@ -27,13 +27,13 @@ export const BestProduct = () => {
         <CardBody className="flex flex-col justify-center">
           <Typography
             variant="h6"
-            className="mb-4 text-5xl font-poppins text-black text-center"
+            className="mb-4 text-3xl lg:text-5xl font-poppins text-black text-center"
           >
             Web Development
           </Typography>
           <Typography
             color="gray"
-            className="mb-8 text-center font-raleway text-2xl font-normal"
+            className="mb-8 text-center font-raleway  text-xl lg:text-2xl font-normal"
           >
             Membantu perusahaan mengoptimalkan proses keuangan melalui solusi
             teknologi terkini dan berkualitas tinggi.
@@ -66,7 +66,7 @@ export const BestProduct = () => {
         <CardHeader
           shadow={false}
           floated={false}
-          className="m-0 lg:w-3/5 shrink-0 rounded-r-none"
+          className="m-0 lg:w-[55%] shrink-0 rounded-r-none"
         >
           <img
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
@@ -77,13 +77,13 @@ export const BestProduct = () => {
         <CardBody className="flex flex-col justify-center">
           <Typography
             variant="h6"
-            className="mb-4 text-5xl font-poppins text-black text-center"
+            className="mb-4 text-3xl lg:text-5xl font-poppins text-black text-center"
           >
             Android Developer
           </Typography>
           <Typography
             color="gray"
-            className="mb-8 text-center font-raleway text-2xl font-normal"
+            className="mb-8 text-center font-raleway  text-xl lg:text-2xl font-normal"
           >
             Membantu perusahaan mengoptimalkan proses keuangan melalui solusi
             teknologi terkini dan berkualitas tinggi.

@@ -29,6 +29,7 @@ const InputComponent = ({
         {label}
       </label>
       <Input
+        crossOrigin={""}
         disabled={disabled}
         name={id}
         id={id}

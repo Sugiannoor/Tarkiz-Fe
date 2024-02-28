@@ -58,7 +58,7 @@ const LoginForm = () => {
       </form>
       <Link to={'/'} className="flex gap-1 h-full justify-center mt-1 bg-custom-primary-900 rounded-lg p-[0.50rem] hover:bg-custom-primary-800 duration-300 focus:bg-custom-primary-700">
         <IoArrowBackCircle size={20} className="mt-[0.15rem]" color="white"/>
-        <p className="font-body text-sm font-semibold text-custom-primary-50 mt-[0.20rem]">Back</p>
+        <p className="font-body text-sm font-semibold text-custom-primary-50 mt-[0.20rem]">Kembali</p>
       </Link>
       <div className="flex gap-2 justify-center mt-3">
         <RiAccountBoxFill size={20}/>

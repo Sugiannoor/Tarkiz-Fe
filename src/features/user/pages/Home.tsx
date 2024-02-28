@@ -12,9 +12,9 @@ export const Home: React.FC = () => {
       <NavbarSimple fixed>
         <CarouselHome />
         <ProductList />
-      </NavbarSimple>
       <BestProduct />
       <Client />
+      </NavbarSimple>
       {/* <SpootlightsHome/> */}
       <Footer />
       <Bubble />

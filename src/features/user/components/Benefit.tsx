@@ -41,6 +41,7 @@ const Benefit = () => {
               Tania Andrew
             </Typography>
             <Avatar
+              placeholder={""}
               size="xl"
               variant="circular"
               alt="tania andrew"
@@ -73,6 +74,7 @@ const Benefit = () => {
               Tania Andrew
             </Typography>
             <Avatar
+              placeholder={""}
               size="xl"
               variant="circular"
               alt="tania andrew"
@@ -105,6 +107,7 @@ const Benefit = () => {
               Tania Andrew
             </Typography>
             <Avatar
+              placeholder={""}
               size="xl"
               variant="circular"
               alt="tania andrew"
@@ -137,6 +140,7 @@ const Benefit = () => {
               Tania Andrew
             </Typography>
             <Avatar
+              placeholder={""}
               size="xl"
               variant="circular"
               alt="tania andrew"
@@ -169,6 +173,7 @@ const Benefit = () => {
               Tania Andrew
             </Typography>
             <Avatar
+              placeholder={""}
               size="xl"
               variant="circular"
               alt="tania andrew"
@@ -201,6 +206,7 @@ const Benefit = () => {
               Tania Andrew
             </Typography>
             <Avatar
+              placeholder={""}
               size="xl"
               variant="circular"
               alt="tania andrew"
