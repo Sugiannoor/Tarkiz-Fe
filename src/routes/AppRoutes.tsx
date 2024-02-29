@@ -5,6 +5,8 @@ import Complain from "../features/complain/pages/Complain";
 import Profile from "../features/user/pages/Profile";
 import Register from "../features/register/pages/RegisterPage";
 import WebProduct from "@/features/product/pages/WebProduct";
+import Layout from "@/features/admin/layout/Layout";
+import DashboardAdmin from "@/features/dashboard/pages/DashboardAdmin";
 
 export const AppRoutes: React.FC = () => {  
   return (
@@ -16,6 +18,9 @@ export const AppRoutes: React.FC = () => {
         <Route path="/profile" element= {<Profile/>} />
         <Route path="/register" element= {<Register/>} />
         <Route path="/product/web" element= {<WebProduct/>} />
+        <Route element= {<Layout/>}>
+          <Route path="/dashboard" element={<DashboardAdmin/>}/>
+        </Route>
       </Routes>
     </Router>
   );

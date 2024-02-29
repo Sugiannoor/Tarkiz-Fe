@@ -1,9 +1,10 @@
 export type UserInterface = {
     id: string;
+    full_name: string;
     username: string;
-    lastName: string;
+    number_phone: string
     email: string;
     firstName: string;
     gender: string;
-    image: string
+    image_path?: string
 }

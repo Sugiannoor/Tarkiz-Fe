@@ -26,12 +26,14 @@ export const BestProduct = () => {
         </CardHeader>
         <CardBody className="flex flex-col justify-center">
           <Typography
+          placeholder={""}
             variant="h6"
             className="mb-4 text-3xl lg:text-5xl font-poppins text-black text-center"
           >
             Web Development
           </Typography>
           <Typography
+            placeholder={""}
             color="gray"
             className="mb-8 text-center font-raleway  text-xl lg:text-2xl font-normal"
           >
@@ -40,6 +42,7 @@ export const BestProduct = () => {
           </Typography>
           <div className="w-full flex justify-center">
             <Button
+              placeholder={""}
               variant="text"
               className="flex items-center gap-2 justify-center text-[#005697] font-semibold  font-poppins text-md"
             >
@@ -76,12 +79,14 @@ export const BestProduct = () => {
         </CardHeader>
         <CardBody className="flex flex-col justify-center">
           <Typography
+            placeholder={""}
             variant="h6"
             className="mb-4 text-3xl lg:text-5xl font-poppins text-black text-center"
           >
             Android Developer
           </Typography>
           <Typography
+            placeholder={""}
             color="gray"
             className="mb-8 text-center font-raleway  text-xl lg:text-2xl font-normal"
           >
@@ -90,6 +95,7 @@ export const BestProduct = () => {
           </Typography>
           <div className="w-full flex justify-center">
             <Button
+              placeholder={""}
               variant="text"
               className="flex items-center gap-2 justify-center text-[#005697] font-semibold  font-poppins text-md"
             >

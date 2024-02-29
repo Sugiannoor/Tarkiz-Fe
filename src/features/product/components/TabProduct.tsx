@@ -16,7 +16,7 @@ export const TabsProduct = () => {
         who are like offended by it, it doesn't matter.`,
     },
     {
-      label: "Sistem Keuangan",
+      label: "Keuangan",
       value: "finance",
       desc: `Because it's about motivating the doers. Because I'm here
         to follow my dreams and inspire other people to follow their dreams, too.`,
@@ -46,14 +46,14 @@ export const TabsProduct = () => {
   return (
     <div className="flex justify-center mt-5">
       <Tabs id="custom-animation" value="all" className=" p-5 lg:p-0 lg:w-[80rem]">
-        <TabsHeader>
+        <TabsHeader placeholder={""}>
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value} className="font-poppins">
+            <Tab placeholder={""} key={value} value={value} className="font-poppins">
               {label}
             </Tab>
           ))}
         </TabsHeader>
-        <TabsBody
+        <TabsBody placeholder={""}
          animate={{
             initial: { y: 250 },
             mount: { y: 0 },
