@@ -100,8 +100,9 @@ const chartConfig = {
 
 export const BarChart = () => {
   return (
-    <Card className=" mt-10 lg:mt-24">
+    <Card placeholder={""} className=" mt-10 lg:mt-24">
       <CardHeader
+        placeholder={""}
         floated={false}
         shadow={false}
         color="transparent"
@@ -113,7 +114,7 @@ export const BarChart = () => {
           </Typography> 
         </div>
       </CardHeader>
-      <CardBody className="px-2 pb-0">
+      <CardBody placeholder={""} className="px-2 pb-0">
         <Chart {...chartConfig} />
       </CardBody>
     </Card>

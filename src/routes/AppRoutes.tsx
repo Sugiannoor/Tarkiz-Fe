@@ -7,6 +7,8 @@ import Register from "../features/register/pages/RegisterPage";
 import WebProduct from "@/features/product/pages/WebProduct";
 import Layout from "@/features/admin/layout/Layout";
 import DashboardAdmin from "@/features/dashboard/pages/DashboardAdmin";
+import UserManagment from "@/features/admin/pages/UserManagment";
+import { UnderProgress } from "@/features/user/pages/UnderProgress";
 
 export const AppRoutes: React.FC = () => {  
   return (
@@ -15,13 +17,16 @@ export const AppRoutes: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/keluhan" element={<Complain/>} />
-        <Route path="/profile" element= {<Profile/>} />
         <Route path="/register" element= {<Register/>} />
         <Route path="/product/web" element= {<WebProduct/>} />
         <Route element= {<Layout/>}>
           <Route path="/dashboard" element={<DashboardAdmin/>}/>
+          <Route path="/user" element={<UserManagment/>}/>
         </Route>
+        <Route path="/profile" element= {<Profile/>} />
+        <Route path="*" element={<UnderProgress />} />
       </Routes>
+      
     </Router>
   );
 };

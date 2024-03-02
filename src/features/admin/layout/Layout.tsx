@@ -23,9 +23,9 @@ const Layout = () => {
         <div className='col-span-2 lg:col-span-3'>
           {isMobile ? <SidebarMobile /> : <SidebarDesktop />}
         </div>
-        <div className='col-span-10 lg:col-span-9'>
+        <main className='col-span-10 lg:col-span-9'>
           <Outlet />
-        </div>
+        </main>
       </div>
     </div>
   );

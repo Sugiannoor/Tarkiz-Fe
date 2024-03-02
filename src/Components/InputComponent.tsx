@@ -3,6 +3,7 @@ import { Input } from "@material-tailwind/react";
 type InputProps = {
   label?: string;
   id: string;
+  type?: string | "text" | "number" | "email" |"date";
   classnameLabel?: string;
   placeholder?: string;
   className ?: string
@@ -21,6 +22,7 @@ const InputComponent = ({
   className,
   readOnly,
   disabled,
+  type,
   value,
 }: InputProps) => {
   return (
@@ -29,6 +31,7 @@ const InputComponent = ({
         {label}
       </label>
       <Input
+        type= {type || "text"}
         crossOrigin={""}
         disabled={disabled}
         name={id}
