@@ -19,7 +19,7 @@ const Layout = () => {
   return (
     <div>
       <div className='absolute top-0 w-full bg-[#005697] h-[350px]'></div>
-      <div className={`relative ${isMobile ? "px-4" : "grid grid-cols-12"} pt-10 lg:mt-10`}>
+      <div className={`relative ${isMobile ? "px-4" : "grid grid-cols-12"} pt-5`}>
         <div className='col-span-2 lg:col-span-3'>
           {isMobile ? <SidebarMobile /> : <SidebarDesktop />}
         </div>

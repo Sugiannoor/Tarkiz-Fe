@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   Dialog,
@@ -12,13 +11,13 @@ id: number;
 open: boolean;
 handleOpen: () => void
 }
-export const DeleteUser = ({open, handleOpen, id}:props) => {
- 
+export const DeleteUserModal = ({open, handleOpen, id}:props) => {
+ console.log(id)
   return (
     <>
       <Dialog placeholder={""} open={open} handler={handleOpen}>
-        <DialogHeader placeholder={""}>Hapus Pengguna</DialogHeader>
-        <DialogBody placeholder={""}>
+        <DialogHeader placeholder={""} className="font-poppins">Hapus Pengguna</DialogHeader>
+        <DialogBody className="font-poppins text-gray-500" placeholder={""}>
         Yakin Untuk Menghapus User ?
         </DialogBody>
         <DialogFooter placeholder={""}>
@@ -27,11 +26,11 @@ export const DeleteUser = ({open, handleOpen, id}:props) => {
             variant="text"
             color="red"
             onClick={handleOpen}
-            className="mr-1"
+            className="mr-1 font-poppins"
           >
             <span>Cancel</span>
           </Button>
-          <Button placeholder={""} variant="gradient" color="green" onClick={handleOpen}>
+          <Button placeholder={""} className="font-poppins" variant="gradient" color="green" onClick={handleOpen}>
             <span>Confirm</span>
           </Button>
         </DialogFooter>

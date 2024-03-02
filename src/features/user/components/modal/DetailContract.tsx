@@ -40,7 +40,7 @@ export const DetailContract = ({ open, handler, id, contractData }: props) => {
             <p className="text-lg font-poppins">lampiran : </p>
             </div>
             <div>
-              <p font-poppins>{id}</p>
+              <p className="font-poppins">{id}</p>
               <p>{contractData?.appName}</p>
               <p>{contractData?.programType}</p>
               <p>{contractData?.description}</p>

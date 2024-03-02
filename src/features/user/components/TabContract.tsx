@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { DetailContract } from "./modal/DetailContract";
+import { Link } from "react-router-dom";
 
 const TabContract = () => {
   const [selectedId, setSelectedId] = useState<number>(0);
@@ -56,9 +57,11 @@ const TabContract = () => {
             >
               Detail
             </Button>
+            <Link to={`/profile/keluhan/${id}`}>
             <Button placeholder={""} color="red">
               Keluhkan
             </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}

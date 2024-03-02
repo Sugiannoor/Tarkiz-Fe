@@ -100,7 +100,7 @@ const chartConfig = {
 
 export const BarChart = () => {
   return (
-    <Card placeholder={""} className=" mt-10 lg:mt-24">
+    <Card placeholder={""} className=" mt-10 lg:mt-14">
       <CardHeader
         placeholder={""}
         floated={false}
