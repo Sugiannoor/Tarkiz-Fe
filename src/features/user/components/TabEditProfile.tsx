@@ -1,3 +1,4 @@
+import { Button } from '@material-tailwind/react'
 import InputComponent from '../../../Components/InputComponent'
 
 const TabEditProfile = () => {
@@ -15,6 +16,11 @@ const TabEditProfile = () => {
     <InputComponent id="email" label="Email" placeholder="Cek@gmail.com" classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9" />
     <InputComponent id="phone" label="Nomor Telepon" placeholder="08..." classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9" />
     <InputComponent id="address" label="Alamat" placeholder="JL. Banjarbaru" classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9"/>
+    <div className='flex justify-end'>
+    <Button placeholder={""} className='font-poppins'>
+      Simpan
+    </Button>
+    </div>
   </form>
   )
 }

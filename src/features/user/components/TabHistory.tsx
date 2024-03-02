@@ -34,14 +34,14 @@ const TABLE_ROWS = [
  
 export const TabHistory = () => {
   return (
-    <Card className="h-full w-full">
-      <CardHeader floated={false} shadow={false} className="rounded-none">
+    <Card placeholder={""} className="h-full w-full">
+      <CardHeader placeholder={""} floated={false} shadow={false} className="rounded-none">
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5" className="font-semibold text-2xl font-poppins text-[#005697]">
+            <Typography placeholder={""} variant="h5" className="font-semibold text-2xl font-poppins text-[#005697]">
               Riwayat Pengaduan
             </Typography>
-            <Typography color="gray" className="mt-1 font-normal font-poppins">
+            <Typography placeholder={""} color="gray" className="mt-1 font-normal font-poppins">
             Berikut adalah status pengaduan yang telah anda ajukan
             </Typography>
           </div>
@@ -56,7 +56,7 @@ export const TabHistory = () => {
           </div>
         </div>
       </CardHeader>
-      <CardBody className="overflow-scroll px-0">
+      <CardBody placeholder={""} className="overflow-scroll px-0">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -66,6 +66,7 @@ export const TabHistory = () => {
                   className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                 >
                   <Typography
+                    placeholder={""}
                     variant="small"
                     color="blue-gray"
                     className="font-normal font-poppins leading-none opacity-70"
@@ -90,6 +91,7 @@ export const TabHistory = () => {
                       <div className="flex items-center gap-3">
                         <div className="flex flex-col">
                           <Typography
+                            placeholder={""}
                             variant="small"
                             color="blue-gray"
                             className="font-normal font-poppins"
@@ -101,6 +103,7 @@ export const TabHistory = () => {
                     </td>
                     <td className={classes}>
                         <Typography
+                          placeholder={""}
                           variant="small"
                           color="blue-gray"
                           className="font-normal font-poppins"
@@ -111,6 +114,7 @@ export const TabHistory = () => {
                     </td>
                     <td className={classes}>
                         <Typography
+                          placeholder={""}
                           variant="small"
                           color="blue-gray"
                           className="font-normal font-poppins"
@@ -132,6 +136,7 @@ export const TabHistory = () => {
                     </td>
                     <td className={classes}>
                       <Typography
+                        placeholder={""}
                         variant="small"
                         color="blue-gray"
                         className="font-normal font-poppins"
@@ -159,14 +164,14 @@ export const TabHistory = () => {
         </table>
       </CardBody>
       <CardFooter placeholder={""} className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Typography variant="small" color="blue-gray" className="font-normal">
+        <Typography placeholder={""} variant="small" color="blue-gray" className="font-normal">
           Page 1 of 10
         </Typography>
         <div className="flex gap-2">
-          <Button variant="outlined" size="sm">
+          <Button placeholder={""} variant="outlined" size="sm">
             Previous
           </Button>
-          <Button variant="outlined" size="sm">
+          <Button placeholder={""} variant="outlined" size="sm">
             Next
           </Button>
         </div>
