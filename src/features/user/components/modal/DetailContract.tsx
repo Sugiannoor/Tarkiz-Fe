@@ -17,7 +17,7 @@ type props = {
   open: boolean;
   handler: () => void;
   id: number;
-  contractData: ContractData;
+  contractData?: ContractData;
 };
 
 export const DetailContract = ({ open, handler, id, contractData }: props) => {
