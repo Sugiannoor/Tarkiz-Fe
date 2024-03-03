@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { DetailContract } from "./modal/DetailContract";
+import { DetailContract } from "../modal/DetailContract";
 import { Link } from "react-router-dom";
 
 const TabContract = () => {

@@ -7,9 +7,9 @@ export * from "./NavbarSimple"
 export * from "./ProductList"
 export * from "./ProfileMenu"
 export * from "./SpootlightsHome"
-export * from "./TabDetailProfile"
-export * from "./TabEditProfile"
-export * from "./TabHistory"
+export * from "./profile/TabDetailProfile"
+export * from "./profile/TabEditProfile"
+export * from "./profile/TabHistory"
 
 
 

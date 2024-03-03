@@ -11,6 +11,7 @@ import Profile from "@/features/user/pages/Profile";
 import Login from "@/features/login/pages/LoginPage";
 import Register from "@/features/register/pages/RegisterPage";
 import UpdateComplaint from "@/features/admin/pages/UpdateComplaint";
+import DetailComplaint from "@/features/admin/components/DetailComplaint";
 
 export const AppRoutes: React.FC = () => {  
   return (
@@ -28,6 +29,7 @@ export const AppRoutes: React.FC = () => {
         </Route>
         <Route path="/profile" element= {<Profile/>} />
         <Route path="/profile/keluhan/:id" element= {<CreateComplaint/>} />
+        <Route path="/profile/keluhan/detail/:id" element= {<DetailComplaint/>} />
         <Route path="*" element={<UnderProgress />} />
       </Routes>
       

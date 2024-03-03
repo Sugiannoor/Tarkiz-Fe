@@ -32,17 +32,16 @@ const CreateComplaint = () => {
             />
           <div className="max-w-80 mt-5 cursor-pointer">
             <FilePond
-            labelIdle="Drop Atau Pilih Foto Keluhan Anda"
             name="files"
             allowMultiple />
           </div>
           <div className="flex justify-end gap-5">
             <Link to={"/profile"}>
-            <Button placeholder={""} className="font-poppins">
+            <Button placeholder={""} variant="text" className="font-raleway" color="red">
                 Kembali
             </Button>
             </Link>
-          <Button placeholder={""} className="font-poppins">
+          <Button placeholder={""} variant="filled" className="font-raleway" color="indigo">
                 Buat Pengaduan
             </Button>
           </div>

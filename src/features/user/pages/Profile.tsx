@@ -1,5 +1,5 @@
 import { NavbarSimple } from "../components/NavbarSimple"
-import TabProfile from "../components/TabProfile"
+import TabProfile from "../components/profile/TabProfile"
 
 const Profile = () => {
   return (

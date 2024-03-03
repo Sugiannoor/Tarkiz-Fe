@@ -1,6 +1,8 @@
 import { IconButton, SpeedDial, SpeedDialAction, SpeedDialContent, SpeedDialHandler } from '@material-tailwind/react'
+import { FaWhatsapp} from 'react-icons/fa';
 import { IoMdChatboxes } from "react-icons/io";
 import { IoChatboxEllipses } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const Bubble = () => {
   return (
@@ -15,13 +17,9 @@ const Bubble = () => {
         </SpeedDialHandler>
         <SpeedDialContent placeholder={""}>
           <SpeedDialAction placeholder={""}>
-            <IoMdChatboxes className="h-5 w-5" />
-          </SpeedDialAction>
-          <SpeedDialAction placeholder={""}>
-            <IoChatboxEllipses className="h-5 w-5" />
-          </SpeedDialAction>
-          <SpeedDialAction placeholder={""}>
-            <IoMdChatboxes className="h-5 w-5" />
+            <Link to={'https://api.whatsapp.com/send?phone=6285345683025'} target='_blank'>
+            <FaWhatsapp className="h-5 w-5" />
+            </Link>
           </SpeedDialAction>
         </SpeedDialContent>
       </SpeedDial>
