@@ -1,16 +1,10 @@
 import { useState } from 'react';
-import { Breadcrumbs, Button, Card } from '@material-tailwind/react';
+import { Breadcrumbs, Card } from '@material-tailwind/react';
 import Search from '@/Components/Search';
-import { BiPlusCircle } from 'react-icons/bi';
 import TableComplaint from '../components/Table/TableComplaint';
-import { CreateContractModal } from '../components/Modal/CreateContract';
 
 const ComplaintManagment = () => {
-    const [isCreateContracrt, setIsCreateContract] = useState (false);
     const [search, setSearch] = useState("");
-    const handleCreateContract = () => setIsCreateContract (!isCreateContracrt);
-
-    
   return (
     <div>
     

@@ -1,4 +1,4 @@
-export type UserInterface = {
+export interface UserInterface  {
     id: string;
     full_name: string;
     username: string;
@@ -6,5 +6,6 @@ export type UserInterface = {
     email: string;
     firstName: string;
     gender: string;
+    role: string;
     image_path?: string
 }

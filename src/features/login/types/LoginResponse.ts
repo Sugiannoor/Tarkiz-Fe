@@ -1,6 +1,6 @@
 import { UserInterface } from "@/features/user/types/User"
 
-export type LoginResponse = {
+export interface LoginResponse  {
     user: UserInterface
     token: string
   }

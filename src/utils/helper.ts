@@ -1,5 +1,7 @@
+import { UserInterface } from "@/features/user/types/User";
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
+import { ROLES } from "./data";
 
 export const dateFormated = (dateStr: string) => {
     const day = new Date(dateStr);
@@ -43,4 +45,23 @@ export const dateFormated = (dateStr: string) => {
   
       toast.error("Gagal, periksa ulang data anda");
     }
+  };
+
+  export const generateNewRole = (user: UserInterface) => {
+    let newRole = "";
+  
+    if (user) {
+        switch (user.role) {
+          case ROLES.Users:
+            newRole = ROLES.Users;
+            break;
+          case ROLES.Admin:
+            newRole = ROLES.Admin;
+            break;
+          default:
+            newRole = user.role;
+            break;
+        }
+      } 
+    return newRole;
   };

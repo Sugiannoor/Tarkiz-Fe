@@ -1,14 +1,14 @@
 import { createContext } from "react";
 import { UseMutationResult, useMutation, useQuery, useQueryClient } from "react-query";
 import storage from "@/utils/storage";
-import { LoginResponse } from "@/features/login/types/LoginResponse";
-import { LoginProps } from "@/features/login/types";
+import { LoginProps, LoginResponse } from "@/features/login/types";
+import { getUser, loginFunction, logoutFunction } from "@/features/login/api/auth";
 import { UserInterface } from "@/features/user/types/User";
-import { loginFunction } from "@/features/login/api/auth";
+import { generateNewRole } from "@/utils/helper";
 
 type AuthContextType = {
   user: UserInterface | null;
-  login: UseMutationResult<LoginResponse, Error, LoginProps, unknown>;
+  login: UseMutationResult<LoginResponse, unknown, LoginProps, unknown>;
   logout: () => void;
 };
 
@@ -17,21 +17,24 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const queryClient = useQueryClient();
 
-  // const fetchUserData = async () => {
-  //   const accessToken = localStorage.getItem("token");
+  const fetchUserData = async () => {
+    const accessToken = localStorage.getItem("token");
 
-  //   if (accessToken) {
-  //     const user = await getUser();
-  //     return user;
-  //   }
+    if (accessToken) {
+      const user = await getUser();
+      const newRole = generateNewRole(user);
+      const newUser = {...user, role: newRole}
 
-  //   return null;
-  // };
+      return newUser;
+    }
 
-  // const { data: User, isLoading } = useQuery({
-  //   queryKey: ["authUser"],
-  //   queryFn: fetchUserData,
-  // });
+    return null;
+  };
+
+  const { data: User, isLoading } = useQuery({
+    queryKey: ["authUser"],
+    queryFn: fetchUserData,
+  });
 
   const loginMutation = useMutation({
     mutationFn: loginFunction,
@@ -41,19 +44,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     },
   });
 
-  // const logoutMutation = useMutation({
-  //   mutationFn: logoutFunction,
-  //   onSuccess: () => {
-  //     storage.clearToken();
-  //     queryClient.clear();
-  //   },
-  // });
+  const logoutMutation = useMutation({
+    mutationFn: logoutFunction,
+    onSuccess: () => {
+      storage.clearToken();
+      queryClient.clear();
+    },
+  });
 
 
   const value: AuthContextType = {
-    // user: User || null,
+    user: User || null,
     login: loginMutation,
-    // logout: logoutMutation.mutateAsync,
+    logout: logoutMutation.mutateAsync,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

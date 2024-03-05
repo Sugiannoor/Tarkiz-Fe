@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
+import { Authorization } from "@/Components/Authorization/Authorization";
 
 type Props = {
   children?: React.ReactNode;
@@ -76,7 +77,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
     <div className="max-h-full w-[90%] lg:w-[80%] mx-auto my-4">
       <Navbar
         className={`${
-          fixed ? 'sticky' : 'relative'
+          fixed ? "sticky" : "relative"
         } top-0 z-10 h-max max-w-full rounded-[30px] px-4 py-4 lg:px-8 lg:py-4`}
         placeholder={""}
       >
@@ -89,19 +90,23 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-2">
-              <Link to={"/login"}>
-                <Button
-                  placeholder={""}
-                  variant="filled"
-                  color="indigo"
-                  size="sm"
-                  className="hidden font-raleway lg:inline-block"
-                >
-                  <span>Login</span>
-                </Button>
-              </Link>
+              <Authorization roles={["-Users"]}>
+                <Link to={"/login"}>
+                  <Button
+                    placeholder={""}
+                    variant="filled"
+                    color="indigo"
+                    size="sm"
+                    className="hidden font-raleway lg:inline-block"
+                  >
+                    <span>Login</span>
+                  </Button>
+                </Link>
+              </Authorization>
             </div>
-            <ProfileMenu/>
+            <Authorization roles={["Users"]}>
+              <ProfileMenu />
+            </Authorization>
             <IconButton
               placeholder={""}
               variant="text"
