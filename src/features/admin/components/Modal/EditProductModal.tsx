@@ -4,13 +4,13 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
-  Select,
-  Option,
   Textarea,
 } from "@material-tailwind/react";
 import InputComponent from "@/Components/InputComponent";
 import { FilePond } from "react-filepond";
-import { FaFile } from "react-icons/fa";
+import { MultiSelect } from "react-multi-select-component";
+import { useState } from "react";
+import { FaFileAlt } from "react-icons/fa";
 
 type props = {
   open: boolean;
@@ -18,7 +18,12 @@ type props = {
   id: number;
 };
 export const EditProductModal = ({ open, handleOpen, id }: props) => {
-  console.log(id);
+  const [selected, setSelected] = useState([]);
+  const options = [
+    { value: 1, label: "Chocolate" },
+    { value: 2, label: "Strawberry" },
+    { value: 3, label: "Vanilla" },
+  ];
   return (
     <>
       <Dialog placeholder={""} size="lg" open={open} handler={handleOpen}>
@@ -42,17 +47,13 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               >
                 Kategori Produk
               </label>
-              <Select
-                placeholder={""}
-                variant="static"
-                id="category"
-                name="category"
-              >
-                <Option>Web Development</Option>
-                <Option>Android Development</Option>
-                <Option>IT Consultant</Option>
-                <Option>Maintance</Option>
-              </Select>
+             <MultiSelect 
+             className="mt-2"
+             options={options}
+             value={selected}
+             onChange={setSelected}
+             labelledBy="Select"
+             />
             </div>
             <label
               htmlFor="description"
@@ -75,7 +76,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
                 Gambar Produk
               </label>
               <div className="flex gap-1">
-                <FaFile size={20} className="text-[#005697]" />
+                <FaFileAlt size={20} className="text-[#005697]" />
                 <a href="#" className="text-md font-poppins font-normal">File</a>
               </div>
               <FilePond id="file" name="file" />

@@ -7,7 +7,6 @@ import TableProduct from '../components/Table/TableProduct';
 
 const ProductManagment = () => {
     const [isCreateProduct, setIsCreateProduct] = useState (false);
-    const [isDeleteProduct, setIsDeleteProduct] = useState (false);
     const [search, setSearch] = useState("");
     const handleCreateProduct = () => setIsCreateProduct (!isCreateProduct);
 

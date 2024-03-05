@@ -42,13 +42,15 @@ import { Link } from "react-router-dom";
               Manajemen Product
             </ListItem>
             </Link>
+            <Link to={"/keluhan"}>
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
                 <FaUserTimes className="h-5 w-5" />
               </ListItemPrefix>
               Manajemen Keluhan
             </ListItem>
-            <Link to={"/keluhan"}>
+            </Link>
+            <Link to={"/kontrak"}>
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
                 <FaCreditCard className="h-5 w-5" />

@@ -8,6 +8,8 @@ import Loading from "./Components/Loading";
 import { AppRoutes } from "./routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ErrorProvider } from "./provider/ErrorProvider";
+import { Toaster } from "react-hot-toast";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Suspense fallback={<Loading />}>
         <QueryClientProvider client={queryClient}>
         <AppRoutes />
+        <Toaster position="top-center"/>
         </QueryClientProvider>
       </Suspense>
     </ThemeProvider>

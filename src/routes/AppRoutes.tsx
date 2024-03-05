@@ -12,6 +12,8 @@ import Login from "@/features/login/pages/LoginPage";
 import Register from "@/features/register/pages/RegisterPage";
 import UpdateComplaint from "@/features/admin/pages/UpdateComplaint";
 import DetailComplaint from "@/features/admin/components/DetailComplaint";
+import ComplaintManagment from "@/features/admin/pages/ComplaintManagment";
+import ContractManagment from "@/features/admin/pages/ContractManagment";
 
 export const AppRoutes: React.FC = () => {  
   return (
@@ -25,6 +27,8 @@ export const AppRoutes: React.FC = () => {
           <Route path="/dashboard" element={<DashboardAdmin/>}/>
           <Route path="/user" element={<UserManagment/>}/>
           <Route path="/product" element={<ProductManagment/>}/>
+          <Route path="/keluhan" element={<ComplaintManagment/>}/>
+          <Route path="/kontrak" element={<ContractManagment/>}/>
           <Route path="/keluhan/update" element={<UpdateComplaint/>}/>
         </Route>
         <Route path="/profile" element= {<Profile/>} />
