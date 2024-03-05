@@ -6,6 +6,7 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { BiLogOut } from "react-icons/bi";
 import { FaBars, FaCreditCard, FaHome, FaUserTimes } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 import { MdOutlineScreenShare } from "react-icons/md";
@@ -51,13 +52,15 @@ export const SidebarMobile = () => {
               Manajemen Product
             </ListItem>
             </Link>
+            <Link to={"/keluhan"}>
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
                 <FaUserTimes className="h-5 w-5" />
               </ListItemPrefix>
               Manajemen Keluhan
             </ListItem>
-            <Link to={"/keluhan"}>
+            </Link>
+            <Link to={"/kontrak"}>
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
                 <FaCreditCard className="h-5 w-5" />
@@ -68,9 +71,9 @@ export const SidebarMobile = () => {
             <hr className="my-2 border-blue-gray-50" />
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
-                <FaCreditCard className="h-5 w-5" />
+                <BiLogOut className="h-5 w-5" />
               </ListItemPrefix>
-              Profile
+              Log Out
             </ListItem>
           </List>
         </Card>

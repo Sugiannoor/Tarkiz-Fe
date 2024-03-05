@@ -11,6 +11,9 @@ import { TableProps } from "@/features/user/types/tableParams";
 import { productTableType } from "../../types/productTable";
 import { ComplaintTableType } from "../../types/complaintTable";
 import { Chip } from "@material-tailwind/react";
+import { FaTrashAlt } from "react-icons/fa";
+import { RiEditBoxLine } from "react-icons/ri";
+import { DeleteComplaintModal } from "../Modal/DeleteComplaintModal";
 
   
   type TableResponse<T> = {
@@ -76,6 +79,9 @@ import { Chip } from "@material-tailwind/react";
   };
 
 const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
+  const [selectedId, setSelectedId] = useState (0);
+  const [isDelete, setIsDelete] = useState (false);
+  const handleDelete = () => setIsDelete (!isDelete)
   const [params, setParams] = useState<APIParams>({
     current_page: 1,
     row_per_page: 10,
@@ -161,9 +167,9 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
             if (row.original.status === "Baru") {
                 return <Chip color="red" value="Baru" className="text-center font-poppins"/>;
             } else if (row.original.status === "Proses") {
-                return <Chip color="yellow" value="Proses" className="font-poppins" />;
+                return <Chip color="yellow" value="Proses" className="text-center font-poppins" />;
             } else if (row.original.status === "Selesai") {
-                return <Chip color="green" value="Selesai" className="font-poppins" />;
+                return <Chip color="green" value="Selesai" className="text-center font-poppins" />;
             }
             return null;
         }
@@ -171,9 +177,19 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
     {
       header: "Aksi",
       cell: ({ row }) => (
-        <Link to={`detail/${row.original.id}`}>
-          <AiOutlineInfoCircle />
-        </Link>
+        <div className="flex gap-5">
+          <Link to={`/keluhan/edit/${row.original.id}`}>
+          <RiEditBoxLine size={18} className="text-custom-blue-600 cursor-pointer"/>
+          </Link>
+          <FaTrashAlt
+            size={18}
+            className="text-red-900 cursor-pointer"
+            onClick={() => {
+              setSelectedId(row.original.id);
+              handleDelete();
+            }} 
+          />
+        </div>
       ),
     },
   ];
@@ -181,6 +197,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
 
   return (
     <>
+    <DeleteComplaintModal open={isDelete} handleOpen={handleDelete} id={selectedId}/>
       <Table
         data={dummyData || []}
         columns={columns}

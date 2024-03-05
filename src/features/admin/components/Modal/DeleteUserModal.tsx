@@ -18,7 +18,7 @@ export const DeleteUserModal = ({open, handleOpen, id}:props) => {
       <Dialog placeholder={""} open={open} handler={handleOpen}>
         <DialogHeader placeholder={""} className="font-poppins">Hapus Pengguna</DialogHeader>
         <DialogBody className="font-poppins text-gray-500" placeholder={""}>
-        Yakin Untuk Menghapus User ?
+        Yakin Untuk Menghapus Pengguna ?
         </DialogBody>
         <DialogFooter placeholder={""}>
           <Button

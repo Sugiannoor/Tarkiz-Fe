@@ -29,7 +29,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="/product" element={<ProductManagment/>}/>
           <Route path="/keluhan" element={<ComplaintManagment/>}/>
           <Route path="/kontrak" element={<ContractManagment/>}/>
-          <Route path="/keluhan/update" element={<UpdateComplaint/>}/>
+          <Route path="/keluhan/edit/:id" element={<UpdateComplaint/>}/>
         </Route>
         <Route path="/profile" element= {<Profile/>} />
         <Route path="/profile/keluhan/:id" element= {<CreateComplaint/>} />

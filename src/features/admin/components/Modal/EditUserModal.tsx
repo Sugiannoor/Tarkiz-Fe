@@ -9,14 +9,15 @@ import {
    
   type props = {
   open: boolean;
+  id: number
   handleOpen: () => void
   }
-  export const CreateUserModal = ({open, handleOpen}:props) => {
+  export const EditUserModal = ({open, handleOpen, id}:props) => {
    
     return (
       <>
         <Dialog placeholder={""} open={open} handler={handleOpen}>
-          <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>Tambah Pengguna</DialogHeader>
+          <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>Edit Pengguna</DialogHeader>
           <DialogBody placeholder={""} className="p-10">
           <InputComponent 
             type="text"
@@ -65,7 +66,7 @@ import {
               <span>Cancel</span>
             </Button>
             <Button placeholder={""} className="font-poppins" variant="gradient" color="black" onClick={handleOpen}>
-              <span>Confirm</span>
+              <span>Simpan</span>
             </Button>
           </DialogFooter>
         </Dialog>

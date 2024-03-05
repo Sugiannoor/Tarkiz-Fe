@@ -116,7 +116,7 @@ const Table = <T,>({
   });
   return (
     <>
-      <table className="mt-4 w-full table-auto text-left">
+      <table className="mt-4 w-full min-w-max table-auto text-left">
         <thead>
           <TableHeader headerGroups={table.getHeaderGroups()} />
         </thead>

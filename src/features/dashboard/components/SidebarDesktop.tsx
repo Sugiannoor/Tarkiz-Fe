@@ -4,6 +4,7 @@ import {
     ListItem,
     ListItemPrefix,
   } from "@material-tailwind/react";
+import { BiLogOut } from "react-icons/bi";
   import { FaCreditCard, FaHome, FaUserTimes } from "react-icons/fa";
   import { IoStatsChart } from "react-icons/io5";
 import { MdOutlineScreenShare } from "react-icons/md";
@@ -61,9 +62,9 @@ import { Link } from "react-router-dom";
             <hr className="my-2 border-blue-gray-50" />
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
-                <FaCreditCard className="h-5 w-5" />
+                <BiLogOut className="h-5 w-5" />
               </ListItemPrefix>
-              Profile
+              Log Out
             </ListItem>
           </List>
           </Card>

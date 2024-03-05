@@ -1,7 +1,9 @@
 import InputComponent from "@/Components/InputComponent";
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 
 const UpdateComplaintForm = () => {
+  const navigate = useNavigate ();
   return (
     <div className="bg-white p-5 rounded-lg">
       <div className="flex flex-col lg:flex-row lg:gap-5 justify-between">
@@ -70,6 +72,7 @@ const UpdateComplaintForm = () => {
               variant="text"
               color="red"
               className="mr-1 font-poppins"
+              onClick={()=> navigate(-1)}
               >
               <span>Cancel</span>
             </Button>

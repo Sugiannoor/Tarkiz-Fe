@@ -8,6 +8,10 @@ import { userTableType } from "../../types/userTable";
 import Table from "@/Components/table/Table";
 import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
+import { RiEditBoxLine } from "react-icons/ri";
+import { FaTrashAlt } from "react-icons/fa";
+import { DeleteUserModal } from "../Modal/DeleteUserModal";
+import { EditUserModal } from "../Modal/EditUserModal";
 
   
   type TableResponse<T> = {
@@ -136,6 +140,14 @@ import { TableProps } from "@/features/user/types/tableParams";
   };
 
 const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
+  const [isEditUser, setIsEditUser] = useState (false);
+  const [isDeleteUser, setIsDeleteUser] = useState (false);
+  const [selectedId, setSelectedId] = useState<number> (0);
+
+  const handleDeleteUser = () => setIsDeleteUser (!isDeleteUser)
+  const handleEditUser = () => setIsEditUser (!isEditUser)
+
+
   const [params, setParams] = useState<APIParams>({
     current_page: 1,
     row_per_page: 10,
@@ -213,9 +225,22 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
     {
       header: "Aksi",
       cell: ({ row }) => (
-        <Link to={`detail/${row.original.id}`}>
-          <AiOutlineInfoCircle />
-        </Link>
+        <div className="flex gap-5">
+          <RiEditBoxLine size={18} className="text-custom-blue-600 cursor-pointer"
+           onClick={() => {
+            setSelectedId(row.original.id);
+            handleEditUser();
+          }} 
+          />
+          <FaTrashAlt
+            size={18}
+            className="text-red-900 cursor-pointer"
+            onClick={() => {
+              setSelectedId(row.original.id);
+              handleDeleteUser();
+            }} 
+          />
+        </div>
       ),
     },
   ];
@@ -223,6 +248,8 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
 
   return (
     <>
+          <DeleteUserModal open ={isDeleteUser} handleOpen={handleDeleteUser} id={selectedId} />
+          <EditUserModal open ={isEditUser} handleOpen={handleEditUser} id={selectedId} />
       <Table
         data={dummyData || []}
         columns={columns}

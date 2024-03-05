@@ -19,7 +19,7 @@ const ProductManagment = () => {
        <a href="#" className="opacity-100 text-white font-poppins">
          <span>Admin</span>
        </a>
-       <a href="/product" className='font-poppins text-white hover:text-gray-300 transition-colors duration-300 ease-in-out'>Product</a>
+       <a href="/product" className='font-poppins text-white hover:text-gray-300 transition-colors duration-300 ease-in-out'>Manajemen Product</a>
      </Breadcrumbs>
       </div>
       <div className="text-3xl text-white font-poppins font-semibold my-10">Daftar Product</div>
