@@ -20,6 +20,8 @@ const DashboardAdmin = () => {
      <div>
         <BarChart/>
      </div>
+     <div>
+     </div>
     </div>
   )
 }
