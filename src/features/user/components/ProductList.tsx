@@ -41,11 +41,11 @@ const ProductList = () => {
           <div className="bg-[#CFD4D8] flex h-50 rounded-xl w-full justify-between p-6 lg:p-12">
             <div>
               <div className="font-raleway text-xl xl:text-2xl font-medium text-black">
-                Web Development
+                IT Consultant
               </div>
               <div className="font-raleway font-normal text-black mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/web"}>
+              <Link to={"/product/consultant"}>
             <div className="bg-custom-dark-100 rounded-full flex items-center hover:bg-custom-gray-600 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>
@@ -54,11 +54,11 @@ const ProductList = () => {
           <div className="bg-[#CFD4D8] flex h-50 rounded-xl w-full justify-between p-6 lg:p-12">
             <div>
               <div className="font-raleway text-xl xl:text-2xl font-medium text-black">
-                Web Development
+                Maintance
               </div>
               <div className="font-raleway font-normal text-black mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/web"}>
+              <Link to={"/product/maintance"}>
             <div className="bg-custom-dark-100 rounded-full flex items-center hover:bg-custom-gray-600 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>

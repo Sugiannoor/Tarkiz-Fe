@@ -9,6 +9,10 @@ import Table from "@/Components/table/Table";
 import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
 import { ContractTableType } from "../../types/contractTable";
+import { RiEditBoxLine } from "react-icons/ri";
+import { FaTrashAlt } from "react-icons/fa";
+import { EditContractModal } from "../Modal/EditContractModal";
+import { DeleteContractModal } from "../Modal/DeleteContractModal";
 
   
   type TableResponse<T> = {
@@ -38,8 +42,8 @@ import { ContractTableType } from "../../types/contractTable";
     },
     records: [
         {
-          id: "1",
-          no: "1",
+          id: 1,
+          no: 1,
           contract_code: "CON1",
           name: "Contract A",
           program: ["Web Development", "Android"],
@@ -47,8 +51,8 @@ import { ContractTableType } from "../../types/contractTable";
           client_name: "Client A"
         },
         {
-          id: "2",
-          no: "2",
+          id: 2,
+          no: 2,
           contract_code: "CON2",
           name: "Contract B",
           program: ["iOS"],
@@ -56,8 +60,8 @@ import { ContractTableType } from "../../types/contractTable";
           client_name: "Client B"
         },
         {
-          id: "3",
-          no: "3",
+          id: 3,
+          no: 3,
           contract_code: "CON3",
           name: "Contract C",
           program: ["Web Development", "Backend Development"],
@@ -68,6 +72,13 @@ import { ContractTableType } from "../../types/contractTable";
   };
 
 const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
+  const [selectedId, setSelectedId] = useState (0);
+  const [isEdit, setIsEdit] = useState (false);
+  const [isDelete, setIsDelete] = useState (false);
+  
+  const handleDelete = () => setIsDelete (!isDelete)
+  const handleEdit = () => setIsEdit (!isEdit)
+
   const [params, setParams] = useState<APIParams>({
     current_page: 1,
     row_per_page: 10,
@@ -145,9 +156,22 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
     {
       header: "Aksi",
       cell: ({ row }) => (
-        <Link to={`detail/${row.original.id}`}>
-          <AiOutlineInfoCircle />
-        </Link>
+        <div className="flex gap-5">
+          <RiEditBoxLine size={18} className="text-custom-blue-600 cursor-pointer"
+           onClick={() => {
+            setSelectedId(row.original.id);
+            handleEdit();
+          }} 
+          />
+          <FaTrashAlt
+            size={18}
+            className="text-red-900 cursor-pointer"
+            onClick={() => {
+              setSelectedId(row.original.id);
+              handleDelete();
+            }} 
+          />
+        </div>
       ),
     },
   ];
@@ -155,6 +179,8 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
 
   return (
     <>
+    <DeleteContractModal open={isDelete} handleOpen={handleDelete} id={selectedId} />
+    <EditContractModal open={isEdit} handleOpen={handleEdit} id={selectedId} />
       <Table
         data={dummyData || []}
         columns={columns}

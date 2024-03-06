@@ -1,6 +1,6 @@
 export type ContractTableType = {
-    id: string;
-    no: string;
+    id: number;
+    no: number;
     contract_code: string;
     name: string;
     program: string[]

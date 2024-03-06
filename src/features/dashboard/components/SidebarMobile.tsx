@@ -1,3 +1,4 @@
+import useAuth from "@/hooks/useAuth";
 import {
   Card,
   Drawer,
@@ -14,6 +15,7 @@ import { Link } from "react-router-dom";
 
 export const SidebarMobile = () => {
   const [isDrawer, setIsDrawer] = useState<boolean>(false);
+  const {logout} = useAuth ();
   return (
     <>
       {isDrawer ? "" : <FaBars className="text-2xl text-white cursor-pointer" onClick={() => setIsDrawer(!isDrawer)} />}
@@ -69,7 +71,7 @@ export const SidebarMobile = () => {
             </ListItem>
             </Link>
             <hr className="my-2 border-blue-gray-50" />
-            <ListItem placeholder={""} className="font-poppins p-5">
+            <ListItem placeholder={""} className="font-poppins p-5" onClick={logout}>
               <ListItemPrefix placeholder={""}>
                 <BiLogOut className="h-5 w-5" />
               </ListItemPrefix>

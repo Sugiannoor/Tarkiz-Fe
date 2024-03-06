@@ -17,6 +17,8 @@ import ContractManagment from "@/features/admin/pages/ContractManagment";
 import { AdminRoutes } from "./AdminRoutes";
 import { ProfilRoutes } from "./ProfileRoute";
 import AndroidProduct from "@/features/product/pages/AndroidProduct";
+import ConsultantProduct from "@/features/product/pages/ConsultantProduct";
+import MaintanceProduct from "@/features/product/pages/MaintanceProduct";
 
 export const AppRoutes: React.FC = () => {  
   return (
@@ -27,6 +29,8 @@ export const AppRoutes: React.FC = () => {
         <Route path="/register" element= {<Register/>} />
         <Route path="/product/web" element= {<WebProduct/>} />
         <Route path="/product/android" element= {<AndroidProduct/>} />
+        <Route path="/product/consultant" element= {<ConsultantProduct/>} />
+        <Route path="/product/maintance" element= {<MaintanceProduct/>} />
         <Route element={<Layout/>}>
           <Route path="/dashboard" element={<DashboardAdmin/>}/>
           <Route path="/user" element={<UserManagment/>}/>
