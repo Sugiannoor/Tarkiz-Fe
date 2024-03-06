@@ -10,10 +10,11 @@ import {
 export const BestProduct = () => {
   return (
     <div>
-      <Card
+      <Card placeholder={""}
         className={`mt-5 w-full h-full flex-col lg:flex-row`}
       >
         <CardHeader
+          placeholder={""}
           shadow={false}
           floated={false}
           className="m-0 lg:w-[55%] shrink-0 rounded-r-none"
@@ -24,7 +25,7 @@ export const BestProduct = () => {
             className="h-full w-full object-cover"
           />
         </CardHeader>
-        <CardBody className="flex flex-col justify-center">
+        <CardBody placeholder={""} className="flex flex-col justify-center">
           <Typography
           placeholder={""}
             variant="h6"
@@ -65,8 +66,9 @@ export const BestProduct = () => {
           </div>
         </CardBody>
       </Card>
-      <Card className={`w-full h-full flex-col lg:flex-row-reverse mt-5`}>
+      <Card placeholder={""} className={`w-full h-full flex-col lg:flex-row-reverse mt-5`}>
         <CardHeader
+          placeholder={""}
           shadow={false}
           floated={false}
           className="m-0 lg:w-[55%] shrink-0 rounded-r-none"
@@ -77,7 +79,7 @@ export const BestProduct = () => {
             className="h-full w-full object-cover"
           />
         </CardHeader>
-        <CardBody className="flex flex-col justify-center">
+        <CardBody placeholder={""} className="flex flex-col justify-center">
           <Typography
             placeholder={""}
             variant="h6"

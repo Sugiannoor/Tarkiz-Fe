@@ -1,5 +1,5 @@
 import { NavbarSimple, SpootlightsHome } from "@/features/user/components";
-import { TabsProduct } from "../components/TabProduct";
+import {TabsProductWeb } from "../components/TabProductWeb";
 import StickyScrollProduct from "../components/StickyScrollProduct";
 
 const WebProduct = () => {
@@ -10,7 +10,7 @@ const WebProduct = () => {
       description ="Membantu perusahaan mengoptimalkan proses keuangan melalui solusi teknologi terkini dan berkualitas tinggi berbasis Web"
       />
       <StickyScrollProduct/>
-      <TabsProduct/>
+      <TabsProductWeb/>
     </div>
   );
 };

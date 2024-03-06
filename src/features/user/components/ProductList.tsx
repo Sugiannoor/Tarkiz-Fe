@@ -32,7 +32,7 @@ const ProductList = () => {
               </div>
               <div className="font-raleway font-normal text-black mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/web"}>
+              <Link to={"/product/android"}>
             <div className="bg-custom-dark-100 rounded-full flex items-center hover:bg-custom-gray-600 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>
