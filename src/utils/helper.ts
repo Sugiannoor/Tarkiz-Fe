@@ -25,7 +25,7 @@ export const dateFormated = (dateStr: string) => {
     return str_op;
   };
 
-  export const handleError = (err: any, errorTypes?: string[]) => {
+  export const handleError = (err: Error, errorTypes?: string[]) => {
     if (err instanceof AxiosError) {
       const error = err.response?.data.errors;
   

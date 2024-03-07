@@ -7,14 +7,12 @@ import {
   Textarea,
   Input,
 } from "@material-tailwind/react";
-import InputComponent from "@/Components/InputComponent";
 import { FilePond } from "react-filepond";
 import { MultiSelect } from "react-multi-select-component";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { createProduct, getTag, getType } from "../../api";
 import toast from "react-hot-toast";
-import { handleError } from "@/utils/helper";
 import { FilePondFile } from "filepond";
 import { CreateProduct} from "../../types/crudProduct";
 import Select from "react-select";
@@ -69,10 +67,12 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
         queryClient.invalidateQueries({
           queryKey: ["product-table"],
         });
-        toast.success("Product Sukses di Tambahkan");
+        toast.success("Produk Sukses di Tambahkan");
+        handleOpen();
       },
-      onError: () => {
-        toast.error("Gagal Menambha Product");
+      onError: (err) => {
+        toast.error("Gagal Menambahkan Product");
+        handleOpen();
       },
     });
   };
@@ -182,6 +182,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               variant="gradient"
               color="black"
               type="submit"
+              disabled={isLoading}
             >
               <span>Confirm</span>
             </Button>

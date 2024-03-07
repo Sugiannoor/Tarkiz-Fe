@@ -54,12 +54,12 @@ const dummyData = [
 ];
 
 type ProductProps = {
-  data?: GetProduct;
-  isLoading?: boolean;
+  dataProduct?: GetProduct;
+  isLoading: boolean;
 };
 
-export const AllProduct = ({ data, isLoading }: ProductProps) => {
-  if (isLoading) {
+export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
+  if (isLoading || dataProduct === undefined ) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {[...Array(2)].map((_, index) => (
@@ -222,22 +222,22 @@ export const AllProduct = ({ data, isLoading }: ProductProps) => {
     );
   }
   return (
-    <div className="flex flex-wrap justify-center">
-      {dummyData.map((product) => (
+    <div className="flex flex-wrap gap-5 justify-center">
+      {dataProduct.map((product) => (
         <Card
           key={product.id}
           placeholder={""}
-          className="w-full max-w-[26rem] shadow-lg mb-4"
+          className="w-full flex flex-col max-w-[25rem] shadow-lg mb-4"
         >
           <CardHeader placeholder={""} floated={false} color="blue-gray">
             <img
               className="object-cover"
-              src={product.image}
-              alt={product.title}
+              src={"https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"}
+              alt={product.program}
             />
             <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
           </CardHeader>
-          <CardBody placeholder={""}>
+          <CardBody className="flex-grow" placeholder={""}>
             <div className="mb-3 flex items-center justify-between">
               <Typography
                 placeholder={""}
@@ -245,18 +245,18 @@ export const AllProduct = ({ data, isLoading }: ProductProps) => {
                 color="blue-gray"
                 className="font-medium font-poppins"
               >
-                {product.title}
+                {product.program}
               </Typography>
             </div>
             <Typography placeholder={""} color="gray" className="font-poppins">
               {product.description}
             </Typography>
             <div className="flex gap-2 mt-2">
-              {product.subTypes.map((subType, index) => (
+              {product.tags.map((tags, index) => (
                 <Chip
                   key={index}
                   variant="outlined"
-                  value={subType}
+                  value={tags}
                   className="font-raleway"
                 />
               ))}

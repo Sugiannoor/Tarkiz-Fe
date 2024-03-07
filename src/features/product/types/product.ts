@@ -1,8 +1,9 @@
 export type GetProduct = {
     id: number
-    title: string;
-    image_path: string;
+    program: string;
+    path_files: string;
+    type: string;
     description: string;
-    subtypes: string[];
+    tags: string[];
     
-}
+}[]
