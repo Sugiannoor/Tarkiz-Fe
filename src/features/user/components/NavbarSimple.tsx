@@ -44,18 +44,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className="p-1 font-medium text-sm font-raleway text-black"
         placeholder={""}
       >
-        <a href="#" className="flex items-center">
-          About
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium text-sm font-raleway text-black"
-        placeholder={""}
-      >
-        <a href="#" className="flex items-center">
+        <a href="#service" className="flex items-center">
           Services
         </a>
       </Typography>
@@ -66,8 +55,19 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className="p-1 font-medium text-sm font-raleway text-black"
         placeholder={""}
       >
-        <a href="/keluhan" className="flex items-center">
+        <a href="#product" className="flex items-center">
           Product
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium text-sm font-raleway text-black"
+        placeholder={""}
+      >
+        <a href="#client" className="flex items-center">
+          About
         </a>
       </Typography>
     </ul>

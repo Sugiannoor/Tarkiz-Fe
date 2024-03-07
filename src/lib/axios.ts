@@ -2,10 +2,10 @@ import storage from '@/utils/storage';
 import Axios from 'axios';
 
 
-const baseURL = import.meta.env.VITE_API_URL ?? 'https://dummyjson.com/';
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const axios = Axios.create({
-  baseURL,
+  baseURL
 });
 
 axios.interceptors.request.use((config) => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProductList = () => {
   return (
-    <div className="bg-[#161C2D] w-full rounded-xl flex justify-center items-center py-16 mt-5">
+    <div id="service" className="bg-[#161C2D] w-full rounded-xl flex justify-center items-center py-16 mt-5">
       <div className="w-4/5">
         <div className="font-raleway text-[#005697] text-center lg:text-left  lg:text-xl font-bold mb-5">
           SERVICES

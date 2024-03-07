@@ -5,97 +5,188 @@ import {
   DialogBody,
   DialogFooter,
   Textarea,
+  Input,
 } from "@material-tailwind/react";
 import InputComponent from "@/Components/InputComponent";
 import { FilePond } from "react-filepond";
 import { MultiSelect } from "react-multi-select-component";
 import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { createProduct, getTag, getType } from "../../api";
+import toast from "react-hot-toast";
+import { handleError } from "@/utils/helper";
+import { FilePondFile } from "filepond";
+import { CreateProduct} from "../../types/crudProduct";
+import Select from "react-select";
 
+interface Option {
+  value: number;
+  label: string;
+}
+interface TypeProps {
+  value: number;
+  label: string;
+};
 
 type props = {
   open: boolean;
   handleOpen: () => void;
 };
 export const CreateProductModal = ({ open, handleOpen }: props) => {
-  const [selected, setSelected] = useState([]);
-  const options = [
-    { value: 1, label: "Chocolate" },
-    { value: 2, label: "Strawberry" },
-    { value: 3, label: "Vanilla" },
-  ];
+  const queryClient = useQueryClient();
+  const [file, setFile] = useState<FilePondFile>();
+  const [program, setProgram] = useState ("");;
+  const [description, setDescription] = useState ("");
+  const [selectedTag, setSelectedTag] = useState<Option[]>([]);
+  const [selectedType, setSelectedType] = useState(null);
+  const { data: tags, isLoading: tagLoading } = useQuery({
+    queryKey: ["tag"],
+    queryFn: getTag,
+  });
+  const { data: types, isLoading: typesLoading } = useQuery({
+    queryKey: ["type"],
+    queryFn: getType,
+  });
+
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: createProduct, 
+    
+  });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // const idTag = subTypes.map(subType => subType.value);
+    const idTag = selectedTag.map (tag => tag.value)
+    const idType = selectedType.value
+    const data: CreateProduct = {
+      program: program,
+      description: description,
+      tag: idTag,
+      type: idType,
+      photo: file,
+    };
+    await mutateAsync (data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["product-table"],
+        });
+        toast.success("Product Sukses di Tambahkan");
+      },
+      onError: () => {
+        toast.error("Gagal Menambha Product");
+      },
+    });
+  };
+
   return (
     <>
       <Dialog placeholder={""} size="lg" open={open} handler={handleOpen}>
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Tambah Produk
         </DialogHeader>
-        <DialogBody placeholder={""} className="p-10">
-          <InputComponent
-            type="text"
-            id="product"
-            label="Nama Produk"
-            placeholder="Nama Produk / Aplikasi"
-            classnameLabel="text-lg text-[#005697] font-normal font-poppins"
-            className="mb-5"
-          />
-          <div className="mb-5">
+        <form onSubmit={handleSubmit} className="overflow-y-scroll h-[40rem]">
+          <DialogBody placeholder={""} className="p-10">
             <label
-              htmlFor="category"
+              htmlFor="product"
               className="text-lg text-[#005697] font-normal font-poppins"
             >
-              Kategori Produk
+              Program
             </label>
-            <MultiSelect
-            className="mt-2"
-        options={options}
-        value={selected}
-        onChange={setSelected}
-        labelledBy="Select"
-      />
-          </div>
-          <label
-            htmlFor="description"
-            className="text-lg text-[#005697] font-normal font-poppins"
-          >
-            Deskripsi
-          </label>
-          <Textarea
-            className="mt-2"
-            placeholder="Deskripsi"
-            variant="outlined"
-            id="description"
-            name="description"
-          />
-          <div className="mt-2">
+            <Input
+              crossOrigin={""}
+              type="text"
+              variant="static"
+              id="product"
+              name="product"
+              placeholder="Nama Produk / Aplikasi"
+              value={program}
+              onChange={(e)=> setProgram(e.target.value)}
+            />
+            <div className="my-5">
+              <div className="text-lg text-[#005697] font-normal font-poppins">
+                Kategori{" "}
+              </div>
+              <Select
+                defaultValue={selectedType}
+                onChange={setSelectedType}
+                options={types}
+              />
+            </div>
+            <div className="mb-5">
+              <div className="text-lg text-[#005697] font-normal font-poppins">
+                Tag Produk
+              </div>
+              <MultiSelect
+                className="mt-2"
+                options={tags}
+                value={selectedTag}
+                onChange={setSelectedTag}
+                labelledBy="Select"
+              />
+            </div>
             <label
-              htmlFor="file"
+              htmlFor="description"
               className="text-lg text-[#005697] font-normal font-poppins"
             >
-              Gambar Produk
+              Deskripsi
             </label>
-            <FilePond id="file" name="file" />
-          </div>
-        </DialogBody>
-        <DialogFooter placeholder={""}>
-          <Button
-            placeholder={""}
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1 font-poppins"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button
-            placeholder={""}
-            className="font-poppins"
-            variant="gradient"
-            color="black"
-            onClick={handleOpen}
-          >
-            <span>Confirm</span>
-          </Button>
-        </DialogFooter>
+            <Textarea
+              className="mt-2"
+              placeholder="Deskripsi"
+              variant="outlined"
+              id="description"
+              name="description"
+              value={description}
+              onChange={(e)=> setDescription (e.target.value)}
+            />
+            <div className="mt-2">
+              <label
+                htmlFor="file"
+                className="text-lg text-[#005697] font-normal font-poppins"
+              >
+                Gambar Produk
+              </label>
+              <FilePond
+                id="file"
+                name="file"
+                onupdatefiles={(fileItems) => {
+                  if (fileItems.length > 0) {
+                    setFile(fileItems[0]);
+                  } else {
+                    setFile(undefined);
+                  }
+                }}
+                acceptedFileTypes={[
+                  "image/jpeg",
+                  "image/png",
+                ]}
+                dropOnPage
+                maxFiles={1}
+                allowMultiple={false}
+                dropValidation
+              />
+            </div>
+          </DialogBody>
+          <DialogFooter placeholder={""}>
+            <Button
+              placeholder={""}
+              variant="text"
+              color="red"
+              onClick={handleOpen}
+              className="mr-1  font-poppins"
+            >
+              <span>Cancel</span>
+            </Button>
+            <Button
+              placeholder={""}
+              className="font-poppins"
+              variant="gradient"
+              color="black"
+              type="submit"
+            >
+              <span>Confirm</span>
+            </Button>
+          </DialogFooter>
+        </form>
       </Dialog>
     </>
   );

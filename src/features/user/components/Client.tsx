@@ -1,7 +1,7 @@
 
 const Client = () => {
   return (
-    <div>
+    <div id="client">
       <div className="font-poppins text-[#005697] text-center text-2xl lg:text-3xl mt-20 mb-2 font-semibold">
         Our Client
       </div>

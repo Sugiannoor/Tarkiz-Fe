@@ -9,7 +9,7 @@ import {
 
 export const BestProduct = () => {
   return (
-    <div>
+    <div id="product">
       <Card placeholder={""}
         className={`mt-5 w-full h-full flex-col lg:flex-row`}
       >

@@ -1,46 +1,26 @@
 import { Input } from "@material-tailwind/react";
+import type { InputProps } from "@material-tailwind/react";
 
-type InputProps = {
+type InputPropsCustom =  InputProps & {
   label?: string;
-  id: string;
   type?: string | "text" | "number" | "email" |"date";
   classnameLabel?: string;
-  placeholder?: string;
-  className ?: string
-  value?: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-  handleChange?: () => void;
+  className: string;
 };
 
 const InputComponent = ({
   id,
   label,
   classnameLabel,
-  placeholder,
-  handleChange,
   className,
-  readOnly,
-  disabled,
-  type,
-  value,
-}: InputProps) => {
+}:InputPropsCustom) => {
   return (
     <div className={className}>
       <label htmlFor={`${id}`} className={classnameLabel}>
         {label}
       </label>
       <Input
-        type= {type || "text"}
         crossOrigin={""}
-        disabled={disabled}
-        name={id}
-        id={id}
-        variant="static"
-        placeholder={`${placeholder}`}
-        onChange={handleChange}
-        value={value}
-        readOnly={readOnly}
       />
     </div>
   );

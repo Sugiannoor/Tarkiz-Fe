@@ -1,7 +1,7 @@
 import { Carousel } from "@material-tailwind/react";
 export const CarouselHome = () => {
   return (
-    <div className="relative">
+    <div className="relative" id="home">
       <Carousel
         loop={true}
         autoplay={true}
