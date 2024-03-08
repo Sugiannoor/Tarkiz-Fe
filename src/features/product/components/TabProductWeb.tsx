@@ -28,11 +28,10 @@ export const TabsProductWeb = () => {
     queryKey: ["productSdm"],
     queryFn: getSdmWeb,
   });
-  // const { data: marketingWeb , isLoading: isMarketingLoading } = useQuery({
-  //   queryKey: ["product"],
-  //   queryFn: getMarketingWeb,
-  // });
-console.log(financeWeb)
+  const { data: marketingWeb , isLoading: isMarketingLoading } = useQuery({
+    queryKey: ["product"],
+    queryFn: getMarketingWeb,
+  });
   const data = [
     {
       label: "All",
@@ -57,7 +56,7 @@ console.log(financeWeb)
     {
       label: "Pemasaran",
       value: "marketing",
-      desc: <AllProduct dataProduct={sdmWeb} isLoading={isSdmLoading}/>
+      desc: <AllProduct dataProduct={marketingWeb} isLoading={isMarketingLoading}/>
     },
   ];
 

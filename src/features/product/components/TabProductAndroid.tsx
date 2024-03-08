@@ -6,33 +6,59 @@ import {
     TabPanel,
   } from "@material-tailwind/react";
   import { AllProduct } from "./AllProduct";
+import { getAllAndroid, getFinanceAndroid, getMarketingAndroid, getOperationAndroid, getSdmAndroid } from "../api/android";
+import { GetProduct } from "../types/product";
+import { useQuery } from "react-query";
+
+ 
   
   export const TabsProductAndroid = () => {
-    const data = [
+    const { data: allAndroid , isLoading: isAllLoading } = useQuery<GetProduct>({
+      queryKey: ["productAllAndroid"],
+      queryFn: getAllAndroid,
+    });
+    const { data: financeAndroid , isLoading: isFinanceLoading } = useQuery<GetProduct>({
+      queryKey: ["productFinanceAndroid"],
+      queryFn: getFinanceAndroid,
+    });
+    const { data: operationAndroid , isLoading: isOperationLoading } = useQuery<GetProduct>({
+      queryKey: ["productOpAndroid"],
+      queryFn: getOperationAndroid,
+    });
+    const { data: sdmAndroid , isLoading: isSdmLoading } = useQuery<GetProduct>({
+      queryKey: ["productSdmAndroid"],
+      queryFn: getSdmAndroid,
+    });
+    const { data: marketingAndroid , isLoading: isMarketingLoading } = useQuery<GetProduct>({
+      queryKey: ["productSdmAndroi"],
+      queryFn: getMarketingAndroid,
+    });
+
+    const dataAnroid = [
       {
         label: "All",
         value: "all",
-        desc: <AllProduct/>,
+        desc: <AllProduct dataProduct={allAndroid} isLoading={isAllLoading}/>,
       },
       {
         label: "Keuangan",
         value: "finance",
-        desc: <AllProduct/>
+        desc: <AllProduct dataProduct={financeAndroid} isLoading={isFinanceLoading}/>
       },
       {
         label: "Operasional",
         value: "operation",
-        desc: <AllProduct/>
+        desc: <AllProduct dataProduct={operationAndroid} isLoading={isOperationLoading}/>
       },
       {
         label: "SDM",
         value: "human_managment",
-        desc: <AllProduct/>
+        desc: <AllProduct dataProduct={sdmAndroid} isLoading ={isSdmLoading}/>
       },
       {
         label: "Pemasaran",
         value: "marketing",
-        desc: <AllProduct/>
+        desc: <AllProduct dataProduct={marketingAndroid} isLoading={isMarketingLoading}/>
       },
     ];
   
@@ -40,7 +66,7 @@ import {
       <div className="flex justify-center mt-5">
         <Tabs id="custom-animation" value="all" className=" p-5 lg:p-0 lg:w-[80rem]">
           <TabsHeader placeholder={""}>
-            {data.map(({ label, value }) => (
+            {dataAnroid.map(({ label, value }) => (
               <Tab placeholder={""} key={value} value={value} className="font-poppins">
                 {label}
               </Tab>
@@ -52,7 +78,7 @@ import {
               mount: { y: 0 },
               unmount: { y: 250 },
             }}>
-            {data.map(({ value, desc }) => (
+            {dataAnroid.map(({ value, desc }) => (
               <TabPanel key={value} value={value}>
                 {desc}
               </TabPanel>
