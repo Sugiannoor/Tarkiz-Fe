@@ -19,4 +19,4 @@ export const getAllMaintance = async () => {
   export const getMarketingMaintance = async () => {
     const response = await axios.get ("/api/product/maintance/market")
     return response.data
-  }
+  } 
