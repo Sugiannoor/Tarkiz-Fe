@@ -20,11 +20,15 @@ type props = {
   id: number;
   handleOpen: () => void;
 };
+type Option = {
+  value: number;
+  label: string;
+}
 export const EditContractModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const [contractDate, setContractDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<Option>();
   const [mitraName, setMitraName] = useState("");
   const [contractCode, setContractCode] = useState("");
 
@@ -69,7 +73,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const idProduct = selectedProduct.value;
+    const idProduct = selectedProduct?.value;
     const dataSubmit: editContractForm = {
       id: id,
       contract_code: contractCode,
@@ -109,7 +113,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
               </div>
               <Select
                 defaultValue={selectedProduct}
-                onChange={setSelectedProduct}
+                onChange={()=> setSelectedProduct}
                 options={dataProduct}
                 isDisabled={isProductLoading}
               />

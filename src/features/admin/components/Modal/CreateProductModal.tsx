@@ -32,7 +32,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
   const [program, setProgram] = useState ("");;
   const [description, setDescription] = useState ("");
   const [selectedTag, setSelectedTag] = useState<Option[]>([]);
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState<Option>();
   const { data: tags, isLoading: tagLoading } = useQuery({
     queryKey: ["tag"],
     queryFn: getTag,
@@ -49,7 +49,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
     e.preventDefault();
 
     const idTag = selectedTag?.map(tag => tag.value) ?? [];
-    const idType = selectedType.value
+    const idType = selectedType?.value
     const data: CreateProduct = {
       program: program,
       description: description,

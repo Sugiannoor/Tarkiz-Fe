@@ -53,5 +53,5 @@ export const createProduct = async (data: CreateProduct) => {
         id,
       },
     });
-    return response.data;
+    return response.data.data;
   };

@@ -1,4 +1,3 @@
-import InputComponent from "@/Components/InputComponent";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -7,13 +6,20 @@ import Select from "react-select";
 import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
 import toast from "react-hot-toast";
 import { handleError } from "@/utils/helper";
+
+interface Option  {
+  value: string,
+  label: string,
+}
+
 const UpdateComplaintForm = () => {
   const queryClient = useQueryClient ();
   const {idParams} = useParams ();
   const id = Number(idParams)
   const navigate = useNavigate();
-  const [status, setStatus] = useState (null)
-  const [urgensi, setUrgensi] = useState (null)
+  const [selectedStatus, setSelectedStatus] = useState<Option>()
+  const [selectUrgensi, setSelectUrgensi] = useState<Option>()
+ 
   const {data: dataComplaint, isLoading: isDataComplaint}= useQuery ({
     queryKey: ["table-complaint", id],
     queryFn: ()=> getComplaintById (id)
@@ -84,9 +90,12 @@ const UpdateComplaintForm = () => {
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault ();
+    const status = selectedStatus?.value;
+    const urgensi = selectUrgensi?.value;
+
     const dataSubmit = {
-      status: status,
-      urgensi: urgensi
+      status,
+      urgensi
     }
     await mutateAsync (dataSubmit)
   }
@@ -143,11 +152,11 @@ const UpdateComplaintForm = () => {
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Status
           </div>
-          <Select defaultValue={status} options={optionStatus} />
+          <Select defaultValue={selectedStatus} onChange={setSelectedStatus} options={optionStatus} />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Urgensi
           </div>
-          <Select defaultValue={status} options={optionUrgensi} />
+          <Select defaultValue={selectUrgensi} onChange={setSelectUrgensi} options={optionUrgensi} />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Judul Keluhan
           </div>

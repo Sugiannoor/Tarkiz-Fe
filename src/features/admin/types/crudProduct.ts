@@ -3,7 +3,7 @@ import { FilePondFile } from "filepond";
 export type CreateProduct = {
     program: string;
     description: string;
-    type: number | null;
+    type: number | undefined;
     tag: number[];
     photo: FilePondFile | undefined
 }

@@ -18,8 +18,8 @@ export const deleteComplaint = async (id: number) => {
     return response.data;
   };
   type StatusComplaint = {
-    status: string | null;
-    urgensi: string | null
+    status: string |undefined
+    urgensi: string | undefined
   }
   export const UpdateStatusComplaint = async (data: StatusComplaint  ) => {
     const response = await axios.put("/api/complaint", data);

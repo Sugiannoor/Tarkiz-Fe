@@ -32,10 +32,10 @@ type props = {
 export const EditProductModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const [file, setFile] = useState<FilePondFile>();
-  const [program, setProgram] = useState ("");;
+  const [program, setProgram] = useState ("");
   const [description, setDescription] = useState ("");
   const [selectedTag, setSelectedTag] = useState<Option[]>([]);
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState<Option>();
   const [filePath, setFilePath] =useState ("")
  
   const {data: dataProduct, isLoading: isProductLoading} = useQuery ({
@@ -70,7 +70,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
     e.preventDefault();
 
     const idTag = selectedTag?.map(tag => tag.value) ?? [];
-    const idType = selectedType.value
+    const idType = selectedType?.value
     const data: UpdateProduct = {
       id: id,
       program: program,
@@ -125,7 +125,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               <Select
                 defaultValue={selectedType}
                 onChange={setSelectedType}
-                options={types}
+                options={types ?? []}
                 isLoading ={typesLoading}
               />
             </div>

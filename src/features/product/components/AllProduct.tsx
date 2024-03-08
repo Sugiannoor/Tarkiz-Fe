@@ -9,50 +9,6 @@ import {
 } from "@material-tailwind/react";
 import { GetProduct } from "../types/product";
 
-const dummyData = [
-  {
-    id: 1,
-    title: "Product 1",
-    image:
-      "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    description: "Description for Product 1",
-    subTypes: ["Subtype A", "Subtype B"],
-  },
-  {
-    id: 2,
-    title: "Product 2",
-    image:
-      "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    description: "Description for Product 2",
-    subTypes: ["Subtype C", "Subtype D"],
-  },
-  {
-    id: 3,
-    title: "Product 1",
-    image:
-      "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    description: "Description for Product 1",
-    subTypes: ["Subtype A", "Subtype B"],
-  },
-  {
-    id: 4,
-    title: "Product 2",
-    image:
-      "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    description: "Description for Product 2",
-    subTypes: ["Subtype C", "Subtype D"],
-  },
-  {
-    id: 5,
-    title: "Product 2",
-    image:
-      "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    description: "Description for Product 2",
-    subTypes: ["Subtype C", "Subtype D"],
-  },
-  // Add more dummy data as needed
-];
-
 type ProductProps = {
   dataProduct?: GetProduct;
   isLoading: boolean;
