@@ -7,6 +7,9 @@ export type CreateProduct = {
     tag: number[];
     photo: FilePondFile | undefined
 }
+export type UpdateProduct = CreateProduct & {
+    id: number
+}
 
 
 export const OptionTagType = [

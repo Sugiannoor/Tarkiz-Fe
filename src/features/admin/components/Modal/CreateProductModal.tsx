@@ -47,8 +47,8 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const idTag = subTypes.map(subType => subType.value);
-    const idTag = selectedTag.map (tag => tag.value)
+
+    const idTag = selectedTag?.map(tag => tag.value) ?? [];
     const idType = selectedType.value
     const data: CreateProduct = {
       program: program,
@@ -104,7 +104,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                 defaultValue={selectedType}
                 onChange={setSelectedType}
                 options={types}
-                isDisabled={typesLoading}
+                isLoading={typesLoading}
               />
             </div>
             <div className="mb-5">
@@ -113,11 +113,11 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               </div>
               <MultiSelect
                 className="mt-2"
-                options={tags}
+                options={tags ?? []}
                 value={selectedTag}
                 onChange={setSelectedTag}
                 labelledBy="Select"
-                disabled={tagLoading}
+                isLoading={tagLoading}
               />
             </div>
             <label
