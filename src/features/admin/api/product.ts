@@ -22,3 +22,11 @@ export const createProduct = async (data: CreateProduct) => {
     const response = await axios.get ("/api/showtype")
     return response.data.data
   }
+  export const deleteProduct = async (id: number) => {
+    const response = await axios.delete("/api/products", {
+      params: {
+        id,
+      },
+    });
+    return response.data;
+  };

@@ -11,7 +11,7 @@ import { FilePond } from "react-filepond";
 import { MultiSelect } from "react-multi-select-component";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { createProduct, getTag, getType } from "../../api";
+import { createProduct, getTag, getType } from "../../api/product";
 import toast from "react-hot-toast";
 import { FilePondFile } from "filepond";
 import { CreateProduct} from "../../types/crudProduct";
@@ -21,10 +21,6 @@ interface Option {
   value: number;
   label: string;
 }
-interface TypeProps {
-  value: number;
-  label: string;
-};
 
 type props = {
   open: boolean;
@@ -48,7 +44,6 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
 
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createProduct, 
-    
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -70,7 +65,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
         toast.success("Produk Sukses di Tambahkan");
         handleOpen();
       },
-      onError: (err) => {
+      onError: () => {
         toast.error("Gagal Menambahkan Product");
         handleOpen();
       },
@@ -109,6 +104,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                 defaultValue={selectedType}
                 onChange={setSelectedType}
                 options={types}
+                isDisabled={typesLoading}
               />
             </div>
             <div className="mb-5">
@@ -121,6 +117,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                 value={selectedTag}
                 onChange={setSelectedTag}
                 labelledBy="Select"
+                disabled={tagLoading}
               />
             </div>
             <label

@@ -1,38 +1,15 @@
-import { PiMagnifyingGlassLight } from "react-icons/pi";
-import { MdDelete } from "react-icons/md";
 import {
   Card,
   CardHeader,
-  Input,
   Typography,
-  Button,
   CardBody,
-  Chip,
-  CardFooter,
-  IconButton,
-  Tooltip,
 } from "@material-tailwind/react";
-import { CiCircleInfo } from "react-icons/ci";
-  
-const TABLE_HEAD = ["No", "Judul", "Deskripsi", "Status","Tanggal", ""];
-const TABLE_ROWS = [
-  {
-    no: 1,
-    title: "Error",
-    description: "Error Ketika Menambahkan Keuangan di Table Transaksi",
-    status: true,
-    date: "23/04/18",
-  },
-  {
-    no: 2,
-    title: "Error",
-    description: "Error Ketika Menambahkan Keuangan di Table Transaksi",
-    status: true,
-    date: "23/04/18",
-  },
-];
- 
+import Search from "@/Components/Search";
+import { useState } from "react";
+import TableComplaintUser from "./tableComplaintUser";
+   
 export const TabHistory = () => {
+  const [searchValue, setSearchValue] = useState ("");
   return (
     <Card placeholder={""} className="h-full w-full">
       <CardHeader placeholder={""} floated={false} shadow={false} className="rounded-none">
@@ -48,134 +25,13 @@ export const TabHistory = () => {
         </div>
         <div className="flex flex-col items-center justify-end gap-4 md:flex-row">
           <div className="w-full md:w-72">
-            <Input
-              crossOrigin={""}
-              label="Search"
-              icon={<PiMagnifyingGlassLight className="h-5 w-5" />}
-            />
+           <Search searchValue={searchValue} setSearchValue={setSearchValue} />
           </div>
         </div>
       </CardHeader>
       <CardBody placeholder={""} className="overflow-scroll px-0">
-        <table className="mt-4 w-full min-w-max table-auto text-left">
-          <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th
-                  key={head}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                >
-                  <Typography
-                    placeholder={""}
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal font-poppins leading-none opacity-70"
-                  >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {TABLE_ROWS.map(
-              ({ no, title, description, status, date }, index) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
- 
-                return (
-                  <tr key={no}>
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <div className="flex flex-col">
-                          <Typography
-                            placeholder={""}
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal font-poppins"
-                          >
-                            {no}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                        <Typography
-                          placeholder={""}
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal font-poppins"
-                        >
-                          {title}
-                        </Typography>
-
-                    </td>
-                    <td className={classes}>
-                        <Typography
-                          placeholder={""}
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal font-poppins"
-                        >
-                          {description}
-                        </Typography>
-
-                    </td>
-                    <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          className="font-poppins"
-                          variant="ghost"
-                          size="sm"
-                          value={status ? "online" : "offline"}
-                          color={status ? "green" : "blue-gray"}
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        placeholder={""}
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal font-poppins"
-                      >
-                        {date}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content="Delete">
-                        <IconButton placeholder={""} variant="text">
-                          <MdDelete className="h-5 w-5" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip content="Detail">
-                        <IconButton placeholder={""} variant="text">
-                          <CiCircleInfo className="h-5 w-5" />
-                        </IconButton>
-                      </Tooltip>
-                    </td>
-                  </tr>
-                );
-              },
-            )}
-          </tbody>
-        </table>
+       <TableComplaintUser searchValue={searchValue} setSearchValue={setSearchValue} />
       </CardBody>
-      <CardFooter placeholder={""} className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Typography placeholder={""} variant="small" color="blue-gray" className="font-normal">
-          Page 1 of 10
-        </Typography>
-        <div className="flex gap-2">
-          <Button placeholder={""} variant="outlined" size="sm">
-            Previous
-          </Button>
-          <Button placeholder={""} variant="outlined" size="sm">
-            Next
-          </Button>
-        </div>
-      </CardFooter>
     </Card>
   );
 }

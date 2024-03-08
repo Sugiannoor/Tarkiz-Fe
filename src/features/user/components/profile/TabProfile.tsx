@@ -5,9 +5,6 @@ import {
   TabsBody,
   TabsHeader,
 } from "@material-tailwind/react";
-import { FaCircleUser } from "react-icons/fa6";
-import { FaClock } from "react-icons/fa";
-import { IoIosSettings } from "react-icons/io";
 import { useEffect, useState } from "react";
 import TabDetailProfile from "./TabDetailProfile";
 import { TabHistory } from "./TabHistory";

@@ -5,6 +5,9 @@ import {
     DialogBody,
     DialogFooter,
   } from "@material-tailwind/react";
+import { useMutation, useQueryClient } from "react-query";
+import { deleteComplaint } from "../../api/complaint";
+import toast from "react-hot-toast";
    
   type props = {
   id: number;
@@ -12,6 +15,23 @@ import {
   handleOpen: () => void
   }
   export const DeleteComplaintModal = ({open, handleOpen, id}:props) => {
+  const queryClient = useQueryClient();
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: deleteComplaint,
+  });
+  const handleDelete = async () => {
+    await mutateAsync(id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["table-complaint"] });
+        toast.success("Data berhasil dihapus");
+        handleOpen();
+      },
+      onError: () => {
+        toast.error("Gagal menghapus data");
+        handleOpen();
+      },
+    });
+  };
     return (
       <>
         <Dialog placeholder={""} open={open} handler={handleOpen}>
@@ -29,7 +49,7 @@ import {
             >
               <span>Cancel</span>
             </Button>
-            <Button placeholder={""} className="font-poppins" variant="gradient" color="green" onClick={handleOpen}>
+            <Button placeholder={""} className="font-poppins" variant="gradient" color="green" onClick={handleDelete} disabled={isLoading}>
               <span>Confirm</span>
             </Button>
           </DialogFooter>

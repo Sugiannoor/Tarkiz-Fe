@@ -4,9 +4,7 @@ import { useDebounce } from "@/hooks";
 import {
   ColumnDef,
   ExpandedState,
-  PaginationState,
   Row,
-  SortingState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
@@ -33,11 +31,11 @@ type TableResponse<T> = {
 };
 
 type APIParams = {
-  current_page: number;
-  row_per_page: number;
+  // current_page: number;
+  // row_per_page: number;
   search?: string;
-  sort?: string;
-  sort_type?: "asc" | "desc";
+  // sort?: string;
+  // sort_type?: "asc" | "desc";
 };
 
 type TableProps<T> = {
@@ -46,7 +44,7 @@ type TableProps<T> = {
   isLoading?: boolean;
   search?: string;
   setSearch?: (value: string) => void;
-  metadata: PaginationState;
+  // metadata: PaginationState;
   setParams: (value: APIParams) => void;
   rowExpand?: (row: Row<T>) => React.ReactNode;
 };
@@ -56,23 +54,23 @@ const Table = <T,>({
   isLoading,
   search,
   setSearch,
-  metadata,
+  // metadata,
   setParams,
   rowExpand,
 }: TableProps<T>) => {
   const debouncedValue = useDebounce<string | undefined>(search, 500);
-  const [sorting, setSorting] = useState<SortingState>([]);
+  // const [sorting, setSorting] = useState<SortingState>([]);
   const [expanded, setExpanded] = useState<ExpandedState>({});
-  const [pagination, setPagination] = useState<PaginationState>(metadata);
-  const { pageIndex, pageSize } = pagination;
+  // const [pagination, setPagination] = useState<PaginationState>(metadata);
+  // const { pageIndex, pageSize } = pagination;
 
   useEffect(() => {
     setParams({
-      current_page: pageIndex + 1,
-      row_per_page: pageSize,
+      // current_page: pageIndex + 1,
+      // row_per_page: pageSize,
       search: debouncedValue,
     });
-  }, [setParams, pageIndex, pageSize, debouncedValue]);
+  }, [setParams, debouncedValue]);
   const tableData = useMemo(() => {
     if (isLoading || !data) return Array(10).fill({});
 
@@ -102,13 +100,11 @@ const Table = <T,>({
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     state: {
-      sorting,
-      pagination,
       expanded,
       globalFilter: debouncedValue,
     },
-    onSortingChange: setSorting,
-    onPaginationChange: setPagination,
+    // onSortingChange: setSorting,
+    // onPaginationChange: setPagination,
     onExpandedChange: setExpanded,
     onGlobalFilterChange: setSearch,
     manualPagination: false,
@@ -116,7 +112,7 @@ const Table = <T,>({
   });
   return (
     <>
-      <table className="mt-4 w-full table-auto text-left">
+      <table className="mt-4 w-full overflow-x-scroll table-auto text-left">
         <thead>
           <TableHeader headerGroups={table.getHeaderGroups()} />
         </thead>

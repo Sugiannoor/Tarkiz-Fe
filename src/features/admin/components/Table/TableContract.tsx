@@ -80,8 +80,8 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
   const handleEdit = () => setIsEdit (!isEdit)
 
   const [params, setParams] = useState<APIParams>({
-    current_page: 1,
-    row_per_page: 10,
+    // current_page: 1,
+    // row_per_page: 10,
     search: searchValue,
   });
 
@@ -187,10 +187,10 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
         // isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
-        metadata={{
-          pageIndex: params.current_page - 1,
-          pageSize: params.row_per_page,
-        }}
+        // metadata={{
+        //   pageIndex: params.current_page - 1,
+        //   pageSize: params.row_per_page,
+        // }}
         setParams={setParams}
         // rowExpand={rowExpand}
       />

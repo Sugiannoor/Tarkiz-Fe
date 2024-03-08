@@ -1,5 +1,6 @@
 import { axios } from "@/lib/axios"
 
+
 export const getAllMaintance = async () => {
     const response = await axios.get ("/api/product/maintance")
     return response.data

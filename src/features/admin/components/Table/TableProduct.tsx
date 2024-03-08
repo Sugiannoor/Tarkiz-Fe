@@ -1,10 +1,6 @@
 import { useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-
-import { Link } from "react-router-dom";
 import Table from "@/Components/table/Table";
 import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
@@ -120,14 +116,14 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
   const handleEdit = () => setIsEdit(!isEdit);
   const handleDelete = () => setIsDelete(!isDelete);
   const [params, setParams] = useState<APIParams>({
-    current_page: 1,
-    row_per_page: 10,
+    // current_page: 1,
+    // row_per_page: 10,
     search: searchValue,
   });
 
   //   const { data, isLoading } = useQuery({
-  //     queryKey: ["finance-contract-datatable", params],
-  //     queryFn: () => getContractFinanceDatatable(params),
+  //     queryKey: ["table-product", params],
+  //     queryFn: () => getProductTable(params),
   //   });
 
   const columns: ColumnDef<productTableType>[] = [
@@ -220,10 +216,10 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
         // isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
-        metadata={{
-          pageIndex: params.current_page - 1,
-          pageSize: params.row_per_page,
-        }}
+        // metadata={{
+        //   pageIndex: params.current_page - 1,
+        //   pageSize: params.row_per_page,
+        // }}
         setParams={setParams}
         // rowExpand={rowExpand}
       />

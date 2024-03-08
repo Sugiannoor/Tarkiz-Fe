@@ -1,9 +1,6 @@
 import { useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
 import { ColumnDef} from "@tanstack/react-table";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-
-import { Link } from "react-router-dom";
 import { userTableType } from "../../types/userTable";
 import Table from "@/Components/table/Table";
 import { APIParams } from "@/features/user/types/apiParams";
@@ -149,13 +146,13 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
 
 
   const [params, setParams] = useState<APIParams>({
-    current_page: 1,
-    row_per_page: 10,
+    // current_page: 1,
+    // row_per_page: 10,
     search: searchValue,
   });
 
 //   const { data, isLoading } = useQuery({
-//     queryKey: ["finance-contract-datatable", params],
+//     queryKey: ["user-table", params],
 //     queryFn: () => getContractFinanceDatatable(params),
 //   });
 
@@ -256,10 +253,10 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
         // isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
-        metadata={{
-          pageIndex: params.current_page - 1,
-          pageSize: params.row_per_page,
-        }}
+        // metadata={{
+        //   pageIndex: params.current_page - 1,
+        //   pageSize: params.row_per_page,
+        // }}
         setParams={setParams}
         // rowExpand={rowExpand}
       />

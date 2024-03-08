@@ -1,19 +1,14 @@
 import { useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
 import { ColumnDef} from "@tanstack/react-table";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
-import { Link } from "react-router-dom";
 import Table from "@/Components/table/Table";
 import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
-import { productTableType } from "../../types/productTable";
-import { ComplaintTableType } from "../../types/complaintTable";
 import { Chip } from "@material-tailwind/react";
 import { FaTrashAlt } from "react-icons/fa";
-import { RiEditBoxLine } from "react-icons/ri";
-import { DeleteComplaintModal } from "../Modal/DeleteComplaintModal";
+import { ComplaintTableType } from "@/features/admin/types/complaintTable";
+import { DeleteComplaintModal } from "@/features/admin/components/Modal/DeleteComplaintModal";
 
   
   type TableResponse<T> = {
@@ -78,7 +73,7 @@ import { DeleteComplaintModal } from "../Modal/DeleteComplaintModal";
       ],
   };
 
-const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
+const TableComplaintUser = ({ searchValue, setSearchValue }: TableProps) => {
   const [selectedId, setSelectedId] = useState (0);
   const [isDelete, setIsDelete] = useState (false);
   const handleDelete = () => setIsDelete (!isDelete)
@@ -155,10 +150,6 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
         accessorKey: "product_name",
       },
       {
-        header: "Urgensi",
-        accessorKey: "urgent_status",
-      },
-      {
         header: "Status",
         accessorKey: "status",
         cell: ({row}) => {
@@ -176,9 +167,6 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
       header: "Aksi",
       cell: ({ row }) => (
         <div className="flex gap-5">
-          <Link to={`/keluhan/edit/${row.original.id}`}>
-          <RiEditBoxLine size={18} className="text-custom-blue-600 cursor-pointer"/>
-          </Link>
           <FaTrashAlt
             size={18}
             className="text-red-900 cursor-pointer"
@@ -213,4 +201,4 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
   );
 };
 
-export default TableComplaint;
+export default TableComplaintUser;
