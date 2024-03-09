@@ -177,7 +177,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
               variant="filled"
               color="black"
               type="submit"
-              disabled={isLoading}
+              loading={isLoading}
             >
               <span>Confirm</span>
             </Button>

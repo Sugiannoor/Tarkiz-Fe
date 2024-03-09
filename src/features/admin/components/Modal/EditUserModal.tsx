@@ -7,7 +7,6 @@ import {
   Input,
   Textarea,
 } from "@material-tailwind/react";
-import InputComponent from "@/Components/InputComponent";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { UpdateUser, getUserById } from "../../api/user";
 import { useEffect, useState } from "react";
@@ -165,7 +164,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
               className="font-poppins"
               variant="gradient"
               color="black"
-              disabled={isLoading}
+              loading={isLoading}
               type="submit"
             >
               <span>Simpan</span>

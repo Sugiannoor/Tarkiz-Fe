@@ -7,7 +7,6 @@ import {
   Textarea,
   Input,
 } from "@material-tailwind/react";
-import InputComponent from "@/Components/InputComponent";
 import { FilePond } from "react-filepond";
 import { MultiSelect } from "react-multi-select-component";
 import { useEffect, useState } from "react";
@@ -205,7 +204,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               variant="gradient"
               color="black"
               type="submit"
-              disabled={isLoading}
+              loading={isLoading}
             >
               <span>Confirm</span>
             </Button>

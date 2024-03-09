@@ -57,7 +57,7 @@ export const DeleteProductModal = ({ open, handleOpen, id }: props) => {
             variant="gradient"
             color="green"
             onClick={handleDelete}
-            disabled={isLoading}
+            loading={isLoading}
           >
             <span>Confirm</span>
           </Button>

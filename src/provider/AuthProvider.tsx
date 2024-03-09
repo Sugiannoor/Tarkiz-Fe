@@ -5,10 +5,11 @@ import { LoginProps, LoginResponse } from "@/features/login/types";
 import { getUser, loginFunction, logoutFunction } from "@/features/login/api/auth";
 import { UserInterface } from "@/features/user/types/User";
 import { generateNewRole } from "@/utils/helper";
+import Loading from "@/Components/Loading";
 
 type AuthContextType = {
   user: UserInterface | null;
-  login: UseMutationResult<LoginResponse, unknown, LoginProps, unknown>;
+  login: UseMutationResult<LoginResponse, Error, LoginProps, unknown>;
   logout: () => void;
 };
 
@@ -35,7 +36,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     queryKey: ["authUser"],
     queryFn: fetchUserData,
   });
-
+  
+  
   const loginMutation = useMutation({
     mutationFn: loginFunction,
     onSuccess: ({ token, user }) => {
@@ -43,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       queryClient.setQueryData(["auth"], user);
     },
   });
-
+  
   const logoutMutation = useMutation({
     mutationFn: logoutFunction,
     onSuccess: () => {
@@ -51,8 +53,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       queryClient.clear();
     },
   });
-
-
+  
+  if (isLoading) {
+    return <Loading />;
+  }
+  
   const value: AuthContextType = {
     user: User || null,
     login: loginMutation,

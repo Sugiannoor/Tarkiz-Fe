@@ -57,7 +57,7 @@ export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
             className="font-poppins"
             variant="gradient"
             color="green"
-            disabled={isLoading}
+            loading={isLoading}
             onClick={handleDelete}
           >
             <span>Confirm</span>

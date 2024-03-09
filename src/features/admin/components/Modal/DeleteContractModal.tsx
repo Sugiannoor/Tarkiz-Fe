@@ -49,7 +49,7 @@ import { deleteContract } from "../../api/contract";
             >
               <span>Cancel</span>
             </Button>
-            <Button placeholder={""} className="font-poppins" variant="gradient" color="green" onClick={handleDelete} disabled={isLoading}>
+            <Button placeholder={""} className="font-poppins" variant="gradient" color="green" onClick={handleDelete} loading={isLoading}>
               <span>Confirm</span>
             </Button>
           </DialogFooter>

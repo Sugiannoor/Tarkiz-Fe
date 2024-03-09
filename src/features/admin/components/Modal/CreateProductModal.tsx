@@ -179,7 +179,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               variant="gradient"
               color="black"
               type="submit"
-              disabled={isLoading}
+              loading={isLoading}
             >
               <span>Confirm</span>
             </Button>

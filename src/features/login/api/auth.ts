@@ -16,7 +16,7 @@ export const loginFunction = async ({
       }
     );
   
-    return response.data.data;
+    return response.data;
   };
 
   export const logoutFunction = async () => {
