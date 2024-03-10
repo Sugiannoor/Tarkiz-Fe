@@ -1,5 +1,5 @@
 import { axios } from "@/lib/axios";
-import { editContractForm } from "../types/crudContract";
+import { ContractForm, editContractForm } from "../types/crudContract";
 
 export const deleteContract = async (id: number) => {
     const response = await axios.delete("/api/contract", {
@@ -19,5 +19,9 @@ export const deleteContract = async (id: number) => {
   };
   export const UpdateContract = async (data: editContractForm ) => {
     const response = await axios.put("/api/contract", data);
+    return response.data
+  }
+  export const CreateContract = async (data: ContractForm ) => {
+    const response = await axios.post("/api/contract", data);
     return response.data
   }

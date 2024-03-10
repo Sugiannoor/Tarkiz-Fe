@@ -6,6 +6,7 @@ import Select from "react-select";
 import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
 import toast from "react-hot-toast";
 import { handleError } from "@/utils/helper";
+import Loading from "@/Components/Loading";
 
 interface Option  {
   value: string,
@@ -99,6 +100,7 @@ const UpdateComplaintForm = () => {
     }
     await mutateAsync (dataSubmit)
   }
+  if (isDataComplaint) return <Loading/>
   return (
     <div className="bg-white p-5 rounded-lg">
       <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row lg:gap-5 justify-between">
@@ -110,6 +112,7 @@ const UpdateComplaintForm = () => {
             crossOrigin={""}
             type="text"
             disabled
+            value={formData.username}
             id="username"
             name="username"
             placeholder="Username"
@@ -122,6 +125,7 @@ const UpdateComplaintForm = () => {
             type="number"
             disabled
             id="phone_number"
+            value={formData.phone_number}
             name="phone_number"
             placeholder="Nomor Handphone"
           />
@@ -132,6 +136,7 @@ const UpdateComplaintForm = () => {
             crossOrigin={""}
             type="text"
             disabled
+            value={formData.phone_number}
             id="program"
             name="program"
             placeholder="Nama Aplikasi"
@@ -147,6 +152,7 @@ const UpdateComplaintForm = () => {
             disabled
             id="contract_code"
             name="contract_code"
+            value={formData.contract_code}
             placeholder="#SDSA21"
           />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
@@ -166,6 +172,7 @@ const UpdateComplaintForm = () => {
             id="title"
             name="title"
             placeholder="Judul Keluhan"
+            value={formData.title}
             disabled
           />
           <div
@@ -180,6 +187,7 @@ const UpdateComplaintForm = () => {
               variant="outlined"
               id="description"
               name="description"
+              value={formData.description}
             />
           <div className="flex justify-end mt-10">
             <Button
@@ -197,6 +205,7 @@ const UpdateComplaintForm = () => {
               variant="gradient"
               color="black"
               type="submit"
+              loading={isLoading}
             >
               <span>Confirm</span>
             </Button>

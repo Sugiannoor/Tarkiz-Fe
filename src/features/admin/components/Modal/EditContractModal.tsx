@@ -14,6 +14,7 @@ import Select from "react-select";
 import toast from "react-hot-toast";
 import { handleError } from "@/utils/helper";
 import { editContractForm } from "../../types/crudContract";
+import { getLabelUser } from "../../api/user";
 
 type props = {
   open: boolean;
@@ -24,31 +25,56 @@ type Option = {
   value: number;
   label: string;
 }
+
+type DataContract = {
+  contract_date: string,
+  end_date: string,
+  contract_code: string,
+  contract_id: number,
+  product_selected: Option,
+  user_selected: Option,
+}
 export const EditContractModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const [contractDate, setContractDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Option>();
-  const [mitraName, setMitraName] = useState("");
+  const [selectedUser, setSelectedUser] = useState<Option>();
   const [contractCode, setContractCode] = useState("");
 
-  const { data: dataProduct, isLoading: isProductLoading } = useQuery({
+  const resetForm = () => {
+    setContractDate("");
+    setEndDate("");
+    setSelectedProduct(undefined);
+    setSelectedUser(undefined);
+    setContractCode("");
+  };
+  const handleCancel = () => {
+    resetForm(); 
+    handleOpen(); 
+  }
+  const { data: dataContract, isLoading: isContractLoading } = useQuery<DataContract>({
     queryKey: ["contract-edit", id],
     queryFn: () => getContractById(id),
   });
 
-  const { data: dataContract, isLoading: isContractLoading } = useQuery({
-    queryKey: ["contract-edit"],
+  const { data: dataUser, isLoading: isUserLoading } = useQuery({
+    queryKey: ["user-label"],
+    queryFn: getLabelUser,
+  });
+
+  const { data: dataProduct, isLoading: isProductLoading } = useQuery({
+    queryKey: ["product-label"],
     queryFn: getLabelProduct,
   });
 
   useEffect(() => {
     if (dataContract) {
-      setMitraName(dataContract.client_name);
+      setSelectedUser(dataContract.user_selected);
       setContractDate(dataContract.contract_date);
       setEndDate(dataContract.end_date);
       setContractCode(dataContract.contract_code);
-      setSelectedProduct(dataContract.product);
+      setSelectedProduct(dataContract.product_selected);
     }
   }, []);
   const { mutateAsync, isLoading } = useMutation({
@@ -74,20 +100,21 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const idProduct = selectedProduct?.value;
+    const idClient = selectedUser?.value;
     const dataSubmit: editContractForm = {
       id: id,
       contract_code: contractCode,
       product_id: idProduct,
       contract_date: contractDate,
       end_date: endDate,
-      client_name: mitraName,
+      client_id: idClient,
     };
 
     await mutateAsync(dataSubmit);
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen}>
+      <Dialog placeholder={""} open={open} handler={handleOpen} dismiss={{escapeKey: false, outsidePress: false}}>
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Edit Kontrak
         </DialogHeader>
@@ -113,7 +140,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
               </div>
               <Select
                 defaultValue={selectedProduct}
-                onChange={()=> setSelectedProduct}
+                onChange={setSelectedProduct}
                 options={dataProduct}
                 isDisabled={isProductLoading}
               />
@@ -149,24 +176,22 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
             <div className="text-lg text-[#005697] font-normal font-poppins">
               Nama Client
             </div>
-            <Input
-              crossOrigin={""}
-              type="text"
-              variant="static"
-              id="full_name"
-              name="full_name"
-              placeholder="Nama Lengkap"
-              disabled={isProductLoading}
-              value={mitraName}
-              onChange={(e) => setMitraName(e.target.value)}
-            />
+            <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+               Nama Client  
+              </div>
+              <Select
+                defaultValue={selectedProduct}
+                onChange={setSelectedProduct}
+                options={dataUser}
+                isLoading={isUserLoading}
+              />
           </DialogBody>
           <DialogFooter placeholder={""}>
             <Button
               placeholder={""}
               variant="text"
               color="red"
-              onClick={handleOpen}
+              onClick={handleCancel}
               className="mr-1 font-poppins"
             >
               <span>Cancel</span>

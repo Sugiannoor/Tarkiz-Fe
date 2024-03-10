@@ -23,3 +23,8 @@ export const deleteUser = async (id: number) => {
     const response = await axios.put("/api/users", data);
     return response.data
   }
+
+  export const getLabelUser = async () => {
+    const response = await axios.get("/api/user/label");
+    return response.data.data;
+  };

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { SidebarMobile } from '@/features/dashboard/components/SidebarMobile';
 import { SidebarDesktop } from '@/features/dashboard/components/SidebarDesktop';
 import { Outlet } from 'react-router-dom';
+import Loading from '@/Components/Loading';
 
 const Layout = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -24,7 +25,9 @@ const Layout = () => {
           {isMobile ? <SidebarMobile /> : <SidebarDesktop />}
         </div>
         <main className='col-span-10 lg:col-span-9'>
+        <Suspense fallback={<Loading/>}>
           <Outlet />
+        </Suspense>
         </main>
       </div>
     </div>

@@ -1,15 +1,12 @@
 import { Spinner } from "@material-tailwind/react";
 
-type props = {
-    size?: "12"
-}
 
-const Loading = ({size}: props) => {
+const Loading = () => {
     return (
       <div
         className="flex justify-center items-center w-full h-screen"
       >
-        <Spinner className={`h-${size} w-${size}`} />
+        <Spinner className={`h-16 w-16 text-gray-900/50`} />
       </div>
     );
   };

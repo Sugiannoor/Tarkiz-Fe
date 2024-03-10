@@ -23,16 +23,16 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorProvider>
-      <ThemeProvider>
-        <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
+        <ThemeProvider>
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
               <AppRoutes />
-              <Toaster position="top-center" containerStyle={{ zIndex: 100 }} />
+              <Toaster position="top-center" containerStyle={{ zIndex: 10000 }} />
             </AuthProvider>
           </QueryClientProvider>
-        </Suspense>
-      </ThemeProvider>
+        </ThemeProvider>
+      </Suspense>
     </ErrorProvider>
   </React.StrictMode>
 );

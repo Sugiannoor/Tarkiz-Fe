@@ -74,7 +74,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
 
   return (
     <>
-      <Dialog placeholder={""} size="lg" open={open} handler={handleOpen}>
+      <Dialog placeholder={""} size="lg" open={open} handler={handleOpen} dismiss={{escapeKey: false, outsidePress: false}}>
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Tambah Produk
         </DialogHeader>

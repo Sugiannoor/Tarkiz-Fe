@@ -1,57 +1,76 @@
 import { axios } from "@/lib/axios";
-import { CreateProduct, UpdateProduct, } from "../types/crudProduct";
+import { CreateProduct, UpdateProduct } from "../types/crudProduct";
 
 export const createProduct = async (data: CreateProduct) => {
-    const formData = new FormData();
-    if (data.photo) {
-        formData.append ("photo", data.photo.file)
-    }
-    const combinedData = {
-        ...data,
-        photo: formData,
-    };
-    const response = await axios.post("/api/products", combinedData);
-    return response.data;
-  };
+  const formData = new FormData();
+  formData.append("program", data.program);
+  formData.append("description", data.description);
+  if (data.type) {
+    formData.append("type", data.type.toString());
+  }
+  data.tag.forEach((tagId) => {
+    formData.append("tag[]", tagId.toString());
+  });
 
-  export const getTag = async () => {
-    const response = await axios.get ("/api/showtag")
-    return response.data.data
+  if (data.photo) {
+    formData.append("photo", data.photo.file);
   }
-  export const getType = async () => {
-    const response = await axios.get ("/api/showtype")
-    return response.data.data
+
+  // Melakukan permintaan POST dengan FormData
+  const response = await axios.post("/api/products", formData);
+  return response.data;
+};
+
+export const getTag = async () => {
+  const response = await axios.get("/api/showtag");
+  return response.data.data;
+};
+export const getType = async () => {
+  const response = await axios.get("/api/showtype");
+  return response.data.data;
+};
+export const deleteProduct = async (id: number) => {
+  const response = await axios.delete("/api/products", {
+    params: {
+      id,
+    },
+  });
+  return response.data;
+};
+export const getLabelProduct = async () => {
+  const response = await axios.get("/api/product/label");
+  return response.data.data;
+};
+export const UpdateProducts = async (data: UpdateProduct) => {
+  const formData = new FormData();
+  formData.append("id", data.id.toString())
+  formData.append("program", data.program);
+  formData.append("description", data.description);
+  if (data.type) {
+    formData.append("type", data.type.toString());
   }
-  export const deleteProduct = async (id: number) => {
-    const response = await axios.delete("/api/products", {
-      params: {
-        id,
-      },
-    });
-    return response.data;
-  };
-  export const getLabelProduct = async () => {
-    const response = await axios.get ("/api/product/label")
-    return response.data.data
+  data.tag.forEach((tagId) => {
+    formData.append("tag[]", tagId.toString());
+  });
+
+  if (data.photo) {
+    formData.append("photo", data.photo.file);
   }
-  export const UpdateProducts = async (data: UpdateProduct) => {
-    const formData = new FormData();
-    if (data.photo) {
-        formData.append ("photo", data.photo.file)
-    }
-    const combinedData = {
-        ...data,
-        photo: formData,
-    };
-    const response = await axios.put("/api/products", combinedData);
-    return response.data;
-  };
-  
-  export const getProductById = async (id: number) => {
-    const response = await axios.get("/api/products", {
-      params: {
-        id,
-      },
-    });
-    return response.data.data;
-  };
+  const response  = await axios.put ("/api/products",formData);
+  return response.data
+};
+
+export const getProductById = async (id: number) => {
+  const response = await axios.get("/api/products", {
+    params: {
+      id,
+    },
+  });
+  return response.data.data;
+};
+
+
+export const createTag = async (tag: string) => {
+  const response = await axios.post ("/api/tag", tag)
+  return response.data
+}

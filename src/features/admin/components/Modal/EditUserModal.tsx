@@ -73,7 +73,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen}>
+      <Dialog placeholder={""} open={open} handler={handleOpen} dismiss={{escapeKey: false, outsidePress: false}}>
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Edit Pengguna
         </DialogHeader>
