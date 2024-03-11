@@ -1,13 +1,13 @@
 import { handleError } from "@/utils/helper";
 import {
-    Button,
-    Dialog,
-    DialogHeader,
-    DialogBody,
-    DialogFooter,
-    Option,
-    Input,
-  } from "@material-tailwind/react";
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Option,
+  Input,
+} from "@material-tailwind/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -15,25 +15,25 @@ import { CreateContract } from "../../api/contract";
 import { getLabelProduct } from "../../api/product";
 import Select from "react-select";
 import { getLabelUser } from "../../api/user";
-   
-  type props = {
-  open: boolean;
-  handleOpen: () => void
-  }
-  
-  type Option = {
-    value: number;
-    label: string;
-  }
 
-  export const CreateContractModal = ({open, handleOpen}:props) => {
+type props = {
+  open: boolean;
+  handleOpen: () => void;
+};
+
+type Option = {
+  value: number;
+  label: string;
+};
+
+export const CreateContractModal = ({ open, handleOpen }: props) => {
   const queryClient = useQueryClient();
   const [contractDate, setContractDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Option>();
   const [selectedUser, setSelectedUser] = useState<Option>();
   const [contractCode, setContractCode] = useState("");
-  
+
   const { data: dataProduct, isLoading: isProductLoading } = useQuery({
     queryKey: ["product-label"],
     queryFn: getLabelProduct,
@@ -68,9 +68,9 @@ import { getLabelUser } from "../../api/user";
     setContractCode("");
   };
   const handleCancel = () => {
-    resetForm(); 
-    handleOpen(); 
-  }
+    resetForm();
+    handleOpen();
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const idProduct = selectedProduct?.value;
@@ -85,11 +85,18 @@ import { getLabelUser } from "../../api/user";
 
     await mutateAsync(dataSubmit);
   };
-    return (
-      <>
-        <Dialog placeholder={""} open={open} handler={handleOpen} dismiss={{escapeKey:false, outsidePress: false}}>
-          <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>Tambah Kontrak</DialogHeader>
-          <form onSubmit={handleSubmit}>
+  return (
+    <>
+      <Dialog
+        placeholder={""}
+        open={open}
+        handler={handleOpen}
+        dismiss={{ escapeKey: false, outsidePress: false }}
+      >
+        <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
+          Tambah Kontrak
+        </DialogHeader>
+        <form onSubmit={handleSubmit}>
           <DialogBody placeholder={""} className="p-10">
             <div className="text-lg text-[#005697] font-normal font-poppins">
               Kode Kontrak
@@ -105,6 +112,15 @@ import { getLabelUser } from "../../api/user";
               onChange={(e) => setContractCode(e.target.value)}
             />
             <div className="my-5">
+              <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+                Nama Client
+              </div>
+              <Select
+                defaultValue={selectedUser}
+                onChange={setSelectedUser}
+                options={dataUser}
+                isLoading={isUserLoading}
+              />
               <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
                 Product
               </div>
@@ -141,15 +157,6 @@ import { getLabelUser } from "../../api/user";
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
-           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
-               Nama Client  
-              </div>
-              <Select
-                defaultValue={selectedUser}
-                onChange={setSelectedUser}
-                options={dataUser}
-                isLoading={isUserLoading}
-              />
           </DialogBody>
           <DialogFooter placeholder={""}>
             <Button
@@ -173,7 +180,7 @@ import { getLabelUser } from "../../api/user";
             </Button>
           </DialogFooter>
         </form>
-        </Dialog>
-      </>
-    );
-  }
+      </Dialog>
+    </>
+  );
+};

@@ -5,6 +5,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 
 export const BestProduct = () => {
@@ -41,7 +42,7 @@ export const BestProduct = () => {
             Membantu perusahaan mengoptimalkan proses keuangan melalui solusi
             teknologi terkini dan berkualitas tinggi.
           </Typography>
-          <div className="w-full flex justify-center">
+          <Link to={"/product/web"} className="w-full flex justify-center">
             <Button
               placeholder={""}
               variant="text"
@@ -63,7 +64,7 @@ export const BestProduct = () => {
                 />
               </svg>
             </Button>
-          </div>
+          </Link>
         </CardBody>
       </Card>
       <Card placeholder={""} className={`w-full h-full flex-col lg:flex-row-reverse mt-5`}>
@@ -95,7 +96,7 @@ export const BestProduct = () => {
             Membantu perusahaan mengoptimalkan proses keuangan melalui solusi
             teknologi terkini dan berkualitas tinggi.
           </Typography>
-          <div className="w-full flex justify-center">
+          <Link to={"product/android"} className="w-full flex justify-center">
             <Button
               placeholder={""}
               variant="text"
@@ -117,7 +118,7 @@ export const BestProduct = () => {
                 />
               </svg>
             </Button>
-          </div>
+          </Link>
         </CardBody>
       </Card>
     </div>

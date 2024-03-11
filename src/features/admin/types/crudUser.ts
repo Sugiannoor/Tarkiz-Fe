@@ -1,7 +1,8 @@
 export type userForm = {
-    full_name: string;
-    username: string;
-    email: string;
-    number_phone: string;
+    full_name?: string;
+    username?: string;
+    email?: string;
+    number_phone?: string;
+    image_path?: File;
     address?: string;
 }

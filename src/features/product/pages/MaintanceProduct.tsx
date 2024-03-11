@@ -9,7 +9,7 @@ const MaintanceProduct = () => {
       <SpootlightsHome title="Maintance" subTitle="" 
       description ="Membantu Merawat dan Memberikan Pelayanan untuk aplikasi Anda"
       />
-      <StickyScrollProduct/>
+      <StickyScrollProduct image_path={"/maintance.webp"}/>
       <TabsProductMaintance />
     </div>
   );

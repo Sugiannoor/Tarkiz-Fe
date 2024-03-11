@@ -9,7 +9,7 @@ const WebProduct = () => {
       <SpootlightsHome title="Web" subTitle="Development" 
       description ="Membantu perusahaan mengoptimalkan proses keuangan melalui solusi teknologi terkini dan berkualitas tinggi berbasis Web"
       />
-      <StickyScrollProduct/>
+      <StickyScrollProduct image_path={"/web.webp"}/>
       <TabsProductWeb/>
     </div>
   );

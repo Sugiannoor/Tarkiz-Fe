@@ -20,8 +20,18 @@ export const deleteUser = async (id: number) => {
   }
 
   export const UpdateUser = async (data: userForm) => {
-    const response = await axios.put("/api/users", data);
-    return response.data
+    const formData = new FormData();
+    formData.append('full_name', data.full_name as string);
+    formData.append('email', data.email as string);
+    formData.append('number_phone', data.number_phone as string);
+    formData.append('username', data.username as string);
+    formData.append('address', data.address as string);
+    if (data.image_path) {
+        formData.append('image_path', data.image_path as File);
+    }
+
+    const response = await axios.put("/api/users", formData);
+    return response.data;
   }
 
   export const getLabelUser = async () => {

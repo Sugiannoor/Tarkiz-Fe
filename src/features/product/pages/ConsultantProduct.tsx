@@ -9,7 +9,7 @@ const ConsultantProduct = () => {
       <SpootlightsHome title="IT" subTitle="Consultant" 
       description ="Membantu Konsultasi IT dengan Pelayanan informasi keuangan yang baik"
       />
-      <StickyScrollProduct/>
+      <StickyScrollProduct image_path={"/it_consultant.webp"}/>
       <TabsProductConsultant/>
     </div>
   );

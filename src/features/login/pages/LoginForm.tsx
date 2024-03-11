@@ -8,11 +8,12 @@ import useAuth from "@/hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  const { login} = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState (false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -28,6 +29,7 @@ const LoginForm = () => {
       },
       onError: (err: Error) => {
         toast.error(err.message);
+        setError (!error);
         return;
       },
     });
@@ -70,12 +72,11 @@ const LoginForm = () => {
               type="email"
               id="email"
               placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-body"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
+              variant="outlined"
+              className="font-poppoins"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              error={error}
             />
             <Typography
               placeholder={""}
@@ -93,12 +94,10 @@ const LoginForm = () => {
                 name="password"
                 size="lg"
                 placeholder="********"
-                className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-body"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
+                className=" font-poppins"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                error={error}
               />
              {showPassword ? (
                 <FaEyeSlash

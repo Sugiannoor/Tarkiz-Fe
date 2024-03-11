@@ -64,7 +64,7 @@ import { getAllMaintance, getFinanceMaintance, getMarketingMaintance, getOperati
         <Tabs id="custom-animation" value="all" className=" p-5 lg:p-0 lg:w-[80rem]">
           <TabsHeader placeholder={""}>
             {data.map(({ label, value }) => (
-              <Tab placeholder={""} key={value} value={value} className="font-poppins">
+              <Tab placeholder={""} key={value} value={value} className="font-poppins text-sm lg:text-lg">
                 {label}
               </Tab>
             ))}

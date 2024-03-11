@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axios } from "@/lib/axios";
 import { LoginProps, LoginResponse } from "../types";
 import { UserInterface } from "@/features/user/types/User";
 

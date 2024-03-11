@@ -9,7 +9,7 @@ const AndroidProduct = () => {
       <SpootlightsHome title="Android" subTitle="Development" 
       description ="Membantu perusahaan mengoptimalkan proses keuangan melalui solusi teknologi terkini dan berkualitas tinggi berbasis Mobile"
       />
-      <StickyScrollProduct/>
+      <StickyScrollProduct image_path={"/android.webp"} />
       <TabsProductAndroid/>
     </div>
   );

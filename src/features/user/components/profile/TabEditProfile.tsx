@@ -1,28 +1,142 @@
-import { Button } from '@material-tailwind/react'
-import InputComponent from '../../../../Components/InputComponent'
+import { Button, Input, Textarea } from "@material-tailwind/react";
+import { useState } from "react";
+import useAuth from "@/hooks/useAuth";
+import ImageUpload from "./ImageInput";
+import { handleError } from "@/utils/helper";
+import toast from "react-hot-toast";
+import { useMutation } from "react-query";
+import { UpdateUser } from "@/features/admin/api/user";
 
 const TabEditProfile = () => {
-  return (
-    <form>
-    <div className="flex justify-center my-28">
-      <img
-        className="h-48 w-48 rounded-full object-cover object-center"
-        src="/user_default.png"
-        alt="nature image"
-      />
-    </div>
-    <InputComponent id="full_name" label="Nama Lengkap" placeholder="Nama Lengkap" classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9"/>
-    <InputComponent id="username" label="Username" placeholder="Username ..." classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9"/>
-    <InputComponent id="email" label="Email" placeholder="Cek@gmail.com" classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9" />
-    <InputComponent id="phone" label="Nomor Telepon" placeholder="08..." classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9" />
-    <InputComponent id="address" label="Alamat" placeholder="JL. Banjarbaru" classnameLabel="text-xl text-[#005697] font-semibold font-poppins" className="mb-9"/>
-    <div className='flex justify-end'>
-    <Button placeholder={""} variant='filled' color='indigo' className='font-raleway'>
-      Simpan
-    </Button>
-    </div>
-  </form>
-  )
-}
+  const { user } = useAuth();
+  const [image, setImage] = useState<File>();
+  const [dataUser, setDataUser] = useState({
+    full_name: user?.full_name,
+    username: user?.username,
+    email: user?.email,
+    number_phone: user?.number_phone,
+    address: user?.address,
+  });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setDataUser((prevDataUser) => ({
+      ...prevDataUser,
+      [name]: value,
+    }));
+  };
+  const {mutateAsync, isLoading} =useMutation ({
+    mutationFn: UpdateUser,
+    onSuccess() {
+      toast.success ("Profile Berhasil Diperbaharui")
+    },
+    onError: (err: Error) => {
+    const errorTypes = [ "full_name", "email", "number_phone", "username", "password"];
+    handleError(err, errorTypes);
+    
+    return;
+  },
+})
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault ();
+    const {full_name, email, number_phone, address, username} = dataUser
+    const image_path = image
+    
+    const dataSubmit = {
+      full_name,
+      email,
+      number_phone,
+      address,
+      username,
+      image_path,
+    }
+    await mutateAsync (dataSubmit)
 
-export default TabEditProfile
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="flex justify-center my-28">
+        <ImageUpload setImage={setImage} image={image} />
+      </div>
+      <div className="text-lg text-[#005697] font-normal font-poppins">
+        Nama Lengkap
+      </div>
+      <Input
+        crossOrigin={""}
+        type="text"
+        variant="static"
+        id="full_name"
+        name="full_name"
+        placeholder="Nama Lengkap"
+        value={dataUser.full_name}
+        onChange={handleChange}
+      />
+      <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+        Nama Pengguna
+      </div>
+      <Input
+        crossOrigin={""}
+        type="text"
+        variant="static"
+        id="username"
+        name="username"
+        placeholder="Nama Pengguna"
+        value={dataUser.username}
+        onChange={handleChange}
+      />
+      <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+        Email
+      </div>
+      <Input
+        crossOrigin={""}
+        type="email"
+        variant="static"
+        id="email"
+        name="email"
+        placeholder="budi@gmail.com"
+        value={dataUser.email}
+        onChange={handleChange}
+      />
+      <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+        Nomor Telephone
+      </div>
+      <Input
+        crossOrigin={""}
+        type="number"
+        variant="static"
+        id="number_phone"
+        name="number_phone"
+        placeholder="Nomor Telephone Anda"
+        value={dataUser.number_phone}
+        onChange={handleChange}
+      />
+      <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+        Alamat
+      </div>
+      <Textarea
+        className="mt-2"
+        placeholder="Deskripsi"
+        variant="outlined"
+        id="address"
+        name="address"
+        value={dataUser.address}
+        onChange={handleChange}
+      />
+      <div className="flex justify-end">
+        <Button
+          placeholder={""}
+          variant="filled"
+          color="indigo"
+          className="font-raleway"
+          type="submit"
+          loading={isLoading}
+        >
+          Simpan
+        </Button>
+      </div>
+    </form>
+  );
+};
+
+export default TabEditProfile;
