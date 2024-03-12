@@ -4,7 +4,7 @@ import { ColumnDef} from "@tanstack/react-table";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Table from "@/Components/table/Table";
 import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
@@ -13,6 +13,7 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
 import { EditContractModal } from "../Modal/EditContractModal";
 import { DeleteContractModal } from "../Modal/DeleteContractModal";
+import { BiPrinter } from "react-icons/bi";
 
   
   type TableResponse<T> = {
@@ -72,6 +73,7 @@ import { DeleteContractModal } from "../Modal/DeleteContractModal";
   };
 
 const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
+  const navigate = useNavigate ();
   const [selectedId, setSelectedId] = useState (0);
   const [isEdit, setIsEdit] = useState (false);
   const [isDelete, setIsDelete] = useState (false);
@@ -162,6 +164,9 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
             setSelectedId(row.original.id);
             handleEdit();
           }} 
+          />
+           <BiPrinter size={18} className="text-custom-yellow-500 cursor-pointer"
+           onClick={()=> navigate(`print/${row.original.id}`)} 
           />
           <FaTrashAlt
             size={18}
