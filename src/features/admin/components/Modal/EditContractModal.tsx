@@ -134,9 +134,6 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
               value={contractCode}
               onChange={(e) => setContractCode(e.target.value)}
             />
-            <div className="text-lg text-[#005697] font-normal font-poppins">
-              Nama Client
-            </div>
             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
                Nama Client  
               </div>
