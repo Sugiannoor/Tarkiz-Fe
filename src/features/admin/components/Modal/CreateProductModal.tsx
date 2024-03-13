@@ -67,9 +67,17 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
       },
       onError: () => {
         toast.error("Gagal Menambahkan Product");
-        handleOpen();
       },
     });
+  };
+  const handleCancel = () => {
+    setFile(undefined);
+    setProgram("");
+    setDescription("");
+    setSelectedTag([]);
+    setSelectedType(undefined);
+
+    handleOpen();
   };
 
   return (
@@ -168,7 +176,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               placeholder={""}
               variant="text"
               color="red"
-              onClick={handleOpen}
+              onClick={handleCancel}
               className="mr-1  font-poppins"
             >
               <span>Cancel</span>

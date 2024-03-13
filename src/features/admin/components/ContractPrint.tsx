@@ -45,7 +45,7 @@ export const ContractPrint: React.FC = () => {
 //     );
 
   return (
-    <PDFViewer width="100%" height={720}>
+    <PDFViewer width="100%" height={1080}>
       <Document>
         <Page size="A4" style={{ fontFamily: 'Helvetica' }}>
           <View style={{ margin: '0.5cm 1cm' }}>

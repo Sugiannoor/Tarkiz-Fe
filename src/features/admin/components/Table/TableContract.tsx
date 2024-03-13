@@ -165,9 +165,9 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
             handleEdit();
           }} 
           />
-           <BiPrinter size={18} className="text-custom-yellow-500 cursor-pointer"
-           onClick={()=> navigate(`print/${row.original.id}` ,{})} 
-          />
+          <Link to={`/kontrak/print/${row.original.id}`} target="_blank">
+           <BiPrinter size={18} className="text-custom-yellow-500 cursor-pointer" />
+          </Link>
           <FaTrashAlt
             size={18}
             className="text-red-900 cursor-pointer"

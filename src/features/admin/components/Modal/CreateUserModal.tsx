@@ -35,6 +35,17 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
     }));
   };
 
+  const handleCancel = () => {
+    setFormData ({
+      email: "",
+      full_name: "",
+      number_phone: "",
+      password: "",
+      username: "",
+      address: "",
+    })
+    handleOpen()
+  }
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createUser,
     onSuccess() {
@@ -172,7 +183,7 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
               placeholder={""}
               variant="text"
               color="red"
-              onClick={handleOpen}
+              onClick={handleCancel}
               className="mr-1 font-poppins"
             >
               <span>Cancel</span>
