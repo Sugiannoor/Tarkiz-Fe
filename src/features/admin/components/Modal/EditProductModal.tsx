@@ -51,7 +51,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
       setSelectedType (dataProduct.product)
       setFilePath (dataProduct.file_path)
     }
-  },[])
+  },[dataProduct])
   
   const { data: tags, isLoading: tagLoading } = useQuery({
     queryKey: ["tag"],

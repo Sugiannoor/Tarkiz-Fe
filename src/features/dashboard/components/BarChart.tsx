@@ -11,7 +11,6 @@ import Chart from "react-apexcharts";
 // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const chartConfig = {
-  type: "bar",
   height: 240,
   series: [
     {
@@ -26,7 +25,7 @@ const chartConfig = {
       },
     },
     title: {
-      show: "",
+      show: "Keluhan",
     },
     dataLabels: {
       enabled: false,
@@ -54,6 +53,9 @@ const chartConfig = {
         },
       },
       categories: [
+        "Jan",
+        "Feb",
+        "Mar",
         "Apr",
         "May",
         "Jun",
@@ -115,7 +117,7 @@ export const BarChart = () => {
         </div>
       </CardHeader>
       <CardBody placeholder={""} className="px-2 pb-0">
-        <Chart {...chartConfig} />
+        <Chart type="area"{...chartConfig} />
       </CardBody>
     </Card>
   );

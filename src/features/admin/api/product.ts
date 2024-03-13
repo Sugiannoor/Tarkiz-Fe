@@ -39,7 +39,7 @@ export const deleteProduct = async (id: number) => {
 };
 export const getLabelProduct = async () => {
   const response = await axios.get("/api/product/label");
-  return response.data.data;
+  return response.data.data ;
 };
 export const UpdateProducts = async (data: UpdateProduct) => {
   const formData = new FormData();

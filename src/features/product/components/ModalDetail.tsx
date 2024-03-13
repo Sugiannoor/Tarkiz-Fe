@@ -8,7 +8,6 @@ import {
   DialogFooter,
   DialogHeader,
 } from "@material-tailwind/react";
-import React from "react";
 import { useQuery } from "react-query";
 import { GetProductById } from "../types/product";
 import { FaTimes } from "react-icons/fa";
@@ -27,7 +26,6 @@ const ModalDetail = ({
       queryKey: ["product", id],
       queryFn: () => getProductById(id),
     });
-
   return (
     <div>
       <Dialog placeholder={""} size="lg" open={open} handler={handleOpen}>
@@ -54,16 +52,20 @@ const ModalDetail = ({
                     }
                     alt=""
                   />
-                  <div className="flex gap-2 my-2">
-                    {dataProduct.tags.map((tags, index) => (
-                      <Chip
-                        key={index}
-                        variant="outlined"
-                        value={tags}
-                        className="font-raleway"
-                      />
-                    ))}
-                  </div>
+                  {dataProduct.tags ? (
+                    <div className="flex gap-2 my-2">
+                      {dataProduct.tags.map((tags, index) => (
+                        <Chip
+                          key={index}
+                          variant="outlined"
+                          value={tags}
+                          className="font-raleway"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div>Tidak ada tag</div>
+                  )}
                   <div>{dataProduct.description}</div>
                 </>
               ) : (

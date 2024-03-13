@@ -21,7 +21,7 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
   const [formData, setFormData] = useState<RegistrasiType>({
     full_name: "",
     email: "",
-    phone_number: "",
+    number_phone: "",
     username: "",
     password: "",
   });
@@ -57,12 +57,12 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { full_name, email, phone_number, password, username } = formData;
+    const { full_name, email, number_phone, password, username } = formData;
 
     const dataSubmit = {
       full_name,
       email,
-      phone_number,
+      number_phone,
       username,
       password,
     };
@@ -137,11 +137,11 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
               crossOrigin={""}
               size="lg"
               type="number"
-              id="phone_number"
-              name="phone_number"
+              id="number_phone"
+              name="number_phone"
               variant="static"
               onChange={handleChange}
-              value={formData.phone_number}
+              value={formData.number_phone}
               placeholder="Nomor HP"
               className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
               labelProps={{

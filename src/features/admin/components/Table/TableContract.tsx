@@ -166,7 +166,7 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
           }} 
           />
            <BiPrinter size={18} className="text-custom-yellow-500 cursor-pointer"
-           onClick={()=> navigate(`print/${row.original.id}`)} 
+           onClick={()=> navigate(`print/${row.original.id}` ,{})} 
           />
           <FaTrashAlt
             size={18}

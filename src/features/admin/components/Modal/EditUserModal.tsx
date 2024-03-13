@@ -21,11 +21,16 @@ type props = {
 export const EditUserModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const [dataUser, setDataUser] = useState({
+    id: 0,
     full_name: "",
     username: "",
     email: "",
     number_phone: "",
     address: "",
+  });
+  const { data, isLoading: isUserLoading } = useQuery({
+    queryKey: ["user-edit", id],
+    queryFn: () => getUserById(id),
   });
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,6 +44,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
   useEffect(() => {
     if (data) {
       setDataUser({
+        id: data.id,
         full_name: data.full_name,
         username: data.username,
         email: data.email,
@@ -46,11 +52,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
         address: data.address,
       });
     }
-  }, []);
-  const { data, isLoading: isUserLoading } = useQuery({
-    queryKey: ["user-edit", id],
-    queryFn: () => getUserById(id),
-  });
+  }, [data]);
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdateUser,
     onSuccess: () => {

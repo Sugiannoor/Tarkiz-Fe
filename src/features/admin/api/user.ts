@@ -16,11 +16,12 @@ export const deleteUser = async (id: number) => {
         id,
       },
     });
-    return response.data
+    return response.data.data;
   }
 
   export const UpdateUser = async (data: userForm) => {
     const formData = new FormData();
+    formData.append('id', data.id.toString());
     formData.append('full_name', data.full_name as string);
     formData.append('email', data.email as string);
     formData.append('number_phone', data.number_phone as string);
@@ -30,7 +31,7 @@ export const deleteUser = async (id: number) => {
         formData.append('image_path', data.image_path as File);
     }
 
-    const response = await axios.put("/api/users", formData);
+    const response = await axios.post("/api/users", formData);
     return response.data;
   }
 

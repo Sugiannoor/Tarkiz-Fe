@@ -27,7 +27,7 @@ const LoginForm = () => {
       onSuccess: () => {
         navigate("/", { replace: true });
       },
-      onError: (err: Error) => {
+      onError: (err: any) => {
         toast.error(err.message);
         setError (!error);
         return;
