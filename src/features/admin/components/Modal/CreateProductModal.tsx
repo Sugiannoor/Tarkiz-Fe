@@ -44,6 +44,31 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
 
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createProduct, 
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["product-table"],
+      });
+      toast.success("Produk Sukses di Tambahkan");
+      setFile(undefined);
+      setProgram("");
+      setDescription("");
+      setSelectedTag([]);
+      setSelectedType(undefined);
+      handleOpen();
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.errors;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,18 +82,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
       type: idType,
       photo: file,
     };
-    await mutateAsync (data, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["product-table"],
-        });
-        toast.success("Produk Sukses di Tambahkan");
-        handleOpen();
-      },
-      onError: () => {
-        toast.error("Gagal Menambahkan Product");
-      },
-    });
+    await mutateAsync (data);
   };
   const handleCancel = () => {
     setFile(undefined);

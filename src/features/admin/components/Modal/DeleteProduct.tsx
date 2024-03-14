@@ -18,19 +18,24 @@ export const DeleteProductModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: deleteProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["product-table"],
+      });
+      toast.success("Produk Sukses di Hapus");
+      handleOpen();
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors = response.data.message;
+        toast.error(errors); 
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleDelete = async () => {
-    await mutateAsync(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["table-product"] });
-        toast.success("Data berhasil dihapus");
-        handleOpen();
-      },
-      onError: () => {
-        toast.error("Gagal menghapus data");
-        handleOpen();
-      },
-    });
+    await mutateAsync(id);
   };
   return (
     <>

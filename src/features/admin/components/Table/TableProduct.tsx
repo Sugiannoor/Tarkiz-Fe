@@ -223,7 +223,7 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
         setParams={setParams}
         // rowExpand={rowExpand}
       />
-<EditProductModal open= {isEdit} handleOpen={handleEdit} id={selectedId} />
+<EditProductModal open= {isEdit} handleOpen={handleEdit} id={32} />
 <DeleteProductModal open= {isDelete} handleOpen={handleDelete} id={selectedId} />
     </>
   );

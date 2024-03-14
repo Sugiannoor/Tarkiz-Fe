@@ -7,7 +7,7 @@ export const loginFunction = async ({
     password,
   }: LoginProps): Promise<LoginResponse> => {
     const response = await axios.post(
-      "/api/auth/login",
+      "/api/users/login",
       JSON.stringify({ email, password }),
       {
         headers: {

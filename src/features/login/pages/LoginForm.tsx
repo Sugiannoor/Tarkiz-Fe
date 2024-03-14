@@ -10,7 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const LoginForm = () => {
   const { login} = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState (false);
@@ -18,14 +18,15 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault ();
+    const email = username
     const dataSubmit = {
       email,
       password,
     };
     await login.mutateAsync(dataSubmit, {
       onSuccess: () => {
-        navigate("/", { replace: true });
+        navigate ("/", {replace: true})
       },
       onError: (err: any) => {
         toast.error(err.message);
@@ -64,18 +65,20 @@ const LoginForm = () => {
               color="blue-gray"
               className="-mb-3 font-poppins"
             >
-              Email
+              Username atau Email
             </Typography>
             <Input
               crossOrigin={""}
               size="lg"
-              type="email"
-              id="email"
-              placeholder="name@mail.com"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username atau Email"
+              autoComplete="username"
               variant="outlined"
               className="font-poppoins"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               error={error}
             />
             <Typography
@@ -94,6 +97,7 @@ const LoginForm = () => {
                 name="password"
                 size="lg"
                 placeholder="********"
+                autoComplete="current-password"
                 className=" font-poppins"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

@@ -18,19 +18,24 @@ export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient()
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: deleteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["table-user"],
+      });
+      toast.success("User berhasil dihapus");
+      handleOpen();
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const massage = response.data.message 
+        toast.error (massage);
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleDelete = async () => {
-    await mutateAsync(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["table-user"] });
-        toast.success("Data berhasil dihapus");
-        handleOpen();
-      },
-      onError: () => {
-        toast.error("Gagal menghapus data");
-        handleOpen();
-      },
-    });
+    await mutateAsync(id);
 
   };
   return (

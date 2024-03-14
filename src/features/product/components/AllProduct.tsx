@@ -193,13 +193,16 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           <CardHeader placeholder={""} floated={false} color="blue-gray">
             <img
               className="object-cover"
-              src={"https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"}
+              src={`http://localhost:8080/${product.path_files}`}
               alt={product.program}
+              onError={(e) => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
+              }}
             />
             <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
           </CardHeader>
           <CardBody className="flex-grow" placeholder={""}>
-            <div className="mb-3 flex items-center justify-between">
+            <div className="mb-3 flex items-center justify-between flex-grow">
               <Typography
                 placeholder={""}
                 variant="h5"
@@ -209,10 +212,10 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
                 {product.program}
               </Typography>
             </div>
-            <Typography placeholder={""} color="gray" className="font-poppins">
+            <Typography placeholder={""} color="gray" className="font-poppins flex flex-grow">
               {product.description}
             </Typography>
-            <div className="flex gap-2 mt-2">
+            <div className="flex gap-2 mt-2 flex-wrap">
               {product.tags.map((tags, index) => (
                 <Chip
                   key={index}

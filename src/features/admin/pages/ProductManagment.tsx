@@ -5,13 +5,17 @@ import Search from "@/Components/Search";
 import { BiPlusCircle } from "react-icons/bi";
 import TableProduct from "../components/Table/TableProduct";
 import { CreateTagModal } from "../components/Modal/CreateTagModal";
+import { CreateTypeModal } from "../components/Modal/CreateTypeModal";
 
 const ProductManagment = () => {
   const [isCreateProduct, setIsCreateProduct] = useState(false);
   const [isCreateTag, setIsCreateTag] = useState(false);
+  const [isCreateType, setIsCreateType] = useState(false);
   const [search, setSearch] = useState("");
   const handleCreateProduct = () => setIsCreateProduct(!isCreateProduct);
   const handleCreateTag = () => setIsCreateTag(!isCreateTag);
+  const handleCreateType = () => setIsCreateType(!isCreateType);
+
 
   return (
     <div>
@@ -52,7 +56,17 @@ const ProductManagment = () => {
               onClick={() => handleCreateTag()}
             >
               <BiPlusCircle size={15} />
-              Tambah Tag Produk
+              Tambah Tags Produk
+            </Button>
+            <Button
+              placeholder={""}
+              variant="filled"
+              color="green"
+              className="flex gap-2"
+              onClick={() => handleCreateType()}
+            >
+              <BiPlusCircle size={15} />
+              Tambah Type Produk
             </Button>
           </div>
           <Search searchValue={search} setSearchValue={setSearch} />
@@ -64,6 +78,7 @@ const ProductManagment = () => {
         handleOpen={handleCreateProduct}
       />
       <CreateTagModal open={isCreateTag} handleOpen={handleCreateTag} />
+      <CreateTypeModal open={isCreateType} handleOpen={handleCreateType} />
     </div>
   );
 };

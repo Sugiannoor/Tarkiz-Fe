@@ -38,7 +38,7 @@ export const deleteProduct = async (id: number) => {
   return response.data;
 };
 export const getLabelProduct = async () => {
-  const response = await axios.get("/api/product/label");
+  const response = await axios.get("/api/showproduct");
   return response.data.data ;
 };
 export const UpdateProducts = async (data: UpdateProduct) => {
@@ -56,7 +56,7 @@ export const UpdateProducts = async (data: UpdateProduct) => {
   if (data.photo) {
     formData.append("photo", data.photo.file);
   }
-  const response  = await axios.put ("/api/products",formData);
+  const response  = await axios.post ("/api/products/update",formData);
   return response.data
 };
 
@@ -73,4 +73,24 @@ export const getProductById = async (id: number) => {
 export const createTag = async (tag: string) => {
   const response = await axios.post ("/api/tag", tag)
   return response.data
+}
+export const createType = async (type: string) => {
+  const response = await axios.post("/api/type",
+  JSON.stringify({ type }),
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+  )
+  return response.data
+}
+
+export const deleteType = async (id: number) => {
+  const response = await axios.delete("/api/type", {
+    params: {
+      id,
+    },
+  });
+  return response.data.data;
 }

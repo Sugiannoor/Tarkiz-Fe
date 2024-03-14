@@ -1,4 +1,3 @@
-export * from "./Benefit"
 export * from "./Bubble"
 export * from "./CarouselHome"
 export * from "./Client"

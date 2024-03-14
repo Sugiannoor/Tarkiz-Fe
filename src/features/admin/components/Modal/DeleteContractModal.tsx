@@ -26,10 +26,7 @@ import { deleteContract } from "../../api/contract";
         toast.success("Data berhasil dihapus");
         handleOpen();
       },
-      onError: () => {
-        toast.error("Gagal menghapus data");
-        handleOpen();
-      },
+     
     });
   };
     return (

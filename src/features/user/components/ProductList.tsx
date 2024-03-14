@@ -9,7 +9,7 @@ const ProductList = () => {
           SERVICES
         </div>
         <div className="font-poppins text-center text-2xl lg:text-left lg:text-3xl font-bold text-custom-primary-50">
-          Kami Siap Membatu Anda dengan Layanan Kami
+          Kami Siap Membantu Anda dengan Layanan Kami
         </div>
         <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5 2xl:gap-14 mt-16">
           <div className="bg-[#005697] flex h-50 rounded-xl w-full justify-between p-6 lg:p-12">

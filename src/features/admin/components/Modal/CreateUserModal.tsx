@@ -52,18 +52,19 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
       handleOpen();
       toast.success("User ditambahkan");
     },
-    onError: (err: Error) => {
-      const errorTypes = [
-        "full_name",
-        "email",
-        "number_phone",
-        "username",
-        "password",
-      ];
-      handleError(err, errorTypes);
-
-      return;
-    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.errors;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

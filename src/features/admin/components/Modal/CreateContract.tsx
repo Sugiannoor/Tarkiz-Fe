@@ -32,7 +32,8 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
   const [endDate, setEndDate] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Option>();
   const [selectedUser, setSelectedUser] = useState<Option>();
-  const [contractCode, setContractCode] = useState("");
+  const [contractName, setContractName] = useState("");
+  const [price, setPrice] = useState("");
 
   const { data: dataProduct, isLoading: isProductLoading } = useQuery({
     queryKey: ["product-label"],
@@ -65,7 +66,7 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     setEndDate("");
     setSelectedProduct(undefined);
     setSelectedUser(undefined);
-    setContractCode("");
+    setContractName("");
   };
   const handleCancel = () => {
     resetForm();
@@ -76,11 +77,12 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     const idProduct = selectedProduct?.value;
     const idClient = selectedUser?.value;
     const dataSubmit = {
-      contract_code: contractCode,
+      contract_name: contractName,
       product_id: idProduct,
       contract_date: contractDate,
       end_date: endDate,
       client_id: idClient,
+      price: price
     };
 
     await mutateAsync(dataSubmit);
@@ -99,17 +101,17 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
         <form onSubmit={handleSubmit}>
           <DialogBody placeholder={""} className="p-10">
             <div className="text-lg text-[#005697] font-normal font-poppins">
-              Kode Kontrak
+              Judul Kontrak
             </div>
             <Input
               crossOrigin={""}
               type="text"
               variant="static"
-              id="contract_code"
-              name="contract_code"
-              placeholder="Nama Lengkap"
-              value={contractCode}
-              onChange={(e) => setContractCode(e.target.value)}
+              id="contract_name"
+              name="contract_name"
+              placeholder="Judul Kontrak"
+              value={contractName}
+              onChange={(e) => setContractName(e.target.value)}
             />
             <div className="my-5">
               <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
@@ -143,6 +145,20 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
               placeholder="Nama Lengkap"
               value={contractDate}
               onChange={(e) => setContractDate(e.target.value)}
+            />
+             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+              Nominal
+            </div>
+            <Input
+              crossOrigin={""}
+              type="number"
+              variant="static"
+              id="price"
+              name="price"
+              placeholder="Nominal"
+              value={price}
+              min={0}
+              onChange={(e) => setPrice(e.target.value)}
             />
             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
               Contract Selesai

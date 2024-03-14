@@ -28,16 +28,29 @@ type props = {
   handleOpen: () => void;
   id: number;
 };
+
+type ResponseProduct =  {
+  id: number;
+  program: string;
+  description: string;
+  status :number;
+  type: string
+  tags: string[]
+  path_files: string
+  selected_tags: Option[]
+  selected_type: Option
+
+}
 export const EditProductModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const [file, setFile] = useState<FilePondFile>();
   const [program, setProgram] = useState ("");
   const [description, setDescription] = useState ("");
-  const [selectedTag, setSelectedTag] = useState<Option[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Option[]>([]);
   const [selectedType, setSelectedType] = useState<Option>();
   const [filePath, setFilePath] =useState ("")
  
-  const {data: dataProduct, isLoading: isProductLoading} = useQuery ({
+  const {data: dataProduct, isLoading: isProductLoading} = useQuery<ResponseProduct> ({
       queryKey: ["product", id],
       queryFn: ()=> getProductById(id)
     }
@@ -47,9 +60,9 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
     if (dataProduct) {
       setProgram(dataProduct.program);
       setDescription(dataProduct.description);
-      setSelectedTag (dataProduct.selectedTag)
-      setSelectedType (dataProduct.product)
-      setFilePath (dataProduct.file_path)
+      setSelectedTags (dataProduct.selected_tags ?? [])
+      setSelectedType (dataProduct.selected_type ?? [])
+      setFilePath (dataProduct.path_files)
     }
   },[dataProduct])
   
@@ -62,13 +75,42 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
     queryFn: getType,
   });
 
+  const handleCancel = () => {
+    handleOpen ()
+    setProgram ("")
+      setDescription("")
+      setSelectedTags ([])
+      setSelectedTags([])
+      setFilePath ("")
+  }
+
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdateProducts, 
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["product-table"],
+      });
+      toast.success("Produk Sukses di update");
+      handleCancel ();
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.massages;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const idTag = selectedTag?.map(tag => tag.value) ?? [];
+    const idTag = selectedTags?.map(tag => tag.value) ?? [];
     const idType = selectedType?.value
     const data: UpdateProduct = {
       id: id,
@@ -78,19 +120,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
       type: idType,
       photo: file,
     };
-    await mutateAsync (data, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["product-table"],
-        });
-        toast.success("Produk Sukses di update");
-        handleOpen();
-      },
-      onError: () => {
-        toast.error("Gagal Memperbaharui Produk");
-        handleOpen();
-      },
-    });
+    await mutateAsync (data);
   };
 
   return (
@@ -122,7 +152,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
                 Kategori{" "}
               </div>
               <Select
-                defaultValue={selectedType}
+                value={selectedType}
                 onChange={setSelectedType}
                 options={types ?? []}
                 isLoading ={typesLoading}
@@ -135,8 +165,8 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               <MultiSelect
                 className="mt-2"
                 options={tags ?? []}
-                value={selectedTag}
-                onChange={setSelectedTag}
+                value={selectedTags}
+                onChange={setSelectedTags}
                 labelledBy="Select"
                 isLoading={tagLoading}
               />
@@ -165,7 +195,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               </div>
               <div className="flex gap-1">
                 <FaFileAlt size={20} className="text-[#005697]" />
-                <a href={filePath} className="text-md font-poppins font-normal">File</a>
+                <a href={`${import.meta.env.VITE_API_BASE_URL}/${filePath}`} target="_blank" className="text-md font-poppins font-normal">File</a>
               </div>
               <FilePond
                 id="file"
@@ -193,7 +223,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               placeholder={""}
               variant="text"
               color="red"
-              onClick={handleOpen}
+              onClick={handleCancel}
               className="mr-1  font-poppins"
             >
               <span>Cancel</span>

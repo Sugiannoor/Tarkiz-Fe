@@ -2,62 +2,57 @@ import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input } from "@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
-import { createTag } from "../../api/product";
+import { createType } from "../../api/product";
 type props = {
     open: boolean,
     handleOpen: ()=> void
 }
 
-export const CreateTagModal = ({ open, handleOpen}: props) => {
+export const CreateTypeModal = ({ open, handleOpen}: props) => {
     const queryClient = useQueryClient();
-    const [tag, setTag] = useState ("")
+    const [type, setType] = useState ("")
     const { mutateAsync, isLoading } = useMutation({
-      mutationFn: createTag,
+      mutationFn: createType,
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["tag"] });
-        toast.success("Tag Produk berhasil ditambah");
+        queryClient.invalidateQueries({ queryKey: ["type"] });
+        toast.success("Type Produk berhasil ditambah");
+        setType ("")
         handleOpen();
       },
       onError: ({ response }) => {
         if (response) {
-          const errors: { [key: string]: string } = response.data.errors;
-          const errorMessages = Object.values(errors).map((error:string) => error);
-          errorMessages.forEach((errorMessage: string, index) => {
-            if (index === 0) {
-              toast.error(errorMessage);
-            }
-          });
+          const errors = response.data.messages.type;
+          toast.error(errors); 
         } else {
           toast.error("Terjadi kesalahan saat memproses permintaan.");
         }
       }
     });
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-      await mutateAsync(tag);
+    e.preventDefault();
+      await mutateAsync(type);
     };
     return (
       <>
         <Dialog placeholder={""} open={open} handler={handleOpen}>
           <DialogHeader placeholder={""} className="font-poppins text-[#005697]">
-            Tambah Tag Produk
+            Tambah Type Produk
           </DialogHeader>
           <form onSubmit={handleSubmit}>
           <DialogBody className="font-poppins text-gray-500 p-10" placeholder={""}>
           <div className="text-lg text-[#005697] font-normal font-poppins">
-                Tag
+                Type Produk
             </div>
             <Input
               crossOrigin={""}
               size="lg"
               type="text"
-              id="tag"
-              name="tag"
+              id="type"
+              name="type"
               variant="static"
-              onChange={(e) => setTag (e.target.value)}
-              value={tag}
-              placeholder="Label Tag"
+              onChange={(e) => setType (e.target.value)}
+              value={type}
+              placeholder="Label Type"
               className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
               />
           </DialogBody>

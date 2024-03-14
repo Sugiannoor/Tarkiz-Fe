@@ -36,7 +36,8 @@ const UpdateComplaintForm = () => {
         program: dataComplaint.program,
         description: dataComplaint.description
       })
-      
+      setSelectUrgensi (dataComplaint.urgensi ?? [])
+      setSelectedStatus  (dataComplaint.status ?? [])
     }
   })
   const [formData, setFormData] = useState({

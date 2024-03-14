@@ -11,14 +11,14 @@ import { RegistrasiType } from "../types";
 import { useMutation } from "react-query";
 import { createUser } from "../api";
 import { useNavigate } from "react-router-dom";
-import { handleError } from "@/utils/helper";
+import toast from "react-hot-toast";
      
     const RegisterForm = () => { 
       const navigate = useNavigate ();
       const [formData, setFormData] = useState<RegistrasiType>({
         full_name: "",
         email: "",
-        phone_number:"",
+        number_phone:"",
         username: "",
         password: ""
       })
@@ -37,22 +37,29 @@ import { handleError } from "@/utils/helper";
           onSuccess() {
             navigate ('/login')
           },
-          onError: (err: Error) => {
-          const errorTypes = [ "full_name", "email", "number_phone", "username", "password"];
-          handleError(err, errorTypes);
-          
-          return;
-        },
+          onError: ({ response }) => {
+            if (response) {
+              const errors: { [key: string]: string } = response.data.errors;
+              const errorMessages = Object.values(errors).map((error:string) => error);
+              errorMessages.forEach((errorMessage: string, index) => {
+                if (index === 0) {
+                  toast.error(errorMessage);
+                }
+              });
+            } else {
+              toast.error("Terjadi kesalahan saat memproses permintaan.");
+            }
+          }
       })
       
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault ();
-        const {full_name, email, phone_number, password, username} = formData
+        const {full_name, email, number_phone, password, username} = formData
         
         const dataSubmit = {
           full_name,
           email,
-          phone_number,
+          number_phone,
           username,
           password,
         }
@@ -124,10 +131,10 @@ import { handleError } from "@/utils/helper";
               <Input crossOrigin={""}
                 size="lg"
                 type="number"
-                id="phone_number"
-                name="phone_number"
+                id="number_phone"
+                name="number_phone"
                 onChange={handleChange}
-                value={formData.phone_number}
+                value={formData.number_phone}
                 placeholder="name@mail.com"
                 className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
                 labelProps={{
