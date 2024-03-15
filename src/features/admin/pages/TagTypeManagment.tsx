@@ -13,6 +13,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { RiEditBoxLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { DeleteTypeModal } from "../components/Modal/DeleteType";
+import { EditTypeModal } from "../components/Modal/EditTypeModal";
 
 interface Option {
   value: number;
@@ -24,10 +25,12 @@ const TagTypeManagment = () => {
   const [tag, setTag] = useState("");
   const [type, setType] = useState("");
   const [isDeleteType, setIsDeleteType] = useState (false);
+  const [isEditType, setIsEditType] = useState (false);
   const [selectedId, setSelectedId] = useState<number> (0);
 
 
   const handleDeleteType = () => setIsDeleteType(!isDeleteType);
+  const handleEditType = () => setIsEditType(!isEditType);
 
 
   const { data: types, isLoading: typesLoading } = useQuery<Option[]>({
@@ -183,8 +186,8 @@ const TagTypeManagment = () => {
           </Card>
         </div>
       </div>
-      <div className="flex justify-between gap-5 mt-5">
-        <div className="w-1/2">
+      <div className="flex justify-between flex-row gap-5 mt-5">
+        <div className="w-1/2 flex-grow">
           <Card placeholder={""}>
             <CardBody placeholder={""}>
               <div className="flex justify-center text-xl text-[#005697] font-semibold font-poppins mb-5">
@@ -223,7 +226,7 @@ const TagTypeManagment = () => {
             </CardBody>
           </Card>
         </div>
-        <div className="w-1/2 mr-5">
+        <div className="w-1/2 mr-5 flex-grow">
           <Card className="h-full overflow-scroll" placeholder={""}>
             <table className="w-full min-w-max table-auto text-left">
               <thead>
@@ -273,6 +276,14 @@ const TagTypeManagment = () => {
                           </Typography>
                         </td>
                         <td className={`flex gap-5 ${classes}`}>
+                          <RiEditBoxLine
+                            size={18}
+                            className="text-custom-blue-600 cursor-pointer"
+                            onClick={()=> {
+                              setSelectedId (value)
+                              handleEditType ();
+                          }}
+                          />
                           <FaTrashAlt
                             size={18}
                             className="text-red-900 cursor-pointer"
@@ -281,16 +292,12 @@ const TagTypeManagment = () => {
                                 handleDeleteType ();
                             }}
                           />
-                          <RiEditBoxLine
-                            size={18}
-                            className="text-custom-blue-600 cursor-pointer"
-                          />
                         </td>
                       </tr>
                     );
                   })
                 ) : (
-                  <div>Data Tidak Ditemukan</div>
+                  <div className="text-center">Data Tidak Ditemukan</div>
                 )}
               </tbody>
             </table>
@@ -298,6 +305,7 @@ const TagTypeManagment = () => {
         </div>
       </div>
       <DeleteTypeModal handleOpen={handleDeleteType} id={selectedId} open={isDeleteType} />
+      <EditTypeModal handleOpen={handleEditType} id={selectedId} open={isEditType} />
     </div>
   );
 };

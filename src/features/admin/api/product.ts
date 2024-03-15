@@ -85,6 +85,10 @@ export const createType = async (type: string) => {
   )
   return response.data
 }
+export const updateType = async (type: string) => {
+  const response = await axios.post("/api/type", type)
+  return response.data
+}
 
 export const deleteType = async (id: number) => {
   const response = await axios.delete("/api/type", {
