@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { createType, getTag, getType } from "../api/product";
+import { createTag, createType, getTag, getType } from "../api/product";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import { RiEditBoxLine } from "react-icons/ri";
@@ -24,20 +24,18 @@ const TagTypeManagment = () => {
   const queryClient = useQueryClient();
   const [tag, setTag] = useState("");
   const [type, setType] = useState("");
-  const [isDeleteType, setIsDeleteType] = useState (false);
-  const [isEditType, setIsEditType] = useState (false);
-  const [selectedId, setSelectedId] = useState<number> (0);
-
+  const [isDeleteType, setIsDeleteType] = useState(false);
+  const [isEditType, setIsEditType] = useState(false);
+  const [selectedId, setSelectedId] = useState<number>(0);
 
   const handleDeleteType = () => setIsDeleteType(!isDeleteType);
   const handleEditType = () => setIsEditType(!isEditType);
 
-
-  const { data: types, isLoading: typesLoading } = useQuery<Option[]>({
+  const { data: types } = useQuery<Option[]>({
     queryKey: ["type"],
     queryFn: getType,
   });
-  const { data: tags, isLoading: tagsLoading } = useQuery<Option[]>({
+  const { data: tags } = useQuery<Option[]>({
     queryKey: ["tags"],
     queryFn: getTag,
   });
@@ -60,6 +58,27 @@ const TagTypeManagment = () => {
   const handleSubmitType = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await mutateAsync(type);
+  };
+
+  const { mutateAsync: addTag, isLoading: isTagLoading } = useMutation({
+    mutationFn: createTag,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tags"] });
+      toast.success("Tags Produk berhasil ditambah");
+      setType("");
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors = response.data.messages.type;
+        toast.error(errors);
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    },
+  });
+  const handleSubmitTags = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await addTag(tag);
   };
   const tableHead = ["ID", "Label", ""];
   return (
@@ -86,33 +105,35 @@ const TagTypeManagment = () => {
                 Tambah Tag
               </div>
               <div className="border-t-[3.5px] w-1/12 border-[#005697] mx-auto mb-16 rounded-sm"></div>
-
-              <div className="text-lg text-[#005697] font-normal font-poppins">
-                Tag
-              </div>
-              <Input
-                crossOrigin={""}
-                size="lg"
-                type="text"
-                id="tag"
-                name="tag"
-                variant="static"
-                onChange={(e) => setTag(e.target.value)}
-                value={tag}
-                placeholder="Label Tag"
-                className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
-              />
-              <div className="flex justify-end mt-5">
-                <Button
-                  placeholder={""}
-                  className="font-poppins"
-                  variant="filled"
-                  color="indigo"
-                  type="submit"
-                >
-                  <span>Confirm</span>
-                </Button>
-              </div>
+              <form onSubmit={handleSubmitTags}>
+                <div className="text-lg text-[#005697] font-normal font-poppins">
+                  Tag
+                </div>
+                <Input
+                  crossOrigin={""}
+                  size="lg"
+                  type="text"
+                  id="tag"
+                  name="tag"
+                  variant="static"
+                  onChange={(e) => setTag(e.target.value)}
+                  value={tag}
+                  placeholder="Label Tag"
+                  className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
+                />
+                <div className="flex justify-end mt-5">
+                  <Button
+                    placeholder={""}
+                    className="font-poppins"
+                    variant="filled"
+                    color="indigo"
+                    type="submit"
+                    loading={isTagLoading}
+                  >
+                    <span>Confirm</span>
+                  </Button>
+                </div>
+              </form>
             </CardBody>
           </Card>
         </div>
@@ -130,7 +151,7 @@ const TagTypeManagment = () => {
                         placeholder={""}
                         variant="small"
                         color="blue-gray"
-                        className="font-poppins leading-none opacity-70"
+                        className="font-poppins font-semibold text-md leading-none opacity-70"
                       >
                         {head}
                       </Typography>
@@ -179,7 +200,7 @@ const TagTypeManagment = () => {
                     );
                   })
                 ) : (
-                  <div>Data Tidak Ditemukan</div>
+                  <div className="p-4 font-poppins">Belum ada data</div>
                 )}
               </tbody>
             </table>
@@ -279,17 +300,17 @@ const TagTypeManagment = () => {
                           <RiEditBoxLine
                             size={18}
                             className="text-custom-blue-600 cursor-pointer"
-                            onClick={()=> {
-                              setSelectedId (value)
-                              handleEditType ();
-                          }}
+                            onClick={() => {
+                              setSelectedId(value);
+                              handleEditType();
+                            }}
                           />
                           <FaTrashAlt
                             size={18}
                             className="text-red-900 cursor-pointer"
-                            onClick={()=> {
-                                setSelectedId (value)
-                                handleDeleteType ();
+                            onClick={() => {
+                              setSelectedId(value);
+                              handleDeleteType();
                             }}
                           />
                         </td>
@@ -297,15 +318,23 @@ const TagTypeManagment = () => {
                     );
                   })
                 ) : (
-                  <div className="text-center">Data Tidak Ditemukan</div>
+                  <div className="p-4 font-poppins">Belum ada data</div>
                 )}
               </tbody>
             </table>
           </Card>
         </div>
       </div>
-      <DeleteTypeModal handleOpen={handleDeleteType} id={selectedId} open={isDeleteType} />
-      <EditTypeModal handleOpen={handleEditType} id={selectedId} open={isEditType} />
+      <DeleteTypeModal
+        handleOpen={handleDeleteType}
+        id={selectedId}
+        open={isDeleteType}
+      />
+      <EditTypeModal
+        handleOpen={handleEditType}
+        id={selectedId}
+        open={isEditType}
+      />
     </div>
   );
 };
