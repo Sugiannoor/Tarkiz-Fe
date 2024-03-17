@@ -98,3 +98,11 @@ export const deleteType = async (id: number) => {
   });
   return response.data.data;
 }
+export const deleteTag = async (id: number) => {
+  const response = await axios.delete("/api/tag", {
+    params: {
+      id,
+    },
+  });
+  return response.data.data;
+}

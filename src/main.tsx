@@ -28,7 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
               <AppRoutes />
-              <Toaster position="top-center" containerStyle={{ zIndex: 10000 }} />
+              <Toaster position="top-center" containerClassName="font-poppins" containerStyle={{ zIndex: 10000 }} />
             </AuthProvider>
           </QueryClientProvider>
         </ThemeProvider>

@@ -6,6 +6,7 @@ import { BiPlusCircle } from "react-icons/bi";
 import TableProduct from "../components/Table/TableProduct";
 import { CreateTagModal } from "../components/Modal/CreateTagModal";
 import { CreateTypeModal } from "../components/Modal/CreateTypeModal";
+import { useNavigate } from "react-router-dom";
 
 const ProductManagment = () => {
   const [isCreateProduct, setIsCreateProduct] = useState(false);
@@ -15,7 +16,7 @@ const ProductManagment = () => {
   const handleCreateProduct = () => setIsCreateProduct(!isCreateProduct);
   const handleCreateTag = () => setIsCreateTag(!isCreateTag);
   const handleCreateType = () => setIsCreateType(!isCreateType);
-
+  const navigate = useNavigate ()
 
   return (
     <div>
@@ -53,20 +54,10 @@ const ProductManagment = () => {
               variant="filled"
               color="blue"
               className="flex gap-2"
-              onClick={() => handleCreateTag()}
+              onClick={()=> navigate ("/tagtype")}
             >
               <BiPlusCircle size={15} />
-              Tambah Tags Produk
-            </Button>
-            <Button
-              placeholder={""}
-              variant="filled"
-              color="green"
-              className="flex gap-2"
-              onClick={() => handleCreateType()}
-            >
-              <BiPlusCircle size={15} />
-              Tambah Type Produk
+              Tags & Type Produk
             </Button>
           </div>
           <Search searchValue={search} setSearchValue={setSearch} />

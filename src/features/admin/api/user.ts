@@ -21,7 +21,7 @@ export const deleteUser = async (id: number) => {
 
   export const UpdateUser = async (data: userForm) => {
     const formData = new FormData();
-    formData.append('id', data.id.toString());
+    if (data.id) formData.append('id', data.id.toString());
     formData.append('full_name', data.full_name as string);
     formData.append('email', data.email as string);
     formData.append('number_phone', data.number_phone as string);

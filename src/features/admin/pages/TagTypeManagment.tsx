@@ -12,8 +12,12 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import { RiEditBoxLine } from "react-icons/ri";
 import toast from "react-hot-toast";
+
+// Modal
 import { DeleteTypeModal } from "../components/Modal/DeleteType";
 import { EditTypeModal } from "../components/Modal/EditTypeModal";
+import { DeleteTagModal } from "../components/Modal/DeleteTag";
+import { EditTagModal } from "../components/Modal/EditTagModal";
 
 interface Option {
   value: number;
@@ -26,8 +30,11 @@ const TagTypeManagment = () => {
   const [type, setType] = useState("");
   const [isDeleteType, setIsDeleteType] = useState(false);
   const [isEditType, setIsEditType] = useState(false);
+  const [isDeleteTag, setIsDeleteTag] = useState(false);
+  const [isEditTag, setIsEditTag] = useState(false);
   const [selectedId, setSelectedId] = useState<number>(0);
-
+  const handleDeleteTag = () => setIsDeleteTag(!isDeleteTag);
+  const handleEditTag = () => setIsEditTag(!isEditTag);
   const handleDeleteType = () => setIsDeleteType(!isDeleteType);
   const handleEditType = () => setIsEditType(!isEditType);
 
@@ -334,6 +341,16 @@ const TagTypeManagment = () => {
         handleOpen={handleEditType}
         id={selectedId}
         open={isEditType}
+      />
+       <DeleteTagModal
+        handleOpen={handleDeleteTag}
+        id={selectedId}
+        open={isDeleteTag}
+      />
+      <EditTagModal
+        handleOpen={handleEditTag}
+        id={selectedId}
+        open={isEditTag}
       />
     </div>
   );

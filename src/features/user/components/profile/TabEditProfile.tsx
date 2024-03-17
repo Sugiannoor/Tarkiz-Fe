@@ -31,19 +31,27 @@ const TabEditProfile = () => {
     onSuccess() {
       toast.success ("Profile Berhasil Diperbaharui")
     },
-    onError: (err: Error) => {
-    const errorTypes = [ "full_name", "email", "number_phone", "username", "password"];
-    handleError(err, errorTypes);
-    
-    return;
-  },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.massages;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
 })
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault ();
     const {full_name, email, number_phone, address, username} = dataUser
     const image_path = image
-    
+    const idUser = user?.id
     const dataSubmit = {
+      idUser,
       full_name,
       email,
       number_phone,
