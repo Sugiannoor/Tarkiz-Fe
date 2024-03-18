@@ -1,11 +1,12 @@
 
 export type ContractForm = {
 
-    contract_name: string,
+    name: string,
     product_id: number | undefined
-    contract_date: string,
-    end_date: string,
-    client_id: number | undefined
+    taken_at: string,
+    deadline: string,
+    description: string;
+    id_user: number | undefined
     price: string
 }
 

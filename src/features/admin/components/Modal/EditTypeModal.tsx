@@ -9,7 +9,7 @@ type props = {
     id: number
 }
 
-export const EditTypeModal = ({ open, handleOpen}: props) => {
+export const EditTypeModal = ({ open, handleOpen, id}: props) => {
     const queryClient = useQueryClient();
     const [type, setType] = useState ("")
     // const {data, isLoading: typeLoading} = useQuery ({
@@ -39,7 +39,12 @@ export const EditTypeModal = ({ open, handleOpen}: props) => {
     });
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-      await mutateAsync(type);
+    const data =  {
+      id,
+      type
+    }
+    console.log(data)
+      await mutateAsync(data);
     };
     return (
       <>

@@ -18,16 +18,22 @@ import { deleteContract } from "../../api/contract";
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: deleteContract,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["table-contract"] });
+      toast.success("Kontrak berhasil dihapus");
+      handleOpen();
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors = response.data.message;
+        toast.error(errors); 
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleDelete = async () => {
-    await mutateAsync(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["table-contract"] });
-        toast.success("Data berhasil dihapus");
-        handleOpen();
-      },
-     
-    });
+    await mutateAsync(id);
   };
     return (
       <>

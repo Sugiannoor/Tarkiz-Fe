@@ -50,6 +50,14 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
     mutationFn: createUser,
     onSuccess() {
       handleOpen();
+      setFormData ({
+        email: "",
+        full_name: "",
+        number_phone: "",
+        password: "",
+        username: "",
+        address: "",
+      })
       toast.success("User ditambahkan");
     },
     onError: ({ response }) => {

@@ -185,7 +185,7 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
   return (
     <>
     <DeleteContractModal open={isDelete} handleOpen={handleDelete} id={selectedId} />
-    <EditContractModal open={isEdit} handleOpen={handleEdit} id={selectedId} />
+    <EditContractModal open={isEdit} handleOpen={handleEdit} id={27} />
       <Table
         data={dummyData || []}
         columns={columns}

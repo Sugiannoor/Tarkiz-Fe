@@ -7,6 +7,7 @@ import {
   DialogFooter,
   Option,
   Input,
+  Textarea,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -33,6 +34,7 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
   const [selectedProduct, setSelectedProduct] = useState<Option>();
   const [selectedUser, setSelectedUser] = useState<Option>();
   const [contractName, setContractName] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
   const { data: dataProduct, isLoading: isProductLoading } = useQuery({
@@ -47,25 +49,31 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     mutationFn: CreateContract,
     onSuccess: () => {
       queryClient.invalidateQueries("table-contract");
-      toast.success("Data berhasil diperbaharui");
+      toast.success("Kontrak berhasil ditambahkan");
       handleOpen();
+      resetForm();
     },
-    onError: (err: Error) => {
-      const errorTypes = [
-        "contract_code",
-        "contract_date",
-        "end_date",
-        "client_id",
-      ];
-      handleError(err, errorTypes);
-      return;
-    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.errors;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const resetForm = () => {
     setContractDate("");
     setEndDate("");
     setSelectedProduct(undefined);
     setSelectedUser(undefined);
+    setDescription ("")
+    setPrice ("")
     setContractName("");
   };
   const handleCancel = () => {
@@ -77,11 +85,12 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     const idProduct = selectedProduct?.value;
     const idClient = selectedUser?.value;
     const dataSubmit = {
-      contract_name: contractName,
+      name: contractName,
       product_id: idProduct,
-      contract_date: contractDate,
-      end_date: endDate,
-      client_id: idClient,
+      taken_at: contractDate,
+      deadline: endDate,
+      id_user: idClient,
+      description: description,
       price: price
     };
 
@@ -94,6 +103,7 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
         open={open}
         handler={handleOpen}
         dismiss={{ escapeKey: false, outsidePress: false }}
+        className="h-[95%] overflow-y-scroll"
       >
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Tambah Kontrak
@@ -113,6 +123,20 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
               value={contractName}
               onChange={(e) => setContractName(e.target.value)}
             />
+            <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+             Nominal
+           </div>
+           <Input
+             crossOrigin={""}
+             type="number"
+             variant="static"
+             id="price"
+             name="price"
+             placeholder="Nominal"
+             value={price}
+             min={0}
+             onChange={(e) => setPrice(e.target.value)}
+           />
             <div className="my-5">
               <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
                 Nama Client
@@ -146,20 +170,6 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
               value={contractDate}
               onChange={(e) => setContractDate(e.target.value)}
             />
-             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
-              Nominal
-            </div>
-            <Input
-              crossOrigin={""}
-              type="number"
-              variant="static"
-              id="price"
-              name="price"
-              placeholder="Nominal"
-              value={price}
-              min={0}
-              onChange={(e) => setPrice(e.target.value)}
-            />
             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
               Contract Selesai
             </div>
@@ -172,7 +182,25 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
               placeholder="Nama Lengkap"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
+              className=""
             />
+            <div className="mt-2">
+              <label
+               htmlFor="description"
+               className="text-lg text-[#005697] font-normal font-poppins"
+               >
+               Deskripsi
+             </label>
+             <Textarea
+               className="mt-2"
+               placeholder="Deskripsi"
+               variant="outlined"
+               id="description"
+               name="description"
+               value={description}
+               onChange={(e)=> setDescription (e.target.value)}
+               />
+            </div>
           </DialogBody>
           <DialogFooter placeholder={""}>
             <Button

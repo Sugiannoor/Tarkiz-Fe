@@ -16,6 +16,7 @@ export const CreateTagModal = ({ open, handleOpen}: props) => {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["tag"] });
         toast.success("Tag Produk berhasil ditambah");
+        setTag ("");
         handleOpen();
       },
       onError: ({ response }) => {
@@ -37,6 +38,11 @@ export const CreateTagModal = ({ open, handleOpen}: props) => {
 
       await mutateAsync(tag);
     };
+
+    const handleCancel = () => {
+      handleOpen ()
+      setTag ("")
+    }
     return (
       <>
         <Dialog placeholder={""} open={open} handler={handleOpen}>
@@ -66,7 +72,7 @@ export const CreateTagModal = ({ open, handleOpen}: props) => {
               placeholder={""}
               variant="text"
               color="red"
-              onClick={handleOpen}
+              onClick={handleCancel}
               className="mr-1 font-poppins"
               >
               <span>Cancel</span>

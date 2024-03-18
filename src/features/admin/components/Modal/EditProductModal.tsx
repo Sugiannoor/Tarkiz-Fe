@@ -52,7 +52,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
  
   const {data: dataProduct, isLoading: isProductLoading} = useQuery<ResponseProduct> ({
       queryKey: ["product", id],
-      queryFn: ()=> getProductById(id)
+      queryFn: ()=> getProductById(id),
     }
   )
 
@@ -77,11 +77,6 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
 
   const handleCancel = () => {
     handleOpen ()
-    setProgram ("")
-      setDescription("")
-      setSelectedTags ([])
-      setSelectedTags([])
-      setFilePath ("")
   }
 
   const { mutateAsync, isLoading } = useMutation({
@@ -193,10 +188,13 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
               >
                 Gambar Produk
               </div>
-              <div className="flex gap-1">
+              { dataProduct?.path_files && (
+                <div className="flex gap-1">
                 <FaFileAlt size={20} className="text-[#005697]" />
                 <a href={`${import.meta.env.VITE_API_BASE_URL}/${filePath}`} target="_blank" className="text-md font-poppins font-normal">File</a>
               </div>
+              )
+              }
               <FilePond
                 id="file"
                 name="file"

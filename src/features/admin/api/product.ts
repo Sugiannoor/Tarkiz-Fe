@@ -85,8 +85,36 @@ export const createType = async (type: string) => {
   )
   return response.data
 }
-export const updateType = async (type: string) => {
-  const response = await axios.post("/api/type", type)
+type TypeUpdate = {
+  id: number;
+  type: string
+}
+
+export const updateType = async (data: TypeUpdate) => {
+  const response = await axios.put(`/api/type?id=${data.id}`,
+  JSON.stringify(data.type),
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+  )
+  return response.data
+}
+
+type TypeTags = {
+  id: number;
+  tag: string
+}
+export const updateTag = async (data: TypeTags) => {
+  const response = await axios.put(`/api/tag?id=${data.id}`,
+  JSON.stringify(data.tag),
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+  )
   return response.data
 }
 

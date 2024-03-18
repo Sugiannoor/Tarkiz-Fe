@@ -245,7 +245,7 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
 
   return (
     <>
-          <DeleteUserModal open ={isDeleteUser} handleOpen={handleDeleteUser} id={37} />
+          <DeleteUserModal open ={isDeleteUser} handleOpen={handleDeleteUser} id={selectedId} />
           <EditUserModal open ={isEditUser} handleOpen={handleEditUser} id={selectedId} />
       <Table
         data={dummyData || []}

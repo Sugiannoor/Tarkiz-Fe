@@ -2,16 +2,16 @@ import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input } from "@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { updateType } from "../../api/product";
+import { updateTag } from "../../api/product";
 type props = {
     open: boolean,
     handleOpen: ()=> void
     id: number
 }
 
-export const EditTagModal = ({ open, handleOpen}: props) => {
+export const EditTagModal = ({ open, handleOpen, id}: props) => {
     const queryClient = useQueryClient();
-    const [Tag, setTag] = useState ("")
+    const [tag, setTag] = useState ("")
     // const {data, isLoading: TagLoading} = useQuery ({
     //     queryKey: ["Tag"],
     //     queryFn: getTagById,
@@ -21,10 +21,10 @@ export const EditTagModal = ({ open, handleOpen}: props) => {
     //     setTag (data)
     // }, [data])
     const { mutateAsync, isLoading } = useMutation({
-      mutationFn: updateType,
+      mutationFn: updateTag,
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["type"] });
-        toast.success("Type Produk berhasil diupdate");
+        queryClient.invalidateQueries({ queryKey: ["tag"] });
+        toast.success("Tag Produk berhasil diupdate");
         setTag ("")
         handleOpen();
       },
@@ -39,7 +39,11 @@ export const EditTagModal = ({ open, handleOpen}: props) => {
     });
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-      await mutateAsync(Tag);
+    const data = {
+      id,
+      tag
+    }
+      await mutateAsync(data);
     };
     return (
       <>
@@ -60,7 +64,7 @@ export const EditTagModal = ({ open, handleOpen}: props) => {
               name="Tag"
               variant="static"
               onChange={(e) => setTag (e.target.value)}
-              value={Tag}
+              value={tag}
               placeholder="Label Tag"
               className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
               />

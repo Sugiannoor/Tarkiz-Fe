@@ -44,13 +44,16 @@ const ModalDetail = ({
           ) : (
             <>
               {dataProduct ? (
-                <>
+                <div>
                   <img
                     src={
                       dataProduct.path_files ??
                       "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                     }
-                    alt=""
+                    alt="Product image"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
+                    }}
                   />
                   {dataProduct.tags ? (
                     <div className="flex gap-2 my-2">
@@ -67,7 +70,7 @@ const ModalDetail = ({
                     <div>Tidak ada tag</div>
                   )}
                   <div>{dataProduct.description}</div>
-                </>
+                </div>
               ) : (
                 <div>Data Tidak Tersedia</div>
               )}

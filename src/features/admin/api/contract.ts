@@ -2,7 +2,7 @@ import { axios } from "@/lib/axios";
 import { ContractForm, editContractForm } from "../types/crudContract";
 
 export const deleteContract = async (id: number) => {
-    const response = await axios.delete("/api/contract", {
+    const response = await axios.delete("/api/contracts", {
       params: {
         id,
       },
@@ -18,10 +18,10 @@ export const deleteContract = async (id: number) => {
     return response.data;
   };
   export const UpdateContract = async (data: editContractForm ) => {
-    const response = await axios.put("/api/contract", data);
+    const response = await axios.put("/api/contracts/update", data);
     return response.data
   }
   export const CreateContract = async (data: ContractForm ) => {
-    const response = await axios.post("/api/contract", data);
+    const response = await axios.post("/api/contracts", data);
     return response.data
   }

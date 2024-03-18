@@ -32,6 +32,10 @@ export const CreateTypeModal = ({ open, handleOpen}: props) => {
     e.preventDefault();
       await mutateAsync(type);
     };
+    const handleCancel = () => {
+      handleOpen ()
+      setType ("")
+    }
     return (
       <>
         <Dialog placeholder={""} open={open} handler={handleOpen}>
@@ -61,7 +65,7 @@ export const CreateTypeModal = ({ open, handleOpen}: props) => {
               placeholder={""}
               variant="text"
               color="red"
-              onClick={handleOpen}
+              onClick={handleCancel}
               className="mr-1 font-poppins"
               >
               <span>Cancel</span>
