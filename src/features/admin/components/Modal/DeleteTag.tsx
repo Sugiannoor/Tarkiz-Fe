@@ -20,14 +20,14 @@ import {
       mutationFn: deleteTag,
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: ["Tag"],
+          queryKey: ["tags"],
         });
         toast.success("Tag Berhasil di Hapus");
         handleOpen();
       },
       onError: ({ response }) => {
         if (response) {
-          const errors = response.data.messages.error;
+          const errors = response.data.messages.tag;
           toast.error(errors); 
         } else {
           toast.error("Terjadi kesalahan saat memproses permintaan.");

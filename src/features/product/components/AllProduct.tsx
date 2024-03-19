@@ -17,10 +17,10 @@ type ProductProps = {
 };
 
 export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
-  const [isDetail, setIsDetail] = useState (false);
-  const [selectedId, setSelectedId] = useState (0);
-  const handleOpen = () => setIsDetail(!isDetail)
-  if (isLoading || dataProduct === undefined ) {
+  const [isDetail, setIsDetail] = useState(false);
+  const [selectedId, setSelectedId] = useState(0);
+  const handleOpen = () => setIsDetail(!isDetail);
+  if (isLoading || dataProduct === undefined) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {[...Array(2)].map((_, index) => (
@@ -190,19 +190,19 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           placeholder={""}
           className="w-full flex flex-col max-w-[25rem] shadow-lg mb-4"
         >
-          <CardHeader placeholder={""} floated={false} color="blue-gray">
+          <div color="blue-gray" className="p-3 flex-grow">
             <img
-              className="object-cover"
+              className="object-cover rounded-md"
               src={`http://localhost:8080/${product.path_files}`}
               alt={product.program}
               onError={(e) => {
-                e.currentTarget.src = "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
+                e.currentTarget.src =
+                  "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
               }}
             />
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="flex-grow" placeholder={""}>
-            <div className="mb-3 flex items-center justify-between flex-grow">
+          </div>
+          <CardBody placeholder={""}>
+            <div className="mb-3 flex items-center justify-between">
               <Typography
                 placeholder={""}
                 variant="h5"
@@ -212,25 +212,34 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
                 {product.program}
               </Typography>
             </div>
-            <Typography placeholder={""} color="gray" className="font-poppins flex flex-grow">
+            <Typography
+              placeholder={""}
+              color="gray"
+              className=" truncate font-poppins"
+            >
               {product.description}
             </Typography>
-            <div className="flex gap-2 mt-2 flex-wrap">
-              {product.tags.map((tags, index) => (
+            <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5" style={{scrollbarWidth: "none"}}>
+              {product.tags.map((tag, index) => (
                 <Chip
                   key={index}
                   variant="outlined"
-                  value={tags}
-                  className="font-raleway"
+                  value={tag}
+                  className="font-raleway whitespace-nowrap"
                 />
               ))}
             </div>
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
-            <Button placeholder={""} size="lg" fullWidth={true} onClick={ ()=> {
-              setSelectedId (product.id);
-              handleOpen();
-            }}>
+            <Button
+              placeholder={""}
+              size="lg"
+              fullWidth={true}
+              onClick={() => {
+                setSelectedId(product.id);
+                handleOpen();
+              }}
+            >
               Selengkapnya
             </Button>
           </CardFooter>

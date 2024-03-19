@@ -1,7 +1,7 @@
 import { axios } from "@/lib/axios";
 
 export const deleteComplaint = async (id: number) => {
-    const response = await axios.delete("/api/complaint", {
+    const response = await axios.delete("/api/complaints", {
       params: {
         id,
       },

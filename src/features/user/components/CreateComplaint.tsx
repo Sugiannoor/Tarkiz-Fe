@@ -11,7 +11,7 @@ import { createComplaint } from "../api/createComplaint";
 
 const CreateComplaint = () => {
   const [formData, setFormData] = useState ({
-    title: "",
+    name: "",
     description: ""
   });
   const [files, setFiles] = useState<FilePondFile[]>([]);
@@ -30,27 +30,29 @@ const CreateComplaint = () => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createComplaint,
     onSuccess() {
-      toast.success("User ditambahkan");
+      toast.success("Komplain dikirim");
     },
-    onError: (err: Error) => {
-      const errorTypes = [
-        "description",
-        "title",
-        "files[0]",
-        "files[1]",
-        "files[2]",
-      ];
-      handleError(err, errorTypes);
-      return;
-    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.messages;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { title, description } = formData;
+    const { name, description } = formData;
 
     const dataSubmit = {
-     title,
+     name,
      description,
      files,
     };
@@ -70,11 +72,11 @@ const CreateComplaint = () => {
             </div>
             <Input
               crossOrigin={""}
-              id="title"
-              name="title"
+              id="name"
+              name="name"
               placeholder="Error"
               type="text"
-              value={formData.title}
+              value={formData.name}
               className="mb-2"
               onChange={handleChange}
             />

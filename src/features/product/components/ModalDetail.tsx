@@ -28,11 +28,13 @@ const ModalDetail = ({
     });
   return (
     <div>
-      <Dialog placeholder={""} size="lg" open={open} handler={handleOpen}>
+      <Dialog placeholder={""} size="lg" open={open} handler={handleOpen}
+      className="h-[95%] overflow-y-scroll p-5">
         <DialogHeader
           placeholder={""}
-          className="font-poppins flex justify-end"
+          className="font-poppins flex justify-between"
         >
+          <div className="text-2xl font-poppins">Detail Product</div>
           <FaTimes
             onClick={handleOpen}
             className="cursor-pointer text-gray-600"
@@ -56,7 +58,7 @@ const ModalDetail = ({
                     }}
                   />
                   {dataProduct.tags ? (
-                    <div className="flex gap-2 my-2">
+                    <div className="flex gap-2 my-7">
                       {dataProduct.tags.map((tags, index) => (
                         <Chip
                           key={index}

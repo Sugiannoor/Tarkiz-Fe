@@ -72,11 +72,11 @@ const TagTypeManagment = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tags"] });
       toast.success("Tags Produk berhasil ditambah");
-      setType("");
+      setTag("");
     },
     onError: ({ response }) => {
       if (response) {
-        const errors = response.data.messages.type;
+        const errors = response.data.messages.tag;
         toast.error(errors);
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
@@ -104,8 +104,8 @@ const TagTypeManagment = () => {
       <div className="text-3xl text-white font-poppins font-semibold my-10">
         Daftar Tag & Type
       </div>
-      <div className="flex justify-between gap-5">
-        <div className="w-1/2">
+      <div className="flex flex-col lg:flex-row justify-between gap-5">
+        <div className="w-full">
           <Card placeholder={""}>
             <CardBody placeholder={""}>
               <div className="flex justify-center text-xl text-[#005697] font-semibold font-poppins mb-5">
@@ -144,8 +144,8 @@ const TagTypeManagment = () => {
             </CardBody>
           </Card>
         </div>
-        <div className="w-1/2 mr-5">
-          <Card className="h-full overflow-scroll" placeholder={""}>
+        <div className="w-full mr-5">
+          <Card className="h-full overflow-y-scroll max-h-[300px]" placeholder={""}>
             <table className="w-full min-w-max table-auto text-left">
               <thead>
                 <tr>
@@ -197,25 +197,35 @@ const TagTypeManagment = () => {
                           <FaTrashAlt
                             size={18}
                             className="text-red-900 cursor-pointer"
+                            onClick={()=> {
+                              setSelectedId (value),
+                              handleDeleteTag ()
+                            }}
                           />
                           <RiEditBoxLine
                             size={18}
                             className="text-custom-blue-600 cursor-pointer"
+                            onClick={()=> {
+                              setSelectedId (value),
+                              handleEditTag ()
+                            }}
                           />
                         </td>
                       </tr>
                     );
                   })
                 ) : (
-                  <div className="p-4 font-poppins">Belum ada data</div>
+                  <tr>
+                    <td className="p-4 font-poppins">Data Tidak Tersedia</td>
+                  </tr>
                 )}
               </tbody>
             </table>
           </Card>
         </div>
       </div>
-      <div className="flex justify-between flex-row gap-5 mt-5">
-        <div className="w-1/2 flex-grow">
+      <div className="flex flex-col lg:flex-row justify-between gap-5 mt-5">
+        <div className="w-full flex-grow">
           <Card placeholder={""}>
             <CardBody placeholder={""}>
               <div className="flex justify-center text-xl text-[#005697] font-semibold font-poppins mb-5">
@@ -254,9 +264,9 @@ const TagTypeManagment = () => {
             </CardBody>
           </Card>
         </div>
-        <div className="w-1/2 mr-5 flex-grow">
-          <Card className="h-full overflow-scroll" placeholder={""}>
-            <table className="w-full min-w-max table-auto text-left">
+        <div className="w-full mr-5 flex-grow">
+          <Card className="h-full overflow-scroll max-h-[300px]" placeholder={""}>
+            <table className="w-full table-auto text-left table-scrollable">
               <thead>
                 <tr>
                   {tableHead.map((head: any) => (
@@ -325,7 +335,9 @@ const TagTypeManagment = () => {
                     );
                   })
                 ) : (
-                  <div className="p-4 font-poppins">Belum ada data</div>
+                  <tr>
+                    <td className="p-4 font-poppins">Data Tidak Tersedia</td>
+                  </tr>
                 )}
               </tbody>
             </table>

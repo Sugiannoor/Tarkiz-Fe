@@ -18,19 +18,22 @@ import toast from "react-hot-toast";
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: deleteComplaint,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["table-complaint"] });
+      toast.success("Data berhasil dihapus");
+      handleOpen();
+    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors = response.data.message;
+        toast.error(errors); 
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleDelete = async () => {
-    await mutateAsync(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["table-complaint"] });
-        toast.success("Data berhasil dihapus");
-        handleOpen();
-      },
-      onError: () => {
-        toast.error("Gagal menghapus data");
-        handleOpen();
-      },
-    });
+    await mutateAsync(id);
   };
     return (
       <>

@@ -71,7 +71,13 @@ export const getProductById = async (id: number) => {
 
 
 export const createTag = async (tag: string) => {
-  const response = await axios.post ("/api/tag", tag)
+  const response = await axios.post ("/api/tag", 
+  JSON.stringify({ tag }),
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
   return response.data
 }
 export const createType = async (type: string) => {
@@ -91,14 +97,13 @@ type TypeUpdate = {
 }
 
 export const updateType = async (data: TypeUpdate) => {
-  const response = await axios.put(`/api/type?id=${data.id}`,
-  JSON.stringify(data.type),
+  const  { id, type } = data;
+  const response = await axios.put(`/api/type`, type,
   {
-    headers: {
-      "Content-Type": "application/json",
+    params: {
+      id,
     },
-  }
-  )
+  })
   return response.data
 }
 
