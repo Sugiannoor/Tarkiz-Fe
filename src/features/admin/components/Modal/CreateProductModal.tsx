@@ -46,7 +46,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
     mutationFn: createProduct, 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["product-table"],
+        queryKey: ["table-product"],
       });
       toast.success("Produk Sukses di Tambahkan");
       setFile(undefined);

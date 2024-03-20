@@ -28,10 +28,12 @@ type Option = {
 };
 
 type DataContract = {
-  contract_date: string;
-  end_date: string;
-  contract_name: string;
-  contract_id: number;
+  taken_at: string;
+  deadline: string;
+  price: string;
+  name: string;
+  id: number;
+  description: string;
   product_selected: Option;
   user_selected: Option;
 };
@@ -61,6 +63,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
       queryKey: ["contract-edit", id],
       queryFn: () => getContractById(id),
     });
+  
 
   const { data: dataUser, isLoading: isUserLoading } = useQuery({
     queryKey: ["user-label"],
@@ -75,9 +78,11 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
   useEffect(() => {
     if (dataContract) {
       setSelectedUser(dataContract.user_selected);
-      setContractDate(dataContract.contract_date);
-      setEndDate(dataContract.end_date);
-      setContractName(dataContract.contract_name);
+      setContractDate(dataContract.taken_at);
+      setEndDate(dataContract.deadline);
+      setPrice (dataContract.price)
+      setContractName(dataContract.name);
+      setDescription(dataContract.description)
       setSelectedProduct(dataContract.product_selected ?? []);
     }
   }, [dataContract]);

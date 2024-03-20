@@ -9,133 +9,8 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
 import { DeleteUserModal } from "../Modal/DeleteUserModal";
 import { EditUserModal } from "../Modal/EditUserModal";
-
-  
-  type TableResponse<T> = {
-    pages: {
-      current_page: number;
-      total_pages: number;
-    };
-    data: {
-      total_record: number;
-      total_filtered: number;
-      total_record_in_page: number;
-      total_row_per_page: number;
-    };
-    records: T[];
-  };
-  
-  const dummyData: TableResponse<userTableType> = {
-    pages: {
-      current_page: 1,
-      total_pages: 1,
-    },
-    data: {
-      total_record: 3,
-      total_filtered: 3,
-      total_record_in_page: 3,
-      total_row_per_page: 10,
-    },
-    records: [
-      {
-        id: 1,
-        no: 1,
-        username: "John Doe",
-        address: "123 Main Street",
-        number_phone: "03102312123",
-        email: "john.doe@example.com",
-      },
-      {
-        id: 2,
-        no: 2,
-        username: "Jane Smith",
-        address: "456 Elm Street",
-        number_phone: "03102312123",
-        email: "jane.smith@example.com",
-      },
-      {
-        id: 3,
-        no: 3,
-        username: "Alice Johnson",
-        address: "789 Oak Street",
-        number_phone: "03102312123",
-        email: "alice.johnson@example.com",
-      },
-      {
-        id: 4,
-        no: 4,
-        username: "John Doe",
-        address: "123 Main Street",
-        number_phone: "03102312123",
-        email: "john.doe@example.com",
-      },
-      {
-        id: 5,
-        no: 5,
-        username: "Jane Smith",
-        address: "456 Elm Street",
-        number_phone: "03102312123",
-        email: "jane.smith@example.com",
-      },
-      {
-        id: 6,
-        no: 6,
-        username: "Alice Johnson",
-        address: "789 Oak Street",
-        number_phone: "03102312123",
-        email: "alice.johnson@example.com",
-      },
-      {
-        id: 7,
-        no: 7,
-        username: "John Doe",
-        address: "123 Main Street",
-        number_phone: "03102312123",
-        email: "john.doe@example.com",
-      },
-      {
-        id: 8,
-        no: 8,
-        username: "Jane Smith",
-        address: "456 Elm Street",
-        number_phone: "03102312123",
-        email: "jane.smith@example.com",
-      },
-      {
-        id: 9,
-        no: 9,
-        username: "Alice Johnson",
-        address: "789 Oak Street",
-        number_phone: "03102312123",
-        email: "alice.johnson@example.com",
-      },
-      {
-        id: 10,
-        no: 10,
-        username: "John Doe",
-        address: "123 Main Street",
-        number_phone: "03102312123",
-        email: "john.doe@example.com",
-      },
-      {
-        id: 11,
-        no: 12,
-        username: "Jane Smith",
-        address: "456 Elm Street",
-        number_phone: "03102312123",
-        email: "jane.smith@example.com",
-      },
-      {
-        id: 13,
-        no: 13,
-        username: "Alice Johnson",
-        address: "789 Oak Street",
-        number_phone: "03102312123",
-        email: "alice.johnson@example.com",
-      },
-    ],
-  };
-
+import { useQuery } from "react-query";
+import { getAllUser } from "../../api/user";
 const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
   const [isEditUser, setIsEditUser] = useState (false);
   const [isDeleteUser, setIsDeleteUser] = useState (false);
@@ -146,15 +21,13 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
 
 
   const [params, setParams] = useState<APIParams>({
-    // current_page: 1,
-    // row_per_page: 10,
     search: searchValue,
   });
 
-//   const { data, isLoading } = useQuery({
-//     queryKey: ["user-table", params],
-//     queryFn: () => getContractFinanceDatatable(params),
-//   });
+  const { data, isLoading } = useQuery({
+    queryKey: ["table-user"],
+    queryFn: getAllUser,
+  });
 
   const columns: ColumnDef<userTableType>[] = [
     // {
@@ -204,6 +77,10 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
       accessorKey: "no",
     },
     {
+      header: "Nama Lengkap",
+      accessorKey: "full_name",
+    },
+    {
       header: "Nama Pengguna",
       accessorKey: "username",
     },
@@ -248,9 +125,9 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
           <DeleteUserModal open ={isDeleteUser} handleOpen={handleDeleteUser} id={selectedId} />
           <EditUserModal open ={isEditUser} handleOpen={handleEditUser} id={selectedId} />
       <Table
-        data={dummyData || []}
+        data={data || []}
         columns={columns}
-        // isLoading={isLoading}
+        isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
         // metadata={{

@@ -14,21 +14,7 @@ import {
 
 import { TableHeader } from "./TableHeader";
 import { TableBody } from "./TableBody";
-import { Button } from "@material-tailwind/react";
-
-type TableResponse<T> = {
-  pages: {
-    current_page: number;
-    total_pages: number;
-  };
-  data: {
-    total_record: number;
-    total_filtered: number;
-    total_record_in_page: number;
-    total_row_per_page: number;
-  };
-  records: T[];
-};
+import { Button, Typography } from "@material-tailwind/react";
 
 type APIParams = {
   // current_page: number;
@@ -39,7 +25,7 @@ type APIParams = {
 };
 
 type TableProps<T> = {
-  data?: TableResponse<T>;
+  data?: [];
   columns: ColumnDef<T>[];
   isLoading?: boolean;
   search?: string;
@@ -73,8 +59,7 @@ const Table = <T,>({
   }, [setParams, debouncedValue]);
   const tableData = useMemo(() => {
     if (isLoading || !data) return Array(10).fill({});
-
-    return data.records;
+    return data;
   }, [isLoading, data]);
 
   const tableColumns = useMemo(
@@ -83,9 +68,14 @@ const Table = <T,>({
         ? columns.map((column) => ({
             ...column,
             cell: () => (
-              <span>
-                <span className="placeholder w-full bg-secondary rounded"></span>
-              </span>
+              <Typography
+                placeholder={""}
+                as="div"
+                variant="paragraph"
+                className="mb-2 h-3 w-30 rounded-full bg-gray-300"
+              >
+                &nbsp;
+              </Typography>
             ),
           }))
         : columns,

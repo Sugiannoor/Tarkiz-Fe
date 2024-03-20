@@ -11,7 +11,6 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { UpdateUser, getUserById } from "../../api/user";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { handleError } from "@/utils/helper";
 
 type props = {
   open: boolean;
@@ -56,16 +55,23 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdateUser,
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({ queryKey: ["table-user"] });
       toast.success("Data berhasil diperbaharui");
       handleOpen();
     },
-    onError: (err: Error) => {
-      const errorTypes = ["id", "full_name", "email", "number_phone"];
-
-      handleError(err, errorTypes);
-      return;
-    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.message;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,7 +81,12 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen} dismiss={{escapeKey: false, outsidePress: false}}>
+      <Dialog
+        placeholder={""}
+        open={open}
+        handler={handleOpen}
+        dismiss={{ escapeKey: false, outsidePress: false }}
+      >
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Edit Pengguna
         </DialogHeader>

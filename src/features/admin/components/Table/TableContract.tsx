@@ -14,66 +14,12 @@ import { FaTrashAlt } from "react-icons/fa";
 import { EditContractModal } from "../Modal/EditContractModal";
 import { DeleteContractModal } from "../Modal/DeleteContractModal";
 import { BiPrinter } from "react-icons/bi";
+import { useQuery } from "react-query";
+import { getAllContract } from "../../api/contract";
 
   
-  type TableResponse<T> = {
-    pages: {
-      current_page: number;
-      total_pages: number;
-    };
-    data: {
-      total_record: number;
-      total_filtered: number;
-      total_record_in_page: number;
-      total_row_per_page: number;
-    };
-    records: T[];
-  };
   
-  const dummyData: TableResponse<ContractTableType> = {
-    pages: {
-      current_page: 1,
-      total_pages: 1,
-    },
-    data: {
-      total_record: 3,
-      total_filtered: 3,
-      total_record_in_page: 3,
-      total_row_per_page: 10,
-    },
-    records: [
-        {
-          id: 1,
-          no: 1,
-          contract_code: "CON1",
-          name: "Contract A",
-          program: ["Web Development", "Android"],
-          contract_date: "2024-02-21",
-          client_name: "Client A"
-        },
-        {
-          id: 2,
-          no: 2,
-          contract_code: "CON2",
-          name: "Contract B",
-          program: ["iOS"],
-          contract_date: "2024-02-22",
-          client_name: "Client B"
-        },
-        {
-          id: 3,
-          no: 3,
-          contract_code: "CON3",
-          name: "Contract C",
-          program: ["Web Development", "Backend Development"],
-          contract_date: "2024-02-23",
-          client_name: "Client C"
-        }
-      ]
-  };
-
 const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
-  const navigate = useNavigate ();
   const [selectedId, setSelectedId] = useState (0);
   const [isEdit, setIsEdit] = useState (false);
   const [isDelete, setIsDelete] = useState (false);
@@ -87,10 +33,10 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
     search: searchValue,
   });
 
-//   const { data, isLoading } = useQuery({
-//     queryKey: ["finance-contract-datatable", params],
-//     queryFn: () => getContractFinanceDatatable(params),
-//   });
+  const { data, isLoading } = useQuery({
+    queryKey: ["table-contract"],
+    queryFn: getAllContract,
+  });
 
   const columns: ColumnDef<ContractTableType>[] = [
     // {
@@ -141,19 +87,19 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
     },
     {
         header: "Kode Kontrak",
-        accessorKey: "contract_code",
+        accessorKey: "id",
       },
     {
-      header: "Nama Program",
-      accessorKey: "program",
+      header: "Judul Kontrak",
+      accessorKey: "name",
     },
     {
         header: "Tanggal Kontrak",
-        accessorKey: "contract_date",
+        accessorKey: "taken_at",
       },
     {
-      header: "Nama Mitra",
-      accessorKey: "client_name",
+      header: "Tanggal Selesai",
+      accessorKey: "deadline",
     },
     {
       header: "Aksi",
@@ -187,9 +133,9 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
     <DeleteContractModal open={isDelete} handleOpen={handleDelete} id={selectedId} />
     <EditContractModal open={isEdit} handleOpen={handleEdit} id={selectedId} />
       <Table
-        data={dummyData || []}
+        data={data || []}
         columns={columns}
-        // isLoading={isLoading}
+        isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
         // metadata={{

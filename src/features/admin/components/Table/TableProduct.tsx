@@ -9,105 +9,9 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
 import { EditProductModal } from "../Modal/EditProductModal";
 import { DeleteProductModal } from "../Modal/DeleteProduct";
-
-type TableResponse<T> = {
-  pages: {
-    current_page: number;
-    total_pages: number;
-  };
-  data: {
-    total_record: number;
-    total_filtered: number;
-    total_record_in_page: number;
-    total_row_per_page: number;
-  };
-  records: T[];
-};
-
-const dummyData: TableResponse<productTableType> = {
-  pages: {
-    current_page: 1,
-    total_pages: 1,
-  },
-  data: {
-    total_record: 3,
-    total_filtered: 3,
-    total_record_in_page: 3,
-    total_row_per_page: 10,
-  },
-  records: [
-    {
-      id: 1,
-      no: 1,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 2,
-      no: 2,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 3,
-      no: 3,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 4,
-      no: 4,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 5,
-      no: 5,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 6,
-      no: 6,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 7,
-      no: 7,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 8,
-      no: 8,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 9,
-      no: 9,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-    {
-      id: 10,
-      no: 10,
-      category: "Web Development",
-      description: "Web Keuangan dengan Menggunakan react",
-      program: "Sapu (Sampah Penghasil Uang)",
-    },
-  ],
-};
+import { useQuery } from "react-query";
+import { getAllProduct } from "../../api/product";
+import { Chip } from "@material-tailwind/react";
 
 const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
   const [selectedId, setSelectedId] = useState<number>(0);
@@ -121,10 +25,10 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
     search: searchValue,
   });
 
-  //   const { data, isLoading } = useQuery({
-  //     queryKey: ["table-product", params],
-  //     queryFn: () => getProductTable(params),
-  //   });
+    const { data, isLoading } = useQuery({
+      queryKey: ["table-product"],
+      queryFn: getAllProduct,
+    });
 
   const columns: ColumnDef<productTableType>[] = [
     // {
@@ -176,14 +80,31 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
     {
       header: "Nama Program",
       accessorKey: "program",
-    },
+    },  
     {
       header: "Deskripsi",
       accessorKey: "description",
     },
     {
       header: "Kategori",
-      accessorKey: "category",
+      accessorKey: "type",
+    },
+    {
+      header: "Tag Product",
+      accessorKey: "tags",
+      cell: ({ row }) => (
+        <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5 max-w-[200px]" style={{scrollbarWidth: "none"}}>
+          {row.original.tags.map((tag: string, index: number) => (
+            <Chip
+              key={index}
+              variant="outlined"
+              color="green"
+              value={tag}
+              className="font-raleway whitespace-nowrap"
+            />
+          ))}
+        </div>
+      ),
     },
     {
       header: "Aksi",
@@ -211,9 +132,9 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
   return (
     <>
       <Table
-        data={dummyData || []}
+        data={data || []}
         columns={columns}
-        // isLoading={isLoading}
+        isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
         // metadata={{
@@ -223,7 +144,7 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
         setParams={setParams}
         // rowExpand={rowExpand}
       />
-<EditProductModal open= {isEdit} handleOpen={handleEdit} id={27} />
+<EditProductModal open= {isEdit} handleOpen={handleEdit} id={selectedId} />
 <DeleteProductModal open= {isDelete} handleOpen={handleDelete} id={selectedId} />
     </>
   );

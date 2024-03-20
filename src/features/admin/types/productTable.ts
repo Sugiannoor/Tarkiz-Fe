@@ -3,5 +3,7 @@ export type productTableType = {
     no: number;
     program: string;
     description: string;
-    category: string
+    type: string;
+    tags: string[];
+    path_files: string;
 }

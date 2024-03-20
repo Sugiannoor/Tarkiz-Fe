@@ -20,7 +20,7 @@ export const DeleteProductModal = ({ open, handleOpen, id }: props) => {
     mutationFn: deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["product-table"],
+        queryKey: ["table-product"],
       });
       toast.success("Produk Sukses di Hapus");
       handleOpen();

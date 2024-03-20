@@ -10,12 +10,12 @@ export const deleteContract = async (id: number) => {
     return response.data;
   };
   export const getContractById = async (id: number) => {
-    const response = await axios.get("/api/contract", {
+    const response = await axios.get("/api/contracts/show", {
       params: {
         id,
       },
     });
-    return response.data;
+    return response.data.data;
   };
   export const UpdateContract = async (data: editContractForm ) => {
     const response = await axios.put("/api/contracts/update", data);
@@ -25,3 +25,7 @@ export const deleteContract = async (id: number) => {
     const response = await axios.post("/api/contracts", data);
     return response.data
   }
+  export const getAllContract = async () => {
+    const response = await axios.get("/api/contracts");
+    return response.data.data;
+  };

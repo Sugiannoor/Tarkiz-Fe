@@ -83,7 +83,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
     mutationFn: UpdateProducts, 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["product-table"],
+        queryKey: ["table-product"],
       });
       toast.success("Produk Sukses di update");
       handleCancel ();

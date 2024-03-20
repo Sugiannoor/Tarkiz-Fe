@@ -23,7 +23,7 @@ export const EditTagModal = ({ open, handleOpen, id}: props) => {
     const { mutateAsync, isLoading } = useMutation({
       mutationFn: updateTag,
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["tag"] });
+        queryClient.invalidateQueries({ queryKey: ["tags"] });
         toast.success("Tag Produk berhasil diupdate");
         setTag ("")
         handleOpen();

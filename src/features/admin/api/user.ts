@@ -18,6 +18,10 @@ export const deleteUser = async (id: number) => {
     });
     return response.data.data;
   }
+  export const getAllUser = async () => {
+    const response = await axios.get ("/api/users/all");
+    return response.data.data;
+  }
 
   export const UpdateUser = async (data: userForm) => {
     const formData = new FormData();

@@ -6,10 +6,11 @@ import { useState } from "react";
 import { FilePond } from "react-filepond";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { createComplaint } from "../api/createComplaint";
 
 const CreateComplaint = () => {
+  const {id} = useParams ()
   const [formData, setFormData] = useState ({
     name: "",
     description: ""
@@ -34,7 +35,7 @@ const CreateComplaint = () => {
     },
     onError: ({ response }) => {
       if (response) {
-        const errors: { [key: string]: string } = response.data.messages;
+        const errors: { [key: string]: string } = response.data.message;
         const errorMessages = Object.values(errors).map((error:string) => error);
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
@@ -52,6 +53,7 @@ const CreateComplaint = () => {
     const { name, description } = formData;
 
     const dataSubmit = {
+    id,
      name,
      description,
      files,

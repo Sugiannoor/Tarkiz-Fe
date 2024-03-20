@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { RegistrasiType } from "@/features/register/types";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { handleError } from "@/utils/helper";
 import toast from "react-hot-toast";
 import { createUser } from "@/features/register/api";
@@ -18,6 +18,7 @@ type props = {
   handleOpen: () => void;
 };
 export const CreateUserModal = ({ open, handleOpen }: props) => {
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState<RegistrasiType>({
     full_name: "",
     email: "",
@@ -49,6 +50,9 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createUser,
     onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ["table-user"],
+      });
       handleOpen();
       setFormData ({
         email: "",
@@ -62,7 +66,7 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
     },
     onError: ({ response }) => {
       if (response) {
-        const errors: { [key: string]: string } = response.data.errors;
+        const errors: { [key: string]: string } = response.data.message;
         const errorMessages = Object.values(errors).map((error:string) => error);
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
