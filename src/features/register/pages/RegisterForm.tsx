@@ -86,6 +86,7 @@ import toast from "react-hot-toast";
                 type="text"
                 id="full_name"
                 name="full_name"
+                required
                 onChange={handleChange}
                 value={formData.full_name}
                 placeholder="Nama Lengkap Anda"
@@ -102,6 +103,7 @@ import toast from "react-hot-toast";
                 type="text"
                 id="username"
                 name="username"
+                required
                 onChange={handleChange}
                 value={formData.username}
                 placeholder="Nama Akun"
@@ -118,6 +120,7 @@ import toast from "react-hot-toast";
                 type="email"
                 id="email"
                 name="email"
+                required
                 onChange={handleChange}
                 value={formData.email}
                 placeholder="name@mail.com"
@@ -134,6 +137,7 @@ import toast from "react-hot-toast";
                 type="string"
                 id="number_phone"
                 name="number_phone"
+                required
                 onChange={handleChange}
                 value={formData.number_phone}
                 placeholder="Ex. 08xxx"
@@ -149,6 +153,7 @@ import toast from "react-hot-toast";
                 type="password"
                 id="password"
                 name="password"
+                required
                 onChange={handleChange}
                 value={formData.password}
                 size="lg"

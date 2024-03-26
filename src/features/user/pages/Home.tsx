@@ -5,8 +5,8 @@ import { CarouselHome, Footer, NavbarSimple } from "../components";
 import ProductList from "../components/ProductList";
 import Client from "../components/Client";
 import Bubble from "../components/Bubble";
-
 export const Home: React.FC = () => {
+ 
   return (
     <>
       <NavbarSimple fixed>

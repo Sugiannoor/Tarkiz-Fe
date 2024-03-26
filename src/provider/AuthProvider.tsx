@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const queryClient = useQueryClient();
 
   const fetchUserData = async () => {
-    const accessToken = localStorage.getItem("token");
+    const accessToken = localStorage.getItem("access_token");
 
     if (accessToken) {
       const user = await getUser();
@@ -33,16 +33,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const { data: User, isLoading } = useQuery({
-    queryKey: ["authUser"],
+    queryKey: ["auth"],
     queryFn: fetchUserData,
   });
   
   
   const loginMutation = useMutation({
     mutationFn: loginFunction,
-    onSuccess: ({ token, user }) => {
-      storage.setToken(token)
-      queryClient.setQueryData(["auth"], user);
+    onSuccess: ({ access_token, user }) => {
+      const newRole = generateNewRole(user);
+      storage.setToken(access_token)
+      const updatedUser = { ...user, role: newRole };
+      queryClient.setQueryData(["auth"], updatedUser);
     },
   });
   

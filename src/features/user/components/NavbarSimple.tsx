@@ -90,7 +90,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-2">
-              <Authorization roles={["-Users"]}>
+              <Authorization roles={["-Users", '-Admin']}>
                 <Link to={"/login"}>
                   <Button
                     placeholder={""}
@@ -104,7 +104,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
                 </Link>
               </Authorization>
             </div>
-            <Authorization roles={["Users"]}>
+            <Authorization roles={["Users", 'Admin']}>
               <ProfileMenu />
             </Authorization>
             <IconButton

@@ -25,7 +25,7 @@ const LoginForm = () => {
     };
     await login.mutateAsync(dataSubmit, {
       onSuccess: () => {
-        navigate ("/", {replace: true})
+        navigate ("/dashboard", {replace: true})
       },
       onError: (err: any) => {
         toast.error(err.message);

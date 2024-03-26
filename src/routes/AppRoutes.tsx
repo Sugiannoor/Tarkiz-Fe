@@ -21,20 +21,29 @@ import ConsultantProduct from "@/features/product/pages/ConsultantProduct";
 import MaintanceProduct from "@/features/product/pages/MaintanceProduct";
 import { ContractPrint } from "@/features/admin/components/ContractPrint";
 import TagTypeManagment from "@/features/admin/pages/TagTypeManagment";
+import { LoginRoutes } from "./LoginRoutes";
+import { LandingRoutes } from "./LandingRoutes";
 
 export const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route element={<LoginRoutes />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        {/* Regist */}
         <Route path="/register" element={<Register />} />
-        <Route path="/product/web" element={<WebProduct />} />
-        <Route path="/product/android" element={<AndroidProduct />} />
-        <Route path="/product/consultant" element={<ConsultantProduct />} />
-        <Route path="/product/maintance" element={<MaintanceProduct />} />
+        {/* Landing Page  */}
+        <Route element={<LandingRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/web" element={<WebProduct />} />
+          <Route path="/product/android" element={<AndroidProduct />} />
+          <Route path="/product/consultant" element={<ConsultantProduct />} />
+          <Route path="/product/maintance" element={<MaintanceProduct />} />
+        </Route>
         <Route path="/kontrak/print/:id" element={<ContractPrint />} />
-        <Route element={<Layout />}>
+
+        <Route element={<AdminRoutes element={<Layout />} />}>
           <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/user" element={<UserManagment />} />
           <Route path="/product" element={<ProductManagment />} />
@@ -43,7 +52,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="/keluhan/edit/:idParams" element={<UpdateComplaint />} />
           <Route path="/tagtype" element={<TagTypeManagment />} />
         </Route>
-        <Route>
+        <Route element={<ProfilRoutes />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/keluhan/:id" element={<CreateComplaint />} />
           <Route

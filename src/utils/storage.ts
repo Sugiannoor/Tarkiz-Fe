@@ -1,4 +1,4 @@
-const storagePrefix = 't-paz';
+const storagePrefix = 'access';
 
 const storage = {
   getToken: () => {
