@@ -1,9 +1,7 @@
 import { useState } from "react";
-// import { useQuery } from "@tanstack/react-query";
 import { ColumnDef} from "@tanstack/react-table";
 import { userTableType } from "../../types/userTable";
 import Table from "@/Components/table/Table";
-import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
 import { RiEditBoxLine } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
@@ -11,6 +9,7 @@ import { DeleteUserModal } from "../Modal/DeleteUserModal";
 import { EditUserModal } from "../Modal/EditUserModal";
 import { useQuery } from "react-query";
 import { getAllUser } from "../../api/user";
+
 const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
   const [isEditUser, setIsEditUser] = useState (false);
   const [isDeleteUser, setIsDeleteUser] = useState (false);
@@ -18,60 +17,12 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
 
   const handleDeleteUser = () => setIsDeleteUser (!isDeleteUser)
   const handleEditUser = () => setIsEditUser (!isEditUser)
-
-
-  const [params, setParams] = useState<APIParams>({
-    search: searchValue,
-  });
-
   const { data, isLoading } = useQuery({
     queryKey: ["table-user"],
     queryFn: getAllUser,
   });
 
   const columns: ColumnDef<userTableType>[] = [
-    // {
-    //   accessorKey: "expand",
-    //   enableSorting: false,
-    //   header: ({ table }) => (
-    //     <>
-    //       {table.getIsAllRowsExpanded() ? (
-    //         <span
-    //           onClick={() => table.toggleAllRowsExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowDown />
-    //         </span>
-    //       ) : (
-    //         <span
-    //           onClick={() => table.toggleAllRowsExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowForward />
-    //         </span>
-    //       )}
-    //     </>
-    //   ),
-    //   cell: ({ row }) => (
-    //     <>
-    //       {row.getIsExpanded() ? (
-    //         <span
-    //           onClick={() => row.toggleExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowDown />
-    //         </span>
-    //       ) : (
-    //         <span
-    //           onClick={() => row.toggleExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowForward />
-    //         </span>
-    //       )}
-    //     </>
-    //   ),
-    // },
     {
       header: "No",
       accessorKey: "no",
@@ -130,12 +81,6 @@ const TableUser = ({ searchValue, setSearchValue }: TableProps) => {
         isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
-        // metadata={{
-        //   pageIndex: params.current_page - 1,
-        //   pageSize: params.row_per_page,
-        // }}
-        setParams={setParams}
-        // rowExpand={rowExpand}
       />
     </>
   );

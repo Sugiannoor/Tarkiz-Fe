@@ -1,11 +1,10 @@
 export type ComplaintTableType = {
     id: number;
     no: number;
-    contract_code: string;
-    title: string;
-    product_name: string;
-    complaint: string;
-    urgent_status: string;
+    contracts_id: string;
+    name: string;
+    description: string;
+    urgensi: string;
     status: string;
     date: string
 }

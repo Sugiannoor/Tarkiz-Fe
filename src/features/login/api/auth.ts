@@ -3,12 +3,12 @@ import { LoginProps, LoginResponse } from "../types";
 import { UserInterface } from "@/features/user/types/User";
 
 export const loginFunction = async ({
-    email,
+    username,
     password,
   }: LoginProps): Promise<LoginResponse> => {
     const response = await axios.post(
-      "/api/users/login",
-      JSON.stringify({ email, password }),
+      "/dashboard/users/login",
+      JSON.stringify({ username, password }),
       {
         headers: {
           "Content-Type": "application/json",
@@ -25,6 +25,6 @@ export const loginFunction = async ({
   };
 
   export const getUser = async (): Promise<UserInterface> => {
-    const response = await axios.get("/api/auth/userProfile");
+    const response = await axios.get("/api/users/profile");
     return response.data.data;
   };

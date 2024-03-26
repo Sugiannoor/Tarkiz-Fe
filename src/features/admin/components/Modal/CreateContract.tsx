@@ -55,7 +55,7 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     },
     onError: ({ response }) => {
       if (response) {
-        const errors: { [key: string]: string } = response.data.errors;
+        const errors: { [key: string]: string } = response.data.message;
         const errorMessages = Object.values(errors).map((error:string) => error);
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {

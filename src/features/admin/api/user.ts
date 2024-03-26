@@ -43,3 +43,8 @@ export const deleteUser = async (id: number) => {
     const response = await axios.get("/api/showuser");
     return response.data.data;
   };
+
+  export const getLabelRole = async () => {
+    const response = await axios.get("/api/showrole");
+    return response.data.data;
+  };

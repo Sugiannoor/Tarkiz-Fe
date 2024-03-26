@@ -139,7 +139,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
             </div>
             <Input
               crossOrigin={""}
-              type="number"
+              type="text"
               variant="static"
               id="number_phone"
               name="number_phone"

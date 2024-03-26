@@ -106,7 +106,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               htmlFor="product"
               className="text-lg text-[#005697] font-normal font-poppins"
             >
-              Program
+              Nama Produk
             </label>
             <Input
               crossOrigin={""}

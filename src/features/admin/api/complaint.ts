@@ -10,18 +10,31 @@ export const deleteComplaint = async (id: number) => {
   };
 
   export const getComplaintById = async (id: number) => {
-    const response = await axios.get("/api/complaint", {
+    const response = await axios.get("/api/complaints", {
       params: {
         id,
       },
     });
-    return response.data;
+    return response.data.data;
+  };
+  export const getAllComplaint = async () => {
+    const response = await axios.get("/api/complaints/all");
+    return response.data.data;
   };
   type StatusComplaint = {
+    id: number;
+    name: string;
+    description: string;
     status: string |undefined
     urgensi: string | undefined
   }
   export const UpdateStatusComplaint = async (data: StatusComplaint  ) => {
-    const response = await axios.put("/api/complaint", data);
+    const formData = new FormData ();
+    formData.append ("id", data.id.toString ());
+    formData.append ("name", data.name);
+    formData.append ("description", data.description);
+    if (data.urgensi) formData.append ("urgensi", data.urgensi);
+    if (data.status) formData.append ("status", data.status)
+    const response = await axios.post("/api/complaints/update", formData);
     return response.data
   }

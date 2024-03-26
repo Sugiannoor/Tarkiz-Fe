@@ -2,7 +2,6 @@ import { useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
 import Table from "@/Components/table/Table";
-import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
 import { productTableType } from "../../types/productTable";
 import { RiEditBoxLine } from "react-icons/ri";
@@ -19,11 +18,6 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
   const [isDelete, setIsDelete] = useState(false);
   const handleEdit = () => setIsEdit(!isEdit);
   const handleDelete = () => setIsDelete(!isDelete);
-  const [params, setParams] = useState<APIParams>({
-    // current_page: 1,
-    // row_per_page: 10,
-    search: searchValue,
-  });
 
     const { data, isLoading } = useQuery({
       queryKey: ["table-product"],
@@ -31,48 +25,6 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
     });
 
   const columns: ColumnDef<productTableType>[] = [
-    // {
-    //   accessorKey: "expand",
-    //   enableSorting: false,
-    //   header: ({ table }) => (
-    //     <>
-    //       {table.getIsAllRowsExpanded() ? (
-    //         <span
-    //           onClick={() => table.toggleAllRowsExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowDown />
-    //         </span>
-    //       ) : (
-    //         <span
-    //           onClick={() => table.toggleAllRowsExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowForward />
-    //         </span>
-    //       )}
-    //     </>
-    //   ),
-    //   cell: ({ row }) => (
-    //     <>
-    //       {row.getIsExpanded() ? (
-    //         <span
-    //           onClick={() => row.toggleExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowDown />
-    //         </span>
-    //       ) : (
-    //         <span
-    //           onClick={() => row.toggleExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowForward />
-    //         </span>
-    //       )}
-    //     </>
-    //   ),
-    // },
     {
       header: "No",
       accessorKey: "no",
@@ -93,14 +45,14 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
       header: "Tag Product",
       accessorKey: "tags",
       cell: ({ row }) => (
-        <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5 max-w-[200px]" style={{scrollbarWidth: "none"}}>
+        <div className="flex flex-wrap overflow-y-hidden mt-2 gap-1 max-w-[200px]" style={{scrollbarWidth: "none"}}>
           {row.original.tags.map((tag: string, index: number) => (
             <Chip
               key={index}
               variant="outlined"
               color="green"
               value={tag}
-              className="font-raleway whitespace-nowrap"
+              className="font-raleway whitespace-nowrap p-1 text-xs"
             />
           ))}
         </div>
@@ -137,12 +89,6 @@ const TableProduct = ({ searchValue, setSearchValue }: TableProps) => {
         isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
-        // metadata={{
-        //   pageIndex: params.current_page - 1,
-        //   pageSize: params.row_per_page,
-        // }}
-        setParams={setParams}
-        // rowExpand={rowExpand}
       />
 <EditProductModal open= {isEdit} handleOpen={handleEdit} id={selectedId} />
 <DeleteProductModal open= {isDelete} handleOpen={handleDelete} id={selectedId} />

@@ -51,7 +51,6 @@ export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
           <Button
             placeholder={""}
             variant="text"
-            color="red"
             onClick={handleOpen}
             className="mr-1 font-poppins"
           >
@@ -61,7 +60,7 @@ export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
             placeholder={""}
             className="font-poppins"
             variant="gradient"
-            color="green"
+            color="red"
             loading={isLoading}
             onClick={handleDelete}
           >

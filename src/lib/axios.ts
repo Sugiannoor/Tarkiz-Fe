@@ -20,21 +20,23 @@ axios.interceptors.request.use((config) => {
 
   return config;
 });
+
+
 axios.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
-    const prevRequest = error?.config;
-    if (error?.response?.status === 401 && !prevRequest?.sent) {
-      storage.clearToken();
-      window.location.replace('/login');
-      // prevRequest.sent = true
-      // const newAccessToken = await refresh()
-      // prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
-      // return axios(prevRequest)
+    const status = error?.response?.status || 0;
+    if (status === 401) {
+      if (localStorage.getItem("token")) {
+        localStorage.clear();
+        window.location.assign("/");
+        return Promise.reject(error);
+      } else {
+        return Promise.reject(error);
+      }
     }
-
     return Promise.reject(error);
   }
 );

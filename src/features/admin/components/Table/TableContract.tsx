@@ -1,12 +1,7 @@
 import { useState } from "react";
-// import { useQuery } from "@tanstack/react-query";
 import { ColumnDef} from "@tanstack/react-table";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Table from "@/Components/table/Table";
-import { APIParams } from "@/features/user/types/apiParams";
 import { TableProps } from "@/features/user/types/tableParams";
 import { ContractTableType } from "../../types/contractTable";
 import { RiEditBoxLine } from "react-icons/ri";
@@ -27,11 +22,6 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
   const handleDelete = () => setIsDelete (!isDelete)
   const handleEdit = () => setIsEdit (!isEdit)
 
-  const [params, setParams] = useState<APIParams>({
-    // current_page: 1,
-    // row_per_page: 10,
-    search: searchValue,
-  });
 
   const { data, isLoading } = useQuery({
     queryKey: ["table-contract"],
@@ -39,48 +29,6 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
   });
 
   const columns: ColumnDef<ContractTableType>[] = [
-    // {
-    //   accessorKey: "expand",
-    //   enableSorting: false,
-    //   header: ({ table }) => (
-    //     <>
-    //       {table.getIsAllRowsExpanded() ? (
-    //         <span
-    //           onClick={() => table.toggleAllRowsExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowDown />
-    //         </span>
-    //       ) : (
-    //         <span
-    //           onClick={() => table.toggleAllRowsExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowForward />
-    //         </span>
-    //       )}
-    //     </>
-    //   ),
-    //   cell: ({ row }) => (
-    //     <>
-    //       {row.getIsExpanded() ? (
-    //         <span
-    //           onClick={() => row.toggleExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowDown />
-    //         </span>
-    //       ) : (
-    //         <span
-    //           onClick={() => row.toggleExpanded()}
-    //           className="cursor-pointer p-2"
-    //         >
-    //           <IoIosArrowForward />
-    //         </span>
-    //       )}
-    //     </>
-    //   ),
-    // },
     {
       header: "No",
       accessorKey: "no",
@@ -138,12 +86,6 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
         isLoading={isLoading}
         search={searchValue}
         setSearch={setSearchValue}
-        // metadata={{
-        //   pageIndex: params.current_page - 1,
-        //   pageSize: params.row_per_page,
-        // }}
-        setParams={setParams}
-        // rowExpand={rowExpand}
       />
     </>
   );

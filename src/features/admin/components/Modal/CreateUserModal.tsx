@@ -8,16 +8,23 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { RegistrasiType } from "@/features/register/types";
-import { useMutation, useQueryClient } from "react-query";
-import { handleError } from "@/utils/helper";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { createUser } from "@/features/register/api";
+import Select from "react-select";  
+import { getLabelRole } from "../../api/user";
 
+
+type Option = {
+  value: number;
+  label: string;
+}
 type props = {
   open: boolean;
   handleOpen: () => void;
 };
 export const CreateUserModal = ({ open, handleOpen }: props) => {
+  const [role, setRole] = useState<Option>()
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState<RegistrasiType>({
     full_name: "",
@@ -35,6 +42,12 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
       [name]: value,
     }));
   };
+
+  const { data: roles, isLoading: roleLoading } = useQuery({
+    queryKey: ["role"],
+    queryFn: getLabelRole,
+  });
+
 
   const handleCancel = () => {
     setFormData ({
@@ -94,7 +107,7 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen} dismiss={{escapeKey: false, outsidePress: false}}>
+      <Dialog placeholder={""} open={open} handler={handleOpen} className="overflow-y-scroll h-[90vh]">
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Tambah Pengguna
         </DialogHeader>
@@ -119,7 +132,7 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
               }}
             />
             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
-              Nama Pengguna
+              Username
             </div>
             <Input
               crossOrigin={""}
@@ -160,7 +173,7 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
             <Input
               crossOrigin={""}
               size="lg"
-              type="number"
+              type="text"
               id="number_phone"
               name="number_phone"
               variant="static"
@@ -190,6 +203,16 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
                 className: "before:content-none after:content-none",
               }}
             />
+             <div className="my-5">
+              <div className="text-lg text-[#005697] font-normal font-poppins">
+                Kategori{" "}
+              </div>
+              <Select
+                value={role}
+                onChange={setRole}
+                options={roles}
+              />
+            </div>
           </DialogBody>
           <DialogFooter placeholder={""}>
             <Button

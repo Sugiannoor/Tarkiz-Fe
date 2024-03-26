@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
 import toast from "react-hot-toast";
-import { handleError } from "@/utils/helper";
 import Loading from "@/Components/Loading";
 
 interface Option  {
@@ -29,75 +28,92 @@ const UpdateComplaintForm = () => {
   useEffect (()=> {
     if (dataComplaint){
       setFormData ({
-        username: dataComplaint.username,
-        phone_number: dataComplaint.number_phone,
-        contract_code: dataComplaint.contract.code,
-        title: dataComplaint.title,
-        program: dataComplaint.program,
-        description: dataComplaint.description
+        username: dataComplaint.username ?? "",
+        phone_number: dataComplaint.number_phone ?? "",
+        contract_code: dataComplaint.contracts_id ?? "",
+        name: dataComplaint.name ?? "",
+        description: dataComplaint.description ?? "",
+        name_apk: dataComplaint.name_apk ?? "",
       })
-      setSelectUrgensi (dataComplaint.urgensi ?? [])
-      setSelectedStatus  (dataComplaint.status ?? [])
+      setSelectUrgensi (dataComplaint.selected_urgensi ?? [])
+      setSelectedStatus  (dataComplaint.selected_status ?? [])
     }
-  })
+  },[dataComplaint])
   const [formData, setFormData] = useState({
     username: "",
     phone_number: "",
     contract_code: "",
-    title: "",
+    name: "",
     description: "",
-    program: "",
+    name_apk: ""
   });
   const optionStatus = [
     {
-      value: "Baru",
+      value: "baru",
       label: "Baru",
     },
     {
-      value: "Proses",
+      value: "proses",
       label: "Proses",
     },
     {
-      value: "Selesai",
+      value: "selesai",
       label: "Selesai",
     },
   ];
   const optionUrgensi= [
     {
-      value: "Tidak Urgent",
-      label: "Tidak Urgent",
+      value: "baru",
+      label: "Baru",
     },
     {
-      value: "Urgent",
-      label: "Urgent",
+      value: "rendah",
+      label: "Rendah",
+    },
+    {
+      value: "sedang",
+      label: "Sedang",
+    },
+    {
+      value: "tinggi",
+      label: "Tinggi",
     },
   ];
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdateStatusComplaint,
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({queryKey:['table-complaint']});
       toast.success("Status berhasil diperbaharui");
+      navigate ("/keluhan")
     },
-    onError: (err: Error) => {
-      const errorTypes = [
-        "id",
-        "contract_code",
-        "contract_date",
-        "end_date",
-        "client_name",
-      ];
-      handleError(err, errorTypes);
-      return;
-    },
+    onError: ({ response }) => {
+      if (response) {
+        const errors: { [key: string]: string } = response.data.message;
+        const errorMessages = Object.values(errors).map((error:string) => error);
+        errorMessages.forEach((errorMessage: string, index) => {
+          if (index === 0) {
+            toast.error(errorMessage);
+          }
+        });
+      } else {
+        toast.error("Terjadi kesalahan saat memproses permintaan.");
+      }
+    }
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault ();
     const status = selectedStatus?.value;
     const urgensi = selectUrgensi?.value;
+    const name = formData.name
+    const description = formData.description
+
 
     const dataSubmit = {
+      id,
       status,
-      urgensi
+      name,
+      description,
+      urgensi,
     }
     await mutateAsync (dataSubmit)
   }
@@ -123,7 +139,7 @@ const UpdateComplaintForm = () => {
           </div>
           <Input
             crossOrigin={""}
-            type="number"
+            type="text"
             disabled
             id="phone_number"
             value={formData.phone_number}
@@ -137,9 +153,9 @@ const UpdateComplaintForm = () => {
             crossOrigin={""}
             type="text"
             disabled
-            value={formData.phone_number}
-            id="program"
-            name="program"
+            value={formData.name_apk}
+            id="name_apk"
+            name="name_apk"
             placeholder="Nama Aplikasi"
           />
         </div>
@@ -157,13 +173,13 @@ const UpdateComplaintForm = () => {
             placeholder="#SDSA21"
           />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
-            Status
-          </div>
-          <Select defaultValue={selectedStatus} onChange={setSelectedStatus} options={optionStatus} />
-          <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Urgensi
           </div>
-          <Select defaultValue={selectUrgensi} onChange={setSelectUrgensi} options={optionUrgensi} />
+          <Select defaultValue={selectUrgensi} value={selectUrgensi} onChange={setSelectUrgensi} options={optionUrgensi} />
+          <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+            Status
+          </div>
+          <Select defaultValue={selectedStatus} value={selectedStatus} onChange={setSelectedStatus} options={optionStatus} />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Judul Keluhan
           </div>
@@ -173,7 +189,7 @@ const UpdateComplaintForm = () => {
             id="title"
             name="title"
             placeholder="Judul Keluhan"
-            value={formData.title}
+            value={formData.name}
             disabled
           />
           <div

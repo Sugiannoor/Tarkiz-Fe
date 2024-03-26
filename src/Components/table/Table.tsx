@@ -31,7 +31,6 @@ type TableProps<T> = {
   search?: string;
   setSearch?: (value: string) => void;
   // metadata: PaginationState;
-  setParams: (value: APIParams) => void;
   rowExpand?: (row: Row<T>) => React.ReactNode;
 };
 const Table = <T,>({
@@ -41,7 +40,6 @@ const Table = <T,>({
   search,
   setSearch,
   // metadata,
-  setParams,
   rowExpand,
 }: TableProps<T>) => {
   const debouncedValue = useDebounce<string | undefined>(search, 500);
@@ -49,14 +47,6 @@ const Table = <T,>({
   const [expanded, setExpanded] = useState<ExpandedState>({});
   // const [pagination, setPagination] = useState<PaginationState>(metadata);
   // const { pageIndex, pageSize } = pagination;
-
-  useEffect(() => {
-    setParams({
-      // current_page: pageIndex + 1,
-      // row_per_page: pageSize,
-      search: debouncedValue,
-    });
-  }, [setParams, debouncedValue]);
   const tableData = useMemo(() => {
     if (isLoading || !data) return Array(10).fill({});
     return data;

@@ -19,9 +19,8 @@ const LoginForm = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault ();
-    const email = username
     const dataSubmit = {
-      email,
+      username,
       password,
     };
     await login.mutateAsync(dataSubmit, {

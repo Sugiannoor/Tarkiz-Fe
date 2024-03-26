@@ -4,5 +4,9 @@ export type RegistrasiType = {
     number_phone: string;
     email: string;
     password: string;
-    address?: string
+    address?: string;
+    role?:  {
+        value: number,
+        label: string;
+    }
 }

@@ -35,11 +35,12 @@ import toast from "react-hot-toast";
         const {mutateAsync, isLoading} =useMutation ({
           mutationFn: createUser,
           onSuccess() {
+            toast.success ("Registrasi Berhasil")
             navigate ('/login')
           },
           onError: ({ response }) => {
             if (response) {
-              const errors: { [key: string]: string } = response.data.errors;
+              const errors: { [key: string]: string } = response.data.message;
               const errorMessages = Object.values(errors).map((error:string) => error);
               errorMessages.forEach((errorMessage: string, index) => {
                 if (index === 0) {
@@ -130,12 +131,12 @@ import toast from "react-hot-toast";
               </Typography>
               <Input crossOrigin={""}
                 size="lg"
-                type="number"
+                type="string"
                 id="number_phone"
                 name="number_phone"
                 onChange={handleChange}
                 value={formData.number_phone}
-                placeholder="name@mail.com"
+                placeholder="Ex. 08xxx"
                 className=" !border-t-blue-gray-200 focus:!border-t-custom-primary-600 font-poppins"
                 labelProps={{
                   className: "before:content-none after:content-none",
