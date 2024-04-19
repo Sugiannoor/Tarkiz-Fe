@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { UseMutationResult, useMutation, useQuery, useQueryClient } from "react-query";
 import storage from "@/utils/storage";
 import { LoginProps, LoginResponse } from "@/features/login/types";
-import { getUser, loginFunction, logoutFunction } from "@/features/login/api/auth";
+import { getUser, loginFunction } from "@/features/login/api/auth";
 import { UserInterface } from "@/features/user/types/User";
 import { generateNewRole } from "@/utils/helper";
 import Loading from "@/Components/Loading";
@@ -48,13 +48,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     },
   });
   
-  const logoutMutation = useMutation({
-    mutationFn: logoutFunction,
-    onSuccess: () => {
-      storage.clearToken();
-      queryClient.clear();
-    },
-  });
+  const logout = () => {
+    localStorage.clear();
+    queryClient.clear(); 
+    window.location.reload()
+  }
   
   if (isLoading) {
     return <Loading />;
@@ -63,7 +61,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const value: AuthContextType = {
     user: User || null,
     login: loginMutation,
-    logout: logoutMutation.mutateAsync,
+    logout: logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

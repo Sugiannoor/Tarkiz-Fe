@@ -5,8 +5,5 @@ export type RegistrasiType = {
     email: string;
     password: string;
     address?: string;
-    role?:  {
-        value: number,
-        label: string;
-    }
+    role?:  number
 }

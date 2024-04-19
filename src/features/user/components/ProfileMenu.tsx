@@ -4,8 +4,10 @@ import { FaUserCheck } from "react-icons/fa";
 import { IoIosPower } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import useAuth from '@/hooks/useAuth';
 
 const ProfileMenu = () => {
+  const {logout} = useAuth ()
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -55,6 +57,7 @@ const ProfileMenu = () => {
               placeholder={""}
               key="Log Out"
               className={`flex items-center gap-2 rounded hhover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10`}
+              onClick={logout}
             >
               <IoIosPower color='red'/>
               <Typography

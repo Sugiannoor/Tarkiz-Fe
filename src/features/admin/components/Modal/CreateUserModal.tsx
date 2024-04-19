@@ -10,7 +10,7 @@ import { useState } from "react";
 import { RegistrasiType } from "@/features/register/types";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
-import { createUser } from "@/features/register/api";
+import { createUser, createUserByAdmin } from "@/features/register/api";
 import Select from "react-select";  
 import { getLabelRole } from "../../api/user";
 
@@ -24,7 +24,7 @@ type props = {
   handleOpen: () => void;
 };
 export const CreateUserModal = ({ open, handleOpen }: props) => {
-  const [role, setRole] = useState<Option>()
+  const [selectedRole, setSelectedRole] = useState<Option>()
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState<RegistrasiType>({
     full_name: "",
@@ -43,10 +43,10 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
     }));
   };
 
-  const { data: roles, isLoading: roleLoading } = useQuery({
-    queryKey: ["role"],
-    queryFn: getLabelRole,
-  });
+  // const { data: roles, isLoading: roleLoading } = useQuery({
+  //   queryKey: ["role"],
+  //   queryFn: getLabelRole,
+  // });
 
 
   const handleCancel = () => {
@@ -56,12 +56,12 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
       number_phone: "",
       password: "",
       username: "",
-      address: "",
+    address: "",
     })
     handleOpen()
   }
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: createUser,
+    mutationFn: createUserByAdmin,
     onSuccess() {
       queryClient.invalidateQueries({
         queryKey: ["table-user"],
@@ -95,13 +95,14 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { full_name, email, number_phone, password, username } = formData;
-
+    const role = selectedRole?.value
     const dataSubmit = {
       full_name,
       email,
       number_phone,
       username,
       password,
+      role
     };
     await mutateAsync(dataSubmit);
   };
@@ -203,16 +204,16 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
                 className: "before:content-none after:content-none",
               }}
             />
-             <div className="my-5">
+             {/* <div className="my-5">
               <div className="text-lg text-[#005697] font-normal font-poppins">
                 Kategori{" "}
               </div>
               <Select
-                value={role}
-                onChange={setRole}
+                value={selectedRole}
+                onChange={setSelectedRole}
                 options={roles}
               />
-            </div>
+            </div> */}
           </DialogBody>
           <DialogFooter placeholder={""}>
             <Button

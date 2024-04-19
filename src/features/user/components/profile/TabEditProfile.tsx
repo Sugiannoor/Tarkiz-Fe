@@ -111,7 +111,7 @@ const TabEditProfile = () => {
       </div>
       <Input
         crossOrigin={""}
-        type="number"
+        type="string"
         variant="static"
         id="number_phone"
         name="number_phone"

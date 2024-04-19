@@ -35,7 +35,7 @@ export const deleteUser = async (id: number) => {
         formData.append('image_path', data.image_path as File);
     }
 
-    const response = await axios.post("/api/users", formData);
+    const response = await axios.post("/api/users/update", formData);
     return response.data;
   }
 
