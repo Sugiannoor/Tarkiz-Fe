@@ -56,7 +56,7 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.message;
-        const errorMessages = Object.values(errors).map((error:string) => error);
+        const errorMessages = Object.values(errors).map((error: string) => error);
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -72,8 +72,8 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     setEndDate("");
     setSelectedProduct(undefined);
     setSelectedUser(undefined);
-    setDescription ("")
-    setPrice ("")
+    setDescription("")
+    setPrice("")
     setContractName("");
   };
   const handleCancel = () => {
@@ -124,19 +124,19 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
               onChange={(e) => setContractName(e.target.value)}
             />
             <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
-             Nominal
-           </div>
-           <Input
-             crossOrigin={""}
-             type="number"
-             variant="static"
-             id="price"
-             name="price"
-             placeholder="Nominal"
-             value={price}
-             min={0}
-             onChange={(e) => setPrice(e.target.value)}
-           />
+              Nominal
+            </div>
+            <Input
+              crossOrigin={""}
+              type="number"
+              variant="static"
+              id="price"
+              name="price"
+              placeholder="Nominal"
+              value={price}
+              min={0}
+              onChange={(e) => setPrice(e.target.value)}
+            />
             <div className="my-5">
               <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
                 Nama Client
@@ -186,20 +186,20 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
             />
             <div className="mt-2">
               <label
-               htmlFor="description"
-               className="text-lg text-[#005697] font-normal font-poppins"
-               >
-               Deskripsi
-             </label>
-             <Textarea
-               className="mt-2"
-               placeholder="Deskripsi"
-               variant="outlined"
-               id="description"
-               name="description"
-               value={description}
-               onChange={(e)=> setDescription (e.target.value)}
-               />
+                htmlFor="description"
+                className="text-lg text-[#005697] font-normal font-poppins"
+              >
+                Deskripsi
+              </label>
+              <Textarea
+                className="mt-2"
+                placeholder="Deskripsi"
+                variant="outlined"
+                id="description"
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
           </DialogBody>
           <DialogFooter placeholder={""}>

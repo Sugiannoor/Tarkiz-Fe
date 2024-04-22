@@ -3,31 +3,31 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
-import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
+import { UpdateStatusComplaint, getComplaintById } from "../api/users/complaint";
 import toast from "react-hot-toast";
 import Loading from "@/Components/Loading";
 
-interface Option  {
+interface Option {
   value: string,
   label: string,
 }
 
 const UpdateComplaintForm = () => {
-  const queryClient = useQueryClient ();
-  const {idParams} = useParams ();
+  const queryClient = useQueryClient();
+  const { idParams } = useParams();
   const id = Number(idParams)
   const navigate = useNavigate();
   const [selectedStatus, setSelectedStatus] = useState<Option>()
   const [selectUrgensi, setSelectUrgensi] = useState<Option>()
- 
-  const {data: dataComplaint, isLoading: isDataComplaint}= useQuery ({
+
+  const { data: dataComplaint, isLoading: isDataComplaint } = useQuery({
     queryKey: ["table-complaint", id],
-    queryFn: ()=> getComplaintById (id)
+    queryFn: () => getComplaintById(id)
   })
 
-  useEffect (()=> {
-    if (dataComplaint){
-      setFormData ({
+  useEffect(() => {
+    if (dataComplaint) {
+      setFormData({
         username: dataComplaint.username ?? "",
         phone_number: dataComplaint.number_phone ?? "",
         contract_code: dataComplaint.contracts_id ?? "",
@@ -35,10 +35,10 @@ const UpdateComplaintForm = () => {
         description: dataComplaint.description ?? "",
         name_apk: dataComplaint.name_apk ?? "",
       })
-      setSelectUrgensi (dataComplaint.selected_urgensi ?? [])
-      setSelectedStatus  (dataComplaint.selected_status ?? [])
+      setSelectUrgensi(dataComplaint.selected_urgensi ?? [])
+      setSelectedStatus(dataComplaint.selected_status ?? [])
     }
-  },[dataComplaint])
+  }, [dataComplaint])
   const [formData, setFormData] = useState({
     username: "",
     phone_number: "",
@@ -61,7 +61,7 @@ const UpdateComplaintForm = () => {
       label: "Selesai",
     },
   ];
-  const optionUrgensi= [
+  const optionUrgensi = [
     {
       value: "baru",
       label: "Baru",
@@ -82,14 +82,14 @@ const UpdateComplaintForm = () => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdateStatusComplaint,
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey:['table-complaint']});
+      queryClient.invalidateQueries({ queryKey: ['table-complaint'] });
       toast.success("Status berhasil diperbaharui");
-      navigate ("/keluhan")
+      navigate("/keluhan")
     },
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.message;
-        const errorMessages = Object.values(errors).map((error:string) => error);
+        const errorMessages = Object.values(errors).map((error: string) => error);
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -101,7 +101,7 @@ const UpdateComplaintForm = () => {
     }
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault ();
+    e.preventDefault();
     const status = selectedStatus?.value;
     const urgensi = selectUrgensi?.value;
     const name = formData.name
@@ -115,9 +115,9 @@ const UpdateComplaintForm = () => {
       description,
       urgensi,
     }
-    await mutateAsync (dataSubmit)
+    await mutateAsync(dataSubmit)
   }
-  if (isDataComplaint) return <Loading/>
+  if (isDataComplaint) return <Loading />
   return (
     <div className="bg-white p-5 rounded-lg">
       <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row lg:gap-5 justify-between">
@@ -193,19 +193,19 @@ const UpdateComplaintForm = () => {
             disabled
           />
           <div
-              className="text-lg text-[#005697] font-normal font-poppins mt-4"
-            >
-              Deskripsi
-            </div>
-            <Textarea
-              disabled
-              className="mt-2"
-              placeholder="Deskripsi"
-              variant="outlined"
-              id="description"
-              name="description"
-              value={formData.description}
-            />
+            className="text-lg text-[#005697] font-normal font-poppins mt-4"
+          >
+            Deskripsi
+          </div>
+          <Textarea
+            disabled
+            className="mt-2"
+            placeholder="Deskripsi"
+            variant="outlined"
+            id="description"
+            name="description"
+            value={formData.description}
+          />
           <div className="flex justify-end mt-10">
             <Button
               placeholder={""}
