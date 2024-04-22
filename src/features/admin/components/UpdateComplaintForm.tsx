@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
-import { UpdateStatusComplaint, getComplaintById } from "../api/users/complaint";
+import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
 import toast from "react-hot-toast";
 import Loading from "@/Components/Loading";
 
