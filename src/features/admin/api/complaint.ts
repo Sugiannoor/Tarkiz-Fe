@@ -38,3 +38,8 @@ export const UpdateStatusComplaint = async (data: StatusComplaint) => {
   const response = await axios.post("/api/complaints/update", formData);
   return response.data
 }
+
+export const getComplaintByUser = async () => {
+  const response = await axios.get("/api/complaints/user");
+  return response.data.data;
+};

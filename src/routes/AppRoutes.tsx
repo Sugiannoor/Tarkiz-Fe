@@ -23,6 +23,7 @@ import { ContractPrint } from "@/features/admin/components/ContractPrint";
 import TagTypeManagment from "@/features/admin/pages/TagTypeManagment";
 import { LoginRoutes } from "./LoginRoutes";
 import { LandingRoutes } from "./LandingRoutes";
+import { DetailProduct } from "@/features/product/components/DetailProduct";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ export const AppRoutes: React.FC = () => {
         <Route element={<LandingRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/product/web" element={<WebProduct />} />
+          <Route path="/product/web/:id" element={<DetailProduct/>} />
           <Route path="/product/android" element={<AndroidProduct />} />
           <Route path="/product/consultant" element={<ConsultantProduct />} />
           <Route path="/product/maintance" element={<MaintanceProduct />} />
@@ -59,8 +61,8 @@ export const AppRoutes: React.FC = () => {
             path="/profile/keluhan/detail/:id"
             element={<DetailComplaint />}
           />
-          <Route path="*" element={<UnderProgress />} />
         </Route>
+          <Route path="*" element={<UnderProgress />} />
       </Routes>
     </Router>
   );

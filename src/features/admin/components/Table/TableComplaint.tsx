@@ -23,7 +23,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
 
   const columns: ColumnDef<ComplaintTableType>[] = [
     {
-      header: "No",
+    header: "No",
       accessorKey: "no",
     },
     {

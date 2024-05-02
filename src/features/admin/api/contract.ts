@@ -1,5 +1,7 @@
 import { axios } from "@/lib/axios";
 import { ContractForm, editContractForm } from "../types/crudContract";
+import { ContractTableType } from "../types/contractTable";
+import { GeneralResponse } from "@/types/general";
 
 export const deleteContract = async (id: number) => {
   const response = await axios.delete("/api/admin/contracts", {
@@ -29,3 +31,8 @@ export const getAllContract = async () => {
   const response = await axios.get("/api/admin/contracts");
   return response.data.data;
 };
+
+export const getContractByUser = async () => {
+  const response = await axios.get<GeneralResponse<ContractTableType[]>>("/api/users/contracts/users");
+  return response.data.data;
+}

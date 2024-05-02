@@ -1,9 +1,9 @@
 import { Spotlight } from "@/Components/UI/Spotlights";
 
 type props = {
-  title: string;
-  subTitle: string;
-  description: string;
+  title?: string;
+  subTitle?: string;
+  description?: string;
 }
 
 export const SpootlightsHome = ({title, subTitle, description}: props) => {

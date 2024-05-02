@@ -10,7 +10,8 @@ import { Link, useParams } from "react-router-dom";
 import { createComplaint } from "../api/createComplaint";
 
 const CreateComplaint = () => {
-  const {id} = useParams ()
+  const {id} = useParams ();
+  const contractId = Number(id)
   const [formData, setFormData] = useState ({
     name: "",
     description: ""
@@ -53,7 +54,7 @@ const CreateComplaint = () => {
     const { name, description } = formData;
 
     const dataSubmit = {
-    id,
+    contractId,
      name,
      description,
      files,

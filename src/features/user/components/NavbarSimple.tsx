@@ -55,8 +55,8 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className="p-1 font-medium text-sm font-raleway text-black"
         placeholder={""}
       >
-        <a href="#product" className="flex items-center">
-          Product
+        <a href="/portofolio" className="flex items-center">
+          Portofolio
         </a>
       </Typography>
       <Typography
@@ -150,6 +150,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
+          <Authorization roles={["Users","Admin"]}>
             <Link to="/login" className="w-full">
               <Button
                 fullWidth
@@ -162,6 +163,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
                 <span>LogIn</span>
               </Button>
             </Link>
+            </Authorization>
           </div>
         </Collapse>
       </Navbar>

@@ -8,27 +8,31 @@ import {
 import { useState } from "react";
 import { DetailContract } from "../modal/DetailContract";
 import { Link } from "react-router-dom";
+import { getContractByUser } from "@/features/admin/api/contract";
+import { useQuery } from "react-query";
+import Loading from "@/Components/Loading";
+
+
 
 const TabContract = () => {
   const [selectedId, setSelectedId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
 
   const handleModal = () => setOpen(!open);
-  const contractData = [
-    {
-      id: 123456,
-      name: "UI/UX Review Check",
-      program: "Program A",
-    },
-    {
-      id: 12156,
-      name: "Web Development",
-      program: "Program B",
-    },
-  ];
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["table-contract"],
+    queryFn: getContractByUser,
+  });
+
+  if (isLoading || isError ) {
+    return <Loading/>
+  }
+  if (data?.length === 0) {
+    return <div>Data Tidak Tersedia</div>
+  }
   return (
     <div>
-      {contractData.map(({ id, name, program }) => (
+      {data?.map(({ name, id, description }) => (
         <Card key={id} placeholder={""} className="mt-6 w-full">
           <CardBody placeholder={""}>
             <Typography
@@ -41,7 +45,7 @@ const TabContract = () => {
             </Typography>
             <Typography placeholder={""} className="font-poppins font-normal">
               Contract ID: {id} <br />
-              Program: {program} <br />
+              Program: {description} <br />
             </Typography>
           </CardBody>
           <CardFooter
