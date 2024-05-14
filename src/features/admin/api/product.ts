@@ -17,7 +17,7 @@ export const createProduct = async (data: CreateProduct) => {
   }
   if (data.gallery && data.gallery.length > 0) {
     data.gallery.forEach((documentation) => {
-      formData.append(`gallery`, documentation.file);
+      formData.append(`gallery[]`, documentation.file);
     });
 }
   // Melakukan permintaan POST dengan FormData
