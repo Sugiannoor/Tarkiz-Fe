@@ -14,7 +14,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { createProduct, getTag, getType } from "../../api/product";
 import toast from "react-hot-toast";
 import { FilePondFile } from "filepond";
-import { CreateProduct} from "../../types/crudProduct";
+import { CreateProduct } from "../../types/crudProduct";
 import Select from "react-select";
 
 interface Option {
@@ -29,8 +29,9 @@ type props = {
 export const CreateProductModal = ({ open, handleOpen }: props) => {
   const queryClient = useQueryClient();
   const [file, setFile] = useState<FilePondFile>();
-  const [program, setProgram] = useState ("");;
-  const [description, setDescription] = useState ("");
+  const [files, setFiles] = useState<FilePondFile[]>();
+  const [program, setProgram] = useState("");
+  const [description, setDescription] = useState("");
   const [selectedTag, setSelectedTag] = useState<Option[]>([]);
   const [selectedType, setSelectedType] = useState<Option>();
   const { data: tags, isLoading: tagLoading } = useQuery({
@@ -41,9 +42,11 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
     queryKey: ["type"],
     queryFn: getType,
   });
-
+  const handleFileChange = (fileItems: FilePondFile[]) => {
+    setFiles(fileItems);
+  };
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: createProduct, 
+    mutationFn: createProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["table-product"],
@@ -59,7 +62,9 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.errors;
-        const errorMessages = Object.values(errors).map((error:string) => error);
+        const errorMessages = Object.values(errors).map(
+          (error: string) => error
+        );
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -68,24 +73,26 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const idTag = selectedTag?.map(tag => tag.value) ?? [];
-    const idType = selectedType?.value
+    const idTag = selectedTag?.map((tag) => tag.value) ?? [];
+    const idType = selectedType?.value;
     const data: CreateProduct = {
       program: program,
       description: description,
       tag: idTag,
       type: idType,
       photo: file,
+      gallery: files
     };
-    await mutateAsync (data);
+    await mutateAsync(data);
   };
   const handleCancel = () => {
     setFile(undefined);
+    setFiles (undefined)
     setProgram("");
     setDescription("");
     setSelectedTag([]);
@@ -96,7 +103,13 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
 
   return (
     <>
-      <Dialog placeholder={""} size="lg" open={open} handler={handleOpen} dismiss={{escapeKey: false, outsidePress: false}}>
+      <Dialog
+        placeholder={""}
+        size="lg"
+        open={open}
+        handler={handleOpen}
+        dismiss={{ escapeKey: false, outsidePress: false }}
+      >
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
           Tambah Produk
         </DialogHeader>
@@ -116,7 +129,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               name="product"
               placeholder="Nama Produk / Aplikasi"
               value={program}
-              onChange={(e)=> setProgram(e.target.value)}
+              onChange={(e) => setProgram(e.target.value)}
             />
             <div className="my-5">
               <div className="text-lg text-[#005697] font-normal font-poppins">
@@ -155,7 +168,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               id="description"
               name="description"
               value={description}
-              onChange={(e)=> setDescription (e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
             />
             <div className="mt-2">
               <label
@@ -174,15 +187,28 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                     setFile(undefined);
                   }
                 }}
-                acceptedFileTypes={[
-                  "image/jpeg",
-                  "image/png",
-                ]}
+                acceptedFileTypes={["image/jpeg", "image/png"]}
                 dropOnPage
                 maxFiles={1}
                 allowMultiple={false}
                 dropValidation
               />
+              <div className="mt-2">
+               <label
+                htmlFor="files"
+                className="text-lg text-[#005697] font-normal font-poppins"
+                >
+                Gallery Product
+              </label>
+              <FilePond
+                name="files"
+                dropOnPage
+                onupdatefiles={handleFileChange}
+                allowMultiple
+                maxFiles={3}
+                acceptedFileTypes={["image/jpeg", "image/png"]} 
+                />
+                </div>
             </div>
           </DialogBody>
           <DialogFooter placeholder={""}>

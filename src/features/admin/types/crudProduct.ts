@@ -6,6 +6,7 @@ export type CreateProduct = {
     type: number | undefined;
     tag: number[];
     photo: FilePondFile | undefined
+    gallery: FilePondFile[] | undefined
 }
 export type UpdateProduct = CreateProduct & {
     id: number

@@ -14,4 +14,5 @@ export type GetProductById = {
     type: string;
     description: string;
     tags: string[];
+    gallery: []
 }

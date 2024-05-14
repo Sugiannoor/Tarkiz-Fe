@@ -1,7 +1,6 @@
-import src from "node_modules/react-select/dist/declarations/src";
 
 type param = {
-    data: string[]
+    data: string[] | undefined
 }
 export function GalleryProduct({data}: param) {
     return (

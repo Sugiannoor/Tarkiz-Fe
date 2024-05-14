@@ -10,6 +10,7 @@ import {
 import { GetProduct } from "../types/product";
 import ModalDetail from "./ModalDetail";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type ProductProps = {
   dataProduct?: GetProduct;
@@ -231,17 +232,15 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
             </div>
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
+            <Link to={`${product.id}`}>
             <Button
               placeholder={""}
               size="lg"
               fullWidth={true}
-              onClick={() => {
-                setSelectedId(product.id);
-                handleOpen();
-              }}
-            >
+              >
               Selengkapnya
             </Button>
+              </Link>
           </CardFooter>
         </Card>
       ))}

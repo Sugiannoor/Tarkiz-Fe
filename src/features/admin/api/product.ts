@@ -15,7 +15,11 @@ export const createProduct = async (data: CreateProduct) => {
   if (data.photo) {
     formData.append("photo", data.photo.file);
   }
-
+  if (data.gallery && data.gallery.length > 0) {
+    data.gallery.forEach((documentation) => {
+      formData.append(`gallery`, documentation.file);
+    });
+}
   // Melakukan permintaan POST dengan FormData
   const response = await axios.post("/api/admin/products", formData);
   return response.data;
