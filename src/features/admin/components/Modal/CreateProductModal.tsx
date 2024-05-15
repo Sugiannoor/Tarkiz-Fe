@@ -86,13 +86,13 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
       tag: idTag,
       type: idType,
       photo: file,
-      gallery: files
+      gallery: files,
     };
     await mutateAsync(data);
   };
   const handleCancel = () => {
     setFile(undefined);
-    setFiles (undefined)
+    setFiles(undefined);
     setProgram("");
     setDescription("");
     setSelectedTag([]);
@@ -175,6 +175,30 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                 htmlFor="file"
                 className="text-lg text-[#005697] font-normal font-poppins"
               >
+                Foto Kegiatan
+              </label>
+              <FilePond
+                id="file"
+                name="file"
+                onupdatefiles={(fileItems) => {
+                  if (fileItems.length > 0) {
+                    setFile(fileItems[0]);
+                  } else {
+                    setFile(undefined);
+                  }
+                }}
+                acceptedFileTypes={["image/jpeg", "image/png"]}
+                dropOnPage
+                maxFiles={1}
+                allowMultiple={false}
+                dropValidation
+              />
+            </div>
+            <div className="mt-2">
+              <label
+                htmlFor="file"
+                className="text-lg text-[#005697] font-normal font-poppins"
+              >
                 Gambar Produk
               </label>
               <FilePond
@@ -194,21 +218,21 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                 dropValidation
               />
               <div className="mt-2">
-               <label
-                htmlFor="files"
-                className="text-lg text-[#005697] font-normal font-poppins"
+                <label
+                  htmlFor="files"
+                  className="text-lg text-[#005697] font-normal font-poppins"
                 >
-                Gallery Product
-              </label>
-              <FilePond
-                name="files"
-                dropOnPage
-                onupdatefiles={handleFileChange}
-                allowMultiple
-                maxFiles={3}
-                acceptedFileTypes={["image/jpeg", "image/png"]} 
+                  Gallery Product
+                </label>
+                <FilePond
+                  name="files"
+                  dropOnPage
+                  onupdatefiles={handleFileChange}
+                  allowMultiple
+                  maxFiles={3}
+                  acceptedFileTypes={["image/jpeg", "image/png"]}
                 />
-                </div>
+              </div>
             </div>
           </DialogBody>
           <DialogFooter placeholder={""}>
