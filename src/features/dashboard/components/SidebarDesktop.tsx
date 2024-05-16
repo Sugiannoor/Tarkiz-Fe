@@ -1,7 +1,7 @@
 import useAuth from "@/hooks/useAuth";
 import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 import { BiLogOut } from "react-icons/bi";
-import { FaCreditCard, FaHome, FaUserTimes } from "react-icons/fa";
+import { FaCreditCard, FaHistory, FaHome, FaUserTimes } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 import { MdOutlineScreenShare } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -59,6 +59,14 @@ export const SidebarDesktop = () => {
               Manajemen Kontrak
             </ListItem>
           </Link>
+          <Link to={"/portofolio"}>
+            <ListItem placeholder={""} className="font-poppins p-5">
+              <ListItemPrefix placeholder={""}>
+                <FaHistory className="h-5 w-5" />
+              </ListItemPrefix>
+              Manajemen Portofolio
+            </ListItem>
+            </Link>
           <hr className="my-2 border-blue-gray-50" />
           <ListItem
             placeholder={""}

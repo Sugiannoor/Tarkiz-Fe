@@ -21,7 +21,7 @@ const PortofoliotManagment = () => {
             href="/kontrak"
             className="font-poppins text-white hover:text-gray-300 transition-colors duration-300 ease-in-out"
           >
-            Manajemen Kontrak
+            Manajemen Portofolio
           </a>
         </Breadcrumbs>
       </div>

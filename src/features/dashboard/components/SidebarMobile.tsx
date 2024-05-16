@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { BiLogOut } from "react-icons/bi";
-import { FaBars, FaCreditCard, FaHome, FaUserTimes } from "react-icons/fa";
+import { FaBars, FaCreditCard, FaHistory, FaHome, FaUserTimes } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 import { MdOutlineScreenShare } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -68,6 +68,14 @@ export const SidebarMobile = () => {
                 <FaCreditCard className="h-5 w-5" />
               </ListItemPrefix>
               Manajemen Kontrak
+            </ListItem>
+            </Link>
+            <Link to={"/portofolio"}>
+            <ListItem placeholder={""} className="font-poppins p-5">
+              <ListItemPrefix placeholder={""}>
+                <FaHistory className="h-5 w-5" />
+              </ListItemPrefix>
+              Manajemen Portofolio
             </ListItem>
             </Link>
             <hr className="my-2 border-blue-gray-50" />
