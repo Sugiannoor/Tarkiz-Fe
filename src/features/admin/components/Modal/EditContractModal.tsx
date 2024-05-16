@@ -60,7 +60,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
   };
   const { data: dataContract, isLoading: isContractLoading } =
     useQuery<DataContract>({
-      queryKey: ["contract-edit", id],
+      queryKey: ["contract", id],
       queryFn: () => getContractById(id),
     });
   

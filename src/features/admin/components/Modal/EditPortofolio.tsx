@@ -8,7 +8,6 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { getContractById } from "../../api/contract";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getLabelProduct } from "../../api/product";
 import Select from "react-select";
@@ -37,7 +36,6 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   const [endDate, setEndDate] = useState("");
   const [files, setFiles] = useState<FilePondFile[]>();
   const [file, setFile] = useState<FilePondFile>();
-
   const [selectedProduct, setSelectedProduct] = useState<Option>();
   const [selectedUser, setSelectedUser] = useState<Option>();
   const [portofolioName, setPortofolioName] = useState("");
@@ -55,7 +53,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   };
   const { data: dataPortofolio, isLoading: isPortofolioLoading } =
     useQuery<PortofolioUpdate>({
-      queryKey: ["table-portofolio", id],
+      queryKey: ["portofolio", id],
       queryFn: () => getPortofolioById(id),
     });
 
@@ -82,7 +80,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdatePortofolio,
     onSuccess: () => {
-      queryClient.invalidateQueries("table-contract");
+      queryClient.invalidateQueries("table-portofolio");
       toast.success("Portofolio berhasil diperbaharui");
       handleOpen();
     },
@@ -162,8 +160,8 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                 Nama Client
               </div>
               <Select
-                defaultValue={selectedUser}
-                onChange={setSelectedProduct}
+                value={selectedUser}
+                onChange={setSelectedUser}
                 options={dataUser}
                 isLoading={isUserLoading}
               />
@@ -172,14 +170,14 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                   Product
                 </div>
                 <Select
-                  defaultValue={selectedProduct}
+                  value={selectedProduct}
                   onChange={setSelectedProduct}
                   options={dataProduct}
                   isLoading={isProductLoading}
                 />
               </div>
               <div className="text-lg text-[#005697] font-normal font-poppins">
-                Tanggal Portofolio
+                Tanggal Kegiatan
               </div>
               <Input
                 crossOrigin={""}
