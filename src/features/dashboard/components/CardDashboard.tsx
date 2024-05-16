@@ -19,7 +19,7 @@ const CardDashboard = () => {
           Total Pengguna
         </Typography>
         <Typography  placeholder={""} className="ml-5 text-sm lg:text-xl font-semibold font-poppins">
-          22.5%
+          22
         </Typography>
         </div>
       </CardBody>
