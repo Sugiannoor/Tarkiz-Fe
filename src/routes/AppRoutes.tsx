@@ -25,6 +25,7 @@ import { LoginRoutes } from "./LoginRoutes";
 import { LandingRoutes } from "./LandingRoutes";
 import { DetailProduct } from "@/features/product/components/DetailProduct";
 import PortofoliotManagment from "@/features/admin/pages/PortofolioManagment";
+import PortofolioPage from "@/features/product/pages/PortofolioPage";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -38,6 +39,7 @@ export const AppRoutes: React.FC = () => {
         {/* Landing Page  */}
         <Route element={<LandingRoutes />}>
           <Route path="/" element={<Home />} />
+          <Route path="/portofolio" element={<PortofolioPage />} />
           <Route path="/product/web" element={<WebProduct />} />
           <Route path="/product/web/:id" element={<DetailProduct/>} />
           <Route path="/product/android" element={<AndroidProduct />} />

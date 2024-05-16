@@ -10,9 +10,10 @@ import {
   TabsHeader,
 } from "@material-tailwind/react";
 import { SpootlightsHome } from "@/features/user/components";
-import Loading from "@/Components/Loading";
 import { GalleryProduct } from "./GalleryProduct";
-import { TabDetailProduct } from "./TabDetailProduct";
+import { AllPortofolio } from "./AllPortofolio";
+import Loading from "@/Components/Loading";
+import { Portofolio } from "../types/portofolio";
 
 export const DetailProduct = () => {
   const { id } = useParams();
@@ -22,6 +23,13 @@ export const DetailProduct = () => {
     isLoading: isProductLoading,
     isError,
   } = useQuery<GetProductById>({
+    queryKey: ["product", id],
+    queryFn: () => getProductById(idNum),
+  });
+  const {
+    data: portofolio,
+    isLoading: isPortofolio,
+  } = useQuery<Portofolio[]>({
     queryKey: ["product", id],
     queryFn: () => getProductById(idNum),
   });
@@ -43,13 +51,6 @@ export const DetailProduct = () => {
           className=" p-5 lg:p-0 lg:w-[80rem]"
         >
           <TabsHeader placeholder={""}>
-            <Tab
-              value={"detail"}
-              placeholder={""}
-              className="font-poppins text-sm lg:text-lg"
-            >
-              Detail
-            </Tab>
             <Tab
               value={"portofolio"}
               placeholder={""}
@@ -73,13 +74,6 @@ export const DetailProduct = () => {
               unmount: { y: 250 },
             }}
           >
-            <TabPanel value={"detail"}>
-            {dataProduct?.description == undefined ? (
-                <div>Tidak Tersedia</div>
-              ): (
-              <GalleryProduct data={dataProduct?.gallery} />
-              )}
-            </TabPanel>
             <TabPanel value={"gallery"}>
               {dataProduct?.gallery == undefined ? (
                 <div>Tidak Tersedia</div>
@@ -87,7 +81,9 @@ export const DetailProduct = () => {
               <GalleryProduct data={dataProduct?.gallery} />
               )}
             </TabPanel>
-            <TabPanel value={"portofolio"}>Portofolio</TabPanel>
+            <TabPanel value={"portofolio"}>
+              <AllPortofolio data={portofolio} isLoading={isPortofolio}/>
+            </TabPanel>
           </TabsBody>
         </Tabs>
       </div>
