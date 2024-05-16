@@ -116,7 +116,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
         className="h-[95%] overflow-y-scroll"
       >
         <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
-          Tambah Kontrak
+          Tambah Portofolio
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <DialogBody placeholder={""} className="p-10">
@@ -132,20 +132,6 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
               placeholder="Judul Kontrak"
               value={portofolioName}
               onChange={(e) => setportofolioName(e.target.value)}
-            />
-            <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
-              Nominal
-            </div>
-            <Input
-              crossOrigin={""}
-              type="number"
-              variant="static"
-              id="price"
-              name="price"
-              placeholder="Nominal"
-              value={price}
-              min={0}
-              onChange={(e) => setPrice(e.target.value)}
             />
             <div className="my-5">
               <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
