@@ -17,7 +17,7 @@ import { getLabelUser } from "../../api/user";
 import Loading from "@/Components/Loading";
 import { PortofolioDto, PortofolioUpdate } from "../../types/portofolioTable";
 import { FilePondFile } from "filepond";
-import { UpdatePortofolio } from "../../api/portofolio";
+import { UpdatePortofolio, getPortofolioById } from "../../api/portofolio";
 import { FilePond } from "react-filepond";
 import { FaFileAlt } from "react-icons/fa";
 
@@ -55,8 +55,8 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   };
   const { data: dataPortofolio, isLoading: isPortofolioLoading } =
     useQuery<PortofolioUpdate>({
-      queryKey: ["contract-edit", id],
-      queryFn: () => getContractById(id),
+      queryKey: ["table-portofolio", id],
+      queryFn: () => getPortofolioById(id),
     });
 
   const { data: dataUser, isLoading: isUserLoading } = useQuery({

@@ -62,3 +62,8 @@ export const getPortofolioById = async (id: number) => {
   });
   return response.data.data;
 };
+
+export const getAllPortofolio = async () => {
+  const response = await axios.get("/api/admin/portofolio/all");
+  return response.data.data;
+};

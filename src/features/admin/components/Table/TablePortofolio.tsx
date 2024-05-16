@@ -5,10 +5,10 @@ import { TableProps } from "@/features/user/types/tableParams";
 import { RiEditBoxLine } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { getAllContract } from "../../api/contract";
 import { PortofolioTableType } from "../../types/portofolioTable";
 import { DeletePortofolioModal } from "../Modal/DeletePortofolio";
 import { EditPortofolioModal } from "../Modal/EditPortofolio";
+import { getAllPortofolio } from "../../api/portofolio";
 
 const TablePortofolio = ({ searchValue, setSearchValue }: TableProps) => {
   const [selectedId, setSelectedId] = useState(0);
@@ -19,8 +19,8 @@ const TablePortofolio = ({ searchValue, setSearchValue }: TableProps) => {
   const handleEdit = () => setIsEdit(!isEdit);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["table-contract"],
-    queryFn: getAllContract,
+    queryKey: ["table-portofolio"],
+    queryFn: getAllPortofolio
   });
 
   const columns: ColumnDef<PortofolioTableType>[] = [
