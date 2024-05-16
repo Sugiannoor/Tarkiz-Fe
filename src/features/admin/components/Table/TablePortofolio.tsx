@@ -10,7 +10,7 @@ import { PortofolioTableType } from "../../types/portofolioTable";
 import { DeletePortofolioModal } from "../Modal/DeletePortofolio";
 import { EditPortofolioModal } from "../Modal/EditPortofolio";
 
-const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
+const TablePortofolio = ({ searchValue, setSearchValue }: TableProps) => {
   const [selectedId, setSelectedId] = useState(0);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -92,4 +92,4 @@ const TableContract = ({ searchValue, setSearchValue }: TableProps) => {
   );
 };
 
-export default TableContract;
+export default TablePortofolio;

@@ -24,6 +24,7 @@ import TagTypeManagment from "@/features/admin/pages/TagTypeManagment";
 import { LoginRoutes } from "./LoginRoutes";
 import { LandingRoutes } from "./LandingRoutes";
 import { DetailProduct } from "@/features/product/components/DetailProduct";
+import PortofoliotManagment from "@/features/admin/pages/PortofolioManagment";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -51,6 +52,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="/product" element={<ProductManagment />} />
           <Route path="/keluhan" element={<ComplaintManagment />} />
           <Route path="/kontrak" element={<ContractManagment />} />
+          <Route path="/portofolio" element={<PortofoliotManagment />} />
           <Route path="/keluhan/edit/:idParams" element={<UpdateComplaint />} />
           <Route path="/tagtype" element={<TagTypeManagment />} />
         </Route>
