@@ -28,7 +28,7 @@ export const CreatePortofolio = async (data: PortofolioDto) => {
       formData.append(`gallery[]`, documentation.file);
     });
   }
-  const response = await axios.put("/api/admin/portofolio", formData);
+  const response = await axios.post("/api/admin/portofolio", formData);
   return response.data;
 };
 export const UpdatePortofolio = async (data: PortofolioDto) => {

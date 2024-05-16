@@ -232,7 +232,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                     <FaFileAlt size={20} className="text-[#005697]" />
                     <a
                       href={`${import.meta.env.VITE_API_BASE_URL}/${
-                        dataPortofolio.path_file
+                        dataPortofolio.path_files
                       }}`}
                       target="_blank"
                       className="text-md font-poppins font-normal"
