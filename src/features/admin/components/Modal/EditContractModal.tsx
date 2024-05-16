@@ -174,7 +174,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
                 Nama Client
               </div>
               <Select
-                defaultValue={selectedUser}
+                value={selectedUser}
                 onChange={setSelectedProduct}
                 options={dataUser}
                 isLoading={isUserLoading}
@@ -184,7 +184,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
                   Product
                 </div>
                 <Select
-                  defaultValue={selectedProduct}
+                  value={selectedProduct}
                   onChange={setSelectedProduct}
                   options={dataProduct}
                   isLoading={isProductLoading}
