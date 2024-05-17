@@ -55,7 +55,7 @@ export const UpdatePortofolio = async (data: PortofolioDto) => {
 };
 
 export const getPortofolioById = async (id: number) => {
-  const response = await axios.get("/api/admin/portofolio/show", {
+  const response = await axios.get("/dashboard/portofolio/show", {
     params: {
       id,
     },
