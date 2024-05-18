@@ -1,0 +1,34 @@
+image : node:18-alpine3.18
+#
+default:
+  before_script:
+    - apk update
+    - apk add --no-cache openssh-client openssh sshpass zip
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_DEPLOY_KEY" | tr -d '\r' | ssh-add -
+    - ssh-keyscan $SSH_DEPLOY_URL >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+stages:
+  - build
+
+
+build:
+  tags:
+  - arm64
+  stage: build
+  script:
+    - ls
+    - pwd
+    - echo "VITE_API_URL = https://backend.t-paz.com" > .env 
+    - yarn install
+    - yarn build
+    - pwd
+    - zip -r tarkiz-frontend.zip dist
+    - scp tarkiz-frontend.zip $SSH_DEPLOY_USER@$SSH_DEPLOY_URL:$SSH_HOME_URL
+    - sshpass -v ssh -t "$SSH_DEPLOY_USER@$SSH_DEPLOY_URL" 'sudo rm -rf tarkiz-frontend; mkdir tarkiz-frontend; sudo unzip tarkiz-frontend.zip -d tarkiz-frontend; cd /var/www/virtual/t-paz.com/; sudo rm -rf dist.bak; sudo mv dist dist.bak; cd /home/ubuntu/tarkiz-frontend; sudo cp -r dist /var/www/virtual/t-paz.com/;'
+
+
+
