@@ -5,6 +5,6 @@ export const getChart = async () => {
     return response.data.data;
   };
 export const getDashboard = async () => {
-    const response = await axios.get("/dashboard/data");
+    const response = await axios.get("/dashboard/total");
     return response.data.data;
   };

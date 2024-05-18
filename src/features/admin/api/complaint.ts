@@ -10,7 +10,7 @@ export const deleteComplaint = async (id: number) => {
 };
 
 export const getComplaintById = async (id: number) => {
-  const response = await axios.get("/api/users/complaints", {
+  const response = await axios.get("/dashboard/complaints", {
     params: {
       id,
     },
@@ -18,7 +18,7 @@ export const getComplaintById = async (id: number) => {
   return response.data.data;
 };
 export const getAllComplaint = async () => {
-  const response = await axios.get("/api/complaints/all");
+  const response = await axios.get("/api/admin/complaints/all");
   return response.data.data;
 };
 type StatusComplaint = {
@@ -35,11 +35,11 @@ export const UpdateStatusComplaint = async (data: StatusComplaint) => {
   formData.append("description", data.description);
   if (data.urgensi) formData.append("urgensi", data.urgensi);
   if (data.status) formData.append("status", data.status)
-  const response = await axios.post("/api/complaints/update", formData);
+  const response = await axios.post("/dashboard/complaints/update", formData);
   return response.data
 }
 
 export const getComplaintByUser = async () => {
-  const response = await axios.get("/api/complaints/user");
+  const response = await axios.get("/dashboard/complaints/user");
   return response.data.data;
 };
