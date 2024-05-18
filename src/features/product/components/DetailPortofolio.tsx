@@ -13,7 +13,7 @@ import Loading from "@/Components/Loading";
 import { getPortofolioById, } from "@/features/admin/api/portofolio";
 import { PortofolioUpdate } from "@/features/admin/types/portofolioTable";
 
-export const DetailProduct = () => {
+export const DetailPortofolio = () => {
   const { id } = useParams();
   const idNum = Number(id);
   const {
