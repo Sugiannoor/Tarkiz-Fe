@@ -9,7 +9,9 @@ export function GalleryProduct({data}: param) {
           <div key={index}>
             <img
               className="h-40 w-full max-w-full rounded-lg object-cover object-center"
-              src={imageLink}
+              src={`${
+                import.meta.env.VITE_API_BASE_URL
+              }/${imageLink}`}
               alt="gallery-photo"
               
             />

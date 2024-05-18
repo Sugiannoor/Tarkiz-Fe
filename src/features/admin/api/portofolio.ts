@@ -62,6 +62,14 @@ export const getPortofolioById = async (id: number) => {
   });
   return response.data.data;
 };
+export const getPortofolioByIdProduct = async (id: number) => {
+  const response = await axios.get("/api/admin/portofolio/showproduct", {
+    params: {
+      id,
+    },
+  });
+  return response.data.data;
+};
 
 export const getAllPortofolio = async () => {
   const response = await axios.get("/api/admin/portofolio/all");

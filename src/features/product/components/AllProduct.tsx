@@ -232,7 +232,7 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
             </div>
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
-            <Link to={`${product.id}`}>
+            <Link to={`/product/${product.id}`}>
             <Button
               placeholder={""}
               size="lg"

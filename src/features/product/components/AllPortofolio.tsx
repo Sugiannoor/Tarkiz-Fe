@@ -7,7 +7,6 @@ import {
   Button,
   Chip,
 } from "@material-tailwind/react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Portofolio } from "../types/portofolio";
 
@@ -225,7 +224,7 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
             </div>
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
-            <Link to={`${item.id}`}>
+            <Link to={`/portofolio/${item.id}`}>
             <Button
               placeholder={""}
               size="lg"
