@@ -2,7 +2,6 @@ import { Button, Input, Textarea } from "@material-tailwind/react";
 import { useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import ImageUpload from "./ImageInput";
-import { handleError } from "@/utils/helper";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
 import { UpdateUser } from "@/features/admin/api/user";

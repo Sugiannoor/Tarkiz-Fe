@@ -39,7 +39,6 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
   const [selectedUser, setSelectedUser] = useState<Option>();
   const [portofolioName, setportofolioName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
 
   const { data: dataProduct, isLoading: isProductLoading } = useQuery({
     queryKey: ["product-label"],
@@ -79,7 +78,6 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
     setSelectedProduct(undefined);
     setSelectedUser(undefined);
     setDescription("");
-    setPrice("");
     setportofolioName("");
   };
   const handleCancel = () => {

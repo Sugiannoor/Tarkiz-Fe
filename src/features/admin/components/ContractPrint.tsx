@@ -1,8 +1,5 @@
-import Loading from '@/Components/Loading';
-import { Button } from '@material-tailwind/react';
+
 import { Page, Text, View, Document, PDFViewer, Image } from '@react-pdf/renderer';
-import { useQuery } from 'react-query';
-import { useNavigate, useParams } from 'react-router-dom';
 
 
 const DescriptionItem = ({ title, description }: { title: string; description?: string }) => (
@@ -20,29 +17,6 @@ const DescriptionItem = ({ title, description }: { title: string; description?: 
 );
 
 export const ContractPrint: React.FC = () => {
-  const { id } = useParams<'id'>();
-//   const {data, isError, isLoading} = useQuery ({
-//     queryKey:['contract', id],
-//     queryFn: ()=> 
-//   })
-  const navigate = useNavigate();
-
-//   if (isLoading)
-//     return (
-//       <div className="mt-48">
-//         <Loading/>
-//       </div>
-//     );
-
-//   if (isError)
-//     return (
-//       <div className="mt-48 text-center">
-//         <h1 className="text-lg font-bold mb-2">Service tidak ditemukan</h1>
-//         <Button placeholder={""} onClick={() => navigate(-1)}>
-//           Kembali
-//         </Button>
-//       </div>
-//     );
 
   return (
     <PDFViewer width="100%" height={1080}>

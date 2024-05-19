@@ -8,23 +8,15 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { RegistrasiType } from "@/features/register/types";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
-import { createUser, createUserByAdmin } from "@/features/register/api";
-import Select from "react-select";  
-import { getLabelRole } from "../../api/user";
+import {createUserByAdmin } from "@/features/register/api";
 
-
-type Option = {
-  value: number;
-  label: string;
-}
 type props = {
   open: boolean;
   handleOpen: () => void;
 };
 export const CreateUserModal = ({ open, handleOpen }: props) => {
-  const [selectedRole, setSelectedRole] = useState<Option>()
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState<RegistrasiType>({
     full_name: "",
@@ -95,14 +87,12 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { full_name, email, number_phone, password, username } = formData;
-    const role = selectedRole?.value
     const dataSubmit = {
       full_name,
       email,
       number_phone,
       username,
       password,
-      role
     };
     await mutateAsync(dataSubmit);
   };
@@ -204,16 +194,6 @@ export const CreateUserModal = ({ open, handleOpen }: props) => {
                 className: "before:content-none after:content-none",
               }}
             />
-             {/* <div className="my-5">
-              <div className="text-lg text-[#005697] font-normal font-poppins">
-                Kategori{" "}
-              </div>
-              <Select
-                value={selectedRole}
-                onChange={setSelectedRole}
-                options={roles}
-              />
-            </div> */}
           </DialogBody>
           <DialogFooter placeholder={""}>
             <Button

@@ -20,7 +20,7 @@ type props = {
   contractData?: ContractData;
 };
 
-export const DetailContract = ({ open, handler, id, contractData }: props) => {
+export const DetailContract = ({ open, handler, id, }: props) => {
   console.log(id);
   return (
     <>

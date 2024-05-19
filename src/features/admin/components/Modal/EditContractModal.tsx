@@ -47,14 +47,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
 
-  const resetForm = () => {
-    setContractDate("");
-    setEndDate("");
-    setSelectedProduct(undefined);
-    setSelectedUser(undefined);
-    setContractName("");
-    setPrice("");
-  };
+
   const handleCancel = () => {
     handleOpen();
   };

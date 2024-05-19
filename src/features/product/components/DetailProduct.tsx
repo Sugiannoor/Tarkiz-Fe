@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { GetProductById } from "../types/product";
-import {useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductById } from "@/features/admin/api/product";
 import {
   Tab,
@@ -27,17 +27,14 @@ export const DetailProduct = () => {
     queryKey: ["product", id],
     queryFn: () => getProductById(idNum),
   });
-  const {
-    data: portofolio,
-    isLoading: isPortofolio,
-  } = useQuery<Portofolio[]>({
+  const { data: portofolio, isLoading: isPortofolio } = useQuery<Portofolio[]>({
     queryKey: ["product", id],
     queryFn: () => getPortofolioByIdProduct(idNum),
   });
 
-  // if (isProductLoading || isError) {
-  //   return <Loading />;
-  // }
+  if (isProductLoading || isError) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -78,12 +75,16 @@ export const DetailProduct = () => {
             <TabPanel value={"gallery"}>
               {dataProduct?.gallery == undefined ? (
                 <div>Tidak Tersedia</div>
-              ): (
-              <GalleryProduct data={dataProduct?.gallery} />
+              ) : (
+                <GalleryProduct data={dataProduct?.gallery} />
               )}
             </TabPanel>
             <TabPanel value={"portofolio"}>
-              <AllPortofolio data={portofolio} isLoading={isPortofolio}/>
+              {portofolio === undefined ? (
+                <div>Portofolio Tidak Ada</div>
+              ) : (
+                <AllPortofolio data={portofolio} isLoading={isPortofolio} />
+              )}
             </TabPanel>
           </TabsBody>
         </Tabs>

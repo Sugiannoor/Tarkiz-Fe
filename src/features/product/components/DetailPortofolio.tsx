@@ -25,9 +25,9 @@ export const DetailPortofolio = () => {
     queryFn: () => getPortofolioById(idNum),
   });
 
-  // if (isPortofolioLoading || isError) {
-  //   return <Loading />;
-  // }
+  if (isPortofolioLoading || isError) {
+    return <Loading />;
+  }
 
   return (
     <>

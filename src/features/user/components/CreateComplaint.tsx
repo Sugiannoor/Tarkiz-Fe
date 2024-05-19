@@ -1,5 +1,4 @@
 import { NavbarSimple } from ".";
-import { handleError } from "@/utils/helper";
 import { Button, Input } from "@material-tailwind/react";
 import { FilePondFile } from "filepond";
 import { useState } from "react";

@@ -8,8 +8,6 @@ import {
   Chip,
 } from "@material-tailwind/react";
 import { GetProduct } from "../types/product";
-import ModalDetail from "./ModalDetail";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 type ProductProps = {
@@ -18,9 +16,6 @@ type ProductProps = {
 };
 
 export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
-  const [isDetail, setIsDetail] = useState(false);
-  const [selectedId, setSelectedId] = useState(0);
-  const handleOpen = () => setIsDetail(!isDetail);
   if (isLoading || dataProduct === undefined) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
@@ -244,7 +239,6 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           </CardFooter>
         </Card>
       ))}
-      <ModalDetail open={isDetail} handleOpen={handleOpen} id={selectedId} />
     </div>
   );
 };

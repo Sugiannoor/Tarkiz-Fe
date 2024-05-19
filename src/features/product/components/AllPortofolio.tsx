@@ -189,7 +189,7 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
           <div color="blue-gray" className="p-3 flex-grow">
             <img
               className="object-cover rounded-md"
-              src={`http://localhost:8080/${item.path_file}`}
+              src={`http://localhost:8080/${item.path_files}`}
               alt={item.program}
               onError={(e) => {
                 e.currentTarget.src =

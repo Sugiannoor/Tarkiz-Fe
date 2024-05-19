@@ -14,7 +14,7 @@ interface Props<T> {
     loading?: boolean;
   }
 const TableCustom =  <T,>(props: Props<T>) => {
-  const { items, renderItem, header, loading, metadata, onPageChange } = props;
+  const { items, renderItem, header, loading, } = props;
   const id = useId();
 
   return (

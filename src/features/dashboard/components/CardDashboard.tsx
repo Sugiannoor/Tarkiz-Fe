@@ -1,6 +1,7 @@
-import { Card, CardBody, CardFooter, Typography } from "@material-tailwind/react"
+import { Card, CardBody,Typography } from "@material-tailwind/react"
 import { useQuery } from "react-query";
 import { getDashboard } from "../api/dashboard";
+import Loading from "@/Components/Loading";
 type total = {
   total_users: number;
   total_contracts: number;
@@ -11,6 +12,8 @@ const CardDashboard = () => {
     queryKey: ["dashboard"],
     queryFn: getDashboard,
   });
+
+  if (isLoading || isError) return <Loading/>
 
   return (
     <div>
