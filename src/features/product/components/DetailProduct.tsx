@@ -45,7 +45,7 @@ export const DetailProduct = () => {
       <div className="flex justify-center mt-5">
         <Tabs
           id="custom-animation"
-          value="detail"
+          value="portofolio"
           className=" p-5 lg:p-0 lg:w-[80rem]"
         >
           <TabsHeader placeholder={""}>
