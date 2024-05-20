@@ -14,7 +14,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
     queryKey: ["table-complaint"],
     queryFn: getComplaintByUser,
   });
-  const [selectedId, setSelectedId] = useState<number> (0);
+  const [selectedId, setSelectedId] = useState<number>(0);
   const [isDelete, setIsDelete] = useState(false);
   const handleDelete = () => setIsDelete(!isDelete);
 
@@ -38,7 +38,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
     {
       header: "Urgensi",
       accessorKey: "urgensi",
-      cell: ({row}) =>  {
+      cell: ({ row }) => {
         if (row.original.urgensi === "baru") {
           return (
             <Chip
@@ -55,7 +55,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
               className="text-center font-poppins"
             />
           );
-        }else if (row.original.urgensi === "sedang") {
+        } else if (row.original.urgensi === "sedang") {
           return (
             <Chip
               variant="outlined"
@@ -63,8 +63,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
               className="text-center font-poppins"
             />
           );
-        } 
-        else if (row.original.urgensi === "tinggi") {
+        } else if (row.original.urgensi === "tinggi") {
           return (
             <Chip
               variant="outlined"
@@ -74,7 +73,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           );
         }
         return null;
-      }
+      },
     },
     {
       header: "Status",
@@ -82,7 +81,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
       cell: ({ row }) => {
         if (row.original.status === "baru") {
           return (
-            <Chip 
+            <Chip
               color="red"
               value="Baru"
               className="text-center font-poppins"
@@ -90,7 +89,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           );
         } else if (row.original.status === "proses") {
           return (
-            <Chip 
+            <Chip
               color="yellow"
               value="Proses"
               className="text-center font-poppins"
@@ -98,7 +97,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           );
         } else if (row.original.status === "selesai") {
           return (
-            <Chip 
+            <Chip
               color="green"
               value="Selesai"
               className="text-center font-poppins"
@@ -121,7 +120,10 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           <FaTrashAlt
             size={18}
             className="text-red-900 cursor-pointer"
-            onClick={()=> setSelectedId (row.original.id)}
+            onClick={() => {
+              setSelectedId(row.original.id);
+              handleDelete();
+            }}
           />
         </div>
       ),
@@ -130,7 +132,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
 
   return (
     <>
-    <DeleteComplaintModal
+      <DeleteComplaintModal
         open={isDelete}
         handleOpen={handleDelete}
         id={selectedId}
@@ -145,6 +147,5 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
     </>
   );
 };
-
 
 export default TableComplaint;
