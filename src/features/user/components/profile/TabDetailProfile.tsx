@@ -8,7 +8,7 @@ const TabDetailProfile = () => {
       <div className="flex justify-center my-28">
         <img
           className="h-48 w-48 rounded-full object-cover object-center"
-          src="/user_default.png"
+          src={user?.path_files ?? "/user_default.png"}
           alt="nature image"
         />
       </div>
