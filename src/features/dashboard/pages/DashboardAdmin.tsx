@@ -14,8 +14,6 @@ const DashboardAdmin = () => {
      <div className='font-poppins text-xl font-medium mt-2 text-white'>Dashboard</div>
      <div className='flex justify-between flex-col lg:flex-row gap-1 2xl:gap-10 mr-0 lg:mr-8'>
         <CardDashboard />
-        <CardDashboard />
-        <CardDashboard />
      </div>
      <div>
         <BarChart/>
