@@ -167,9 +167,9 @@ const UpdateComplaintForm = () => {
           />
           {dataComplaint && (
             <>
-              <div>Lampiran Complaint</div>
+              <div className="text-lg text-[#005697] font-normal font-poppins mt-4">Lampiran Complaint</div>
               <div className="flex gap-1">
-                <FaFileAlt size={20} className="text-[#005697]" />
+                <FaFileAlt size={20} className="text-[#005697] mt-2" />
                 <a
                   href={`${import.meta.env.VITE_API_BASE_URL}/${
                     dataComplaint.path_files
