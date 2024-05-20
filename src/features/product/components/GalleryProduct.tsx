@@ -19,4 +19,5 @@ export function GalleryProduct({data}: param) {
       </div>
     );
   }
+  
    
