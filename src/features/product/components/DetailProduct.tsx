@@ -27,7 +27,7 @@ export const DetailProduct = () => {
     queryKey: ["product", id],
     queryFn: () => getProductById(idNum),
   });
-  const { data: portofolio, isLoading: isPortofolio } = useQuery<Portofolio[]>({
+  const { data: portofolio, isLoading: isPortofolio, isError: isPortoError } = useQuery<Portofolio[]>({
     queryKey: ["product", id],
     queryFn: () => getPortofolioByIdProduct(idNum),
   });
@@ -35,6 +35,7 @@ export const DetailProduct = () => {
   if (isProductLoading || isError) {
     return <Loading />;
   }
+
 
   return (
     <>
@@ -80,7 +81,7 @@ export const DetailProduct = () => {
               )}
             </TabPanel>
             <TabPanel value={"portofolio"}>
-              {portofolio === undefined ? (
+              { isPortoError ? (
                 <div>Portofolio Tidak Ada</div>
               ) : (
                 <AllPortofolio data={portofolio} isLoading={isPortofolio} />
