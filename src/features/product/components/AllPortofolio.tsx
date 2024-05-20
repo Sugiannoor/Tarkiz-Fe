@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { Portofolio } from "../types/portofolio";
 
 type PortofolioProps = {
-  data?: Portofolio[];
+  data: Portofolio[];
   isLoading?: boolean;
 };
 
