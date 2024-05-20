@@ -15,8 +15,8 @@ type PortofolioProps = {
   isLoading?: boolean;
 };
 
-export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
-  if (isLoading || data === undefined) {
+export const AllPortofolio = ({ data = [], isLoading }: PortofolioProps) => {
+  if (isLoading || data.length === 0) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {[...Array(2)].map((_, index) => (
@@ -211,28 +211,32 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
             <Typography
               placeholder={""}
               color="gray"
-              className=" truncate font-poppins"
+              className="truncate font-poppins"
             >
               {item.description}
             </Typography>
-            <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5" style={{scrollbarWidth: "none"}}>
+            <div className="flex overflow-x-auto overflow-y-hidden mt-2">
+              {item.skills.map((skill, idx) => (
                 <Chip
-                  variant="outlined"
-                  value={item.start_date}
-                  className="font-raleway whitespace-nowrap"
-                />
+                  key={idx}
+                  value={skill.skill_name}
+                  variant="ghost"
+                  className="mr-1 px-2 py-2 text-[10px] text-blue-gray-500 font-poppins"
+                /> ))}
             </div>
           </CardBody>
-          <CardFooter placeholder={""} className="pt-3">
-            <Link to={`/portofolio/${item.id}`}>
+          <CardFooter className="pt-3">
             <Button
               placeholder={""}
               size="lg"
               fullWidth={true}
-              >
-              Selengkapnya
+              className="h-12 px-6 text-xs rounded-md font-poppins"
+              color="deep-orange"
+              component={Link}
+              to={`portofolio/detail/${item.id}`}
+            >
+              See Details
             </Button>
-              </Link>
           </CardFooter>
         </Card>
       ))}

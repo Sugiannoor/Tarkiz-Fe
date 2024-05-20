@@ -63,7 +63,7 @@ export const getPortofolioById = async (id: number) => {
   return response.data.data;
 };
 export const getPortofolioByIdProduct = async (id: number) => {
-  const response = await axios.get("/api/admin/portofolio/showproduct", {
+  const response = await axios.get("/dashboard/portofolio/showproduct", {
     params: {
       id,
     },
@@ -72,6 +72,6 @@ export const getPortofolioByIdProduct = async (id: number) => {
 };
 
 export const getAllPortofolio = async () => {
-  const response = await axios.get("/api/admin/portofolio/all");
+  const response = await axios.get("/dashboard/portofolio/all");
   return response.data.data;
 };
