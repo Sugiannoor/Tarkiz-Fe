@@ -189,7 +189,7 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           <div color="blue-gray" className="p-3 flex-grow">
             <img
               className="object-cover rounded-md"
-              src={`http://localhost:8080/${product.path_files}`}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${product.path_files}`}
               alt={product.program}
               onError={(e) => {
                 e.currentTarget.src =
@@ -215,7 +215,10 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
             >
               {product.description}
             </Typography>
-            <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5" style={{scrollbarWidth: "none"}}>
+            <div
+              className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5"
+              style={{ scrollbarWidth: "none" }}
+            >
               {product.tags.map((tag, index) => (
                 <Chip
                   key={index}
@@ -228,14 +231,10 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
             <Link to={`/product/${product.id}`}>
-            <Button
-              placeholder={""}
-              size="lg"
-              fullWidth={true}
-              >
-              Selengkapnya
-            </Button>
-              </Link>
+              <Button placeholder={""} size="lg" fullWidth={true}>
+                Selengkapnya
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}

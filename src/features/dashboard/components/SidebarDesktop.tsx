@@ -59,14 +59,14 @@ export const SidebarDesktop = () => {
               Manajemen Kontrak
             </ListItem>
           </Link>
-          <Link to={"/portofolio"}>
+          <Link to={"/portofolios"}>
             <ListItem placeholder={""} className="font-poppins p-5">
               <ListItemPrefix placeholder={""}>
                 <FaHistory className="h-5 w-5" />
               </ListItemPrefix>
               Manajemen Portofolio
             </ListItem>
-            </Link>
+          </Link>
           <hr className="my-2 border-blue-gray-50" />
           <ListItem
             placeholder={""}

@@ -42,8 +42,8 @@ export const AppRoutes: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/portofolio" element={<PortofolioPage />} />
           <Route path="/product/web" element={<WebProduct />} />
-          <Route path="/product/:id" element={<DetailProduct/>} />
-          <Route path="/portofolio/:id" element={<DetailPortofolio/>} />
+          <Route path="/product/:id" element={<DetailProduct />} />
+          <Route path="/portofolio/:id" element={<DetailPortofolio />} />
           <Route path="/product/android" element={<AndroidProduct />} />
           <Route path="/product/consultant" element={<ConsultantProduct />} />
           <Route path="/product/maintance" element={<MaintanceProduct />} />
@@ -56,7 +56,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="/product" element={<ProductManagment />} />
           <Route path="/keluhan" element={<ComplaintManagment />} />
           <Route path="/kontrak" element={<ContractManagment />} />
-          <Route path="/portofolio" element={<PortofoliotManagment />} />
+          <Route path="/portofolios" element={<PortofoliotManagment />} />
           <Route path="/keluhan/edit/:idParams" element={<UpdateComplaint />} />
           <Route path="/tagtype" element={<TagTypeManagment />} />
         </Route>
@@ -68,7 +68,7 @@ export const AppRoutes: React.FC = () => {
             element={<DetailComplaint />}
           />
         </Route>
-          <Route path="*" element={<UnderProgress />} />
+        <Route path="*" element={<UnderProgress />} />
       </Routes>
     </Router>
   );
