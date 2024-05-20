@@ -176,7 +176,7 @@ const UpdateComplaintForm = () => {
                 className="text-md font-poppins font-normal"
                 rel="noopener noreferrer"
               >
-                Lampiran {index}
+                Lampiran {index + 1}
               </a>
             </div>
           ))}
