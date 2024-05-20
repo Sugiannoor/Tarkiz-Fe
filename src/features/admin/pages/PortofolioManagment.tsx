@@ -8,7 +8,8 @@ import { CreatePortofolioModal } from "../components/Modal/CreatePortofolio";
 const PortofoliotManagment = () => {
   const [isCreatePortofolio, setIsCreatePortofolio] = useState(false);
   const [search, setSearch] = useState("");
-  const handleCreatePortofolio = () => setIsCreatePortofolio(!isCreatePortofolio);
+  const handleCreatePortofolio = () =>
+    setIsCreatePortofolio(!isCreatePortofolio);
 
   return (
     <div>
@@ -26,7 +27,7 @@ const PortofoliotManagment = () => {
         </Breadcrumbs>
       </div>
       <div className="text-3xl text-white font-poppins font-semibold my-10">
-        Daftar Kontrak
+        Daftar Portofolio
       </div>
       <Card placeholder={""} className="w-full h-full p-4">
         <div className="flex justify-between">

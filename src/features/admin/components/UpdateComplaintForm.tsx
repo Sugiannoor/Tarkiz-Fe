@@ -7,7 +7,6 @@ import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
 import toast from "react-hot-toast";
 import Loading from "@/Components/Loading";
 import { Complaint } from "../types/complaintTable";
-import { IoDocument } from "react-icons/io5";
 import { FaFileAlt } from "react-icons/fa";
 
 interface Option {
@@ -166,20 +165,24 @@ const UpdateComplaintForm = () => {
             name="name_apk"
             placeholder="Nama Aplikasi"
           />
-          <div>Lampiran Complaint</div>
-          {dataComplaint?.path_files.map((doc, index) => (
-            <div className="flex gap-1" key={index}>
-              <FaFileAlt size={20} className="text-[#005697]" />
-              <a
-                href={`${import.meta.env.VITE_API_BASE_URL}/${doc}`}
-                target="_blank"
-                className="text-md font-poppins font-normal"
-                rel="noopener noreferrer"
-              >
-                Lampiran {index + 1}
-              </a>
-            </div>
-          ))}
+          {dataComplaint && (
+            <>
+              <div>Lampiran Complaint</div>
+              <div className="flex gap-1">
+                <FaFileAlt size={20} className="text-[#005697]" />
+                <a
+                  href={`${import.meta.env.VITE_API_BASE_URL}/${
+                    dataComplaint.path_files
+                  }`}
+                  target="_blank"
+                  className="text-md font-poppins font-normal"
+                  rel="noopener noreferrer"
+                >
+                  Lampiran
+                </a>
+              </div>
+            </>
+          )}
         </div>
         <div className="w-full">
           <div className="text-lg text-[#005697] font-normal font-poppins ">
