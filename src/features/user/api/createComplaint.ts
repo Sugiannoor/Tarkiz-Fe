@@ -17,6 +17,6 @@ export const createComplaint  = async (data: ComplaintForm ) => {
           formData.append(`photo`, documentation.file);
         });
     }
-    const response = await axios.post("/api/complaints", formData);
+    const response = await axios.post("/api/users/complaints/create", formData);
     return response.data;
   };

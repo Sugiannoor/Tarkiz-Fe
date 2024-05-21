@@ -175,30 +175,6 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
                 htmlFor="file"
                 className="text-lg text-[#005697] font-normal font-poppins"
               >
-                Foto Kegiatan
-              </label>
-              <FilePond
-                id="file"
-                name="file"
-                onupdatefiles={(fileItems) => {
-                  if (fileItems.length > 0) {
-                    setFile(fileItems[0]);
-                  } else {
-                    setFile(undefined);
-                  }
-                }}
-                acceptedFileTypes={["image/jpeg", "image/png"]}
-                dropOnPage
-                maxFiles={1}
-                allowMultiple={false}
-                dropValidation
-              />
-            </div>
-            <div className="mt-2">
-              <label
-                htmlFor="file"
-                className="text-lg text-[#005697] font-normal font-poppins"
-              >
                 Gambar Produk
               </label>
               <FilePond

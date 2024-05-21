@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { CreateUserModal } from '../components/Modal/CreateUserModal';
-import { DeleteUserModal } from '../components/Modal/DeleteUserModal';
 import TableUser from '../components/Table/TableUser';
 import { Breadcrumbs, Button, Card } from '@material-tailwind/react';
 import Search from '@/Components/Search';

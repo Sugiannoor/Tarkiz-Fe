@@ -8,29 +8,29 @@ import {
 import { useQuery } from "react-query";
 import { Portofolio } from "../types/portofolio";
 import { AllPortofolio } from "./AllPortofolio";
-import { getAllPorto, getPortoAndroid, getPortoMaintance, getPortoWeb } from "../api/portofolio";
+import { getAllPorto, getPortoAndroid, getPortoIt, getPortoMaintance, getPortoWeb } from "../api/portofolio";
 
 export const TabsPortofolio = () => {
   
   const { data: all  , isLoading: allLoading } = useQuery<Portofolio[]>({
-    queryKey: ["portofolio"],
+    queryKey: ["portofolioAll"],
     queryFn: getAllPorto,
   });
   const { data: website  , isLoading: websiteLoading } = useQuery<Portofolio[]>({
-    queryKey: ["portofolio"],
+    queryKey: ["portofolioWeb"],
     queryFn: getPortoWeb,
   });
   const { data: android  , isLoading: androidLoading } = useQuery<Portofolio[]>({
-    queryKey: ["portofolio"],
+    queryKey: ["portofolioAndroid"],
     queryFn: getPortoAndroid,
   });
   const { data: maintance  , isLoading: maintanceLoading } = useQuery<Portofolio[]>({
-    queryKey: ["portofolio"],
+    queryKey: ["portofolioMaintance"],
     queryFn: getPortoMaintance,
   });
   const { data: it  , isLoading: itLoading } = useQuery<Portofolio[]>({
-    queryKey: ["portofolio"],
-    queryFn: getPortoMaintance,
+    queryKey: ["portofolioIt"],
+    queryFn: getPortoIt,
   });
   const data = [
     {

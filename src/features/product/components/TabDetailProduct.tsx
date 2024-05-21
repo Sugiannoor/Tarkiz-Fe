@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, Typography } from '@material-tailwind/react'
+import {  Card, CardBody, Typography } from '@material-tailwind/react'
 import { FiSettings } from 'react-icons/fi'
 
 type params = {

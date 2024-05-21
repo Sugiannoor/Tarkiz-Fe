@@ -25,9 +25,9 @@ export const DetailPortofolio = () => {
     queryFn: () => getPortofolioById(idNum),
   });
 
-  // if (isPortofolioLoading || isError) {
-  //   return <Loading />;
-  // }
+  if (isPortofolioLoading || isError) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -38,7 +38,7 @@ export const DetailPortofolio = () => {
       <div className="flex justify-center mt-5">
         <Tabs
           id="custom-animation"
-          value="detail"
+          value="gallery"
           className=" p-5 lg:p-0 lg:w-[80rem]"
         >
           <TabsHeader placeholder={""}>

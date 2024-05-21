@@ -6,24 +6,27 @@ import Select from "react-select";
 import { UpdateStatusComplaint, getComplaintById } from "../api/complaint";
 import toast from "react-hot-toast";
 import Loading from "@/Components/Loading";
+import { Complaint } from "../types/complaintTable";
+import { FaFileAlt } from "react-icons/fa";
 
 interface Option {
-  value: string,
-  label: string,
+  value: string;
+  label: string;
 }
 
 const UpdateComplaintForm = () => {
   const queryClient = useQueryClient();
   const { idParams } = useParams();
-  const id = Number(idParams)
+  const id = Number(idParams);
   const navigate = useNavigate();
-  const [selectedStatus, setSelectedStatus] = useState<Option>()
-  const [selectUrgensi, setSelectUrgensi] = useState<Option>()
+  const [selectedStatus, setSelectedStatus] = useState<Option>();
+  const [selectUrgensi, setSelectUrgensi] = useState<Option>();
 
-  const { data: dataComplaint, isLoading: isDataComplaint } = useQuery({
-    queryKey: ["table-complaint", id],
-    queryFn: () => getComplaintById(id)
-  })
+  const { data: dataComplaint, isLoading: isDataComplaint } =
+    useQuery<Complaint>({
+      queryKey: ["table-complaint", id],
+      queryFn: () => getComplaintById(id),
+    });
 
   useEffect(() => {
     if (dataComplaint) {
@@ -34,18 +37,18 @@ const UpdateComplaintForm = () => {
         name: dataComplaint.name ?? "",
         description: dataComplaint.description ?? "",
         name_apk: dataComplaint.name_apk ?? "",
-      })
-      setSelectUrgensi(dataComplaint.selected_urgensi ?? [])
-      setSelectedStatus(dataComplaint.selected_status ?? [])
+      });
+      setSelectUrgensi(dataComplaint.selected_urgensi ?? []);
+      setSelectedStatus(dataComplaint.selected_status ?? []);
     }
-  }, [dataComplaint])
+  }, [dataComplaint]);
   const [formData, setFormData] = useState({
     username: "",
     phone_number: "",
     contract_code: "",
     name: "",
     description: "",
-    name_apk: ""
+    name_apk: "",
   });
   const optionStatus = [
     {
@@ -82,14 +85,16 @@ const UpdateComplaintForm = () => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdateStatusComplaint,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['table-complaint'] });
+      queryClient.invalidateQueries({ queryKey: ["table-complaint"] });
       toast.success("Status berhasil diperbaharui");
-      navigate("/keluhan")
+      navigate("/keluhan");
     },
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.message;
-        const errorMessages = Object.values(errors).map((error: string) => error);
+        const errorMessages = Object.values(errors).map(
+          (error: string) => error
+        );
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -98,15 +103,14 @@ const UpdateComplaintForm = () => {
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const status = selectedStatus?.value;
     const urgensi = selectUrgensi?.value;
-    const name = formData.name
-    const description = formData.description
-
+    const name = formData.name;
+    const description = formData.description;
 
     const dataSubmit = {
       id,
@@ -114,13 +118,16 @@ const UpdateComplaintForm = () => {
       name,
       description,
       urgensi,
-    }
-    await mutateAsync(dataSubmit)
-  }
-  if (isDataComplaint) return <Loading />
+    };
+    await mutateAsync(dataSubmit);
+  };
+  if (isDataComplaint) return <Loading />;
   return (
     <div className="bg-white p-5 rounded-lg">
-      <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row lg:gap-5 justify-between">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col lg:flex-row lg:gap-5 justify-between"
+      >
         <div className="w-full">
           <div className="text-lg text-[#005697] font-normal font-poppins">
             Username
@@ -158,6 +165,24 @@ const UpdateComplaintForm = () => {
             name="name_apk"
             placeholder="Nama Aplikasi"
           />
+          {dataComplaint && (
+            <>
+              <div className="text-lg text-[#005697] font-normal font-poppins mt-4">Lampiran Complaint</div>
+              <div className="flex gap-1">
+                <FaFileAlt size={20} className="text-[#005697] mt-2" />
+                <a
+                  href={`${import.meta.env.VITE_API_BASE_URL}/${
+                    dataComplaint.path_files
+                  }`}
+                  target="_blank"
+                  className="text-md font-poppins font-normal"
+                  rel="noopener noreferrer"
+                >
+                  Lampiran
+                </a>
+              </div>
+            </>
+          )}
         </div>
         <div className="w-full">
           <div className="text-lg text-[#005697] font-normal font-poppins ">
@@ -175,11 +200,21 @@ const UpdateComplaintForm = () => {
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Urgensi
           </div>
-          <Select defaultValue={selectUrgensi} value={selectUrgensi} onChange={setSelectUrgensi} options={optionUrgensi} />
+          <Select
+            defaultValue={selectUrgensi}
+            value={selectUrgensi}
+            onChange={setSelectUrgensi}
+            options={optionUrgensi}
+          />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Status
           </div>
-          <Select defaultValue={selectedStatus} value={selectedStatus} onChange={setSelectedStatus} options={optionStatus} />
+          <Select
+            defaultValue={selectedStatus}
+            value={selectedStatus}
+            onChange={setSelectedStatus}
+            options={optionStatus}
+          />
           <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Judul Keluhan
           </div>
@@ -192,9 +227,7 @@ const UpdateComplaintForm = () => {
             value={formData.name}
             disabled
           />
-          <div
-            className="text-lg text-[#005697] font-normal font-poppins mt-4"
-          >
+          <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
             Deskripsi
           </div>
           <Textarea

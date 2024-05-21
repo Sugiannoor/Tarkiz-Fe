@@ -1,20 +1,22 @@
-import { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { Link } from "react-router-dom";
 import Table from "@/Components/table/Table";
 import { TableProps } from "@/features/user/types/tableParams";
 import { Chip } from "@material-tailwind/react";
 import { FaTrashAlt } from "react-icons/fa";
-import { RiEditBoxLine } from "react-icons/ri";
 import { useQuery } from "react-query";
 import { ComplaintTableType } from "@/features/admin/types/complaintTable";
 import { getComplaintByUser } from "@/features/admin/api/complaint";
+import { useState } from "react";
+import { DeleteComplaintModal } from "@/features/admin/components/Modal/DeleteComplaintModal";
 
 const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ["table-complaint"],
     queryFn: getComplaintByUser,
   });
+  const [selectedId, setSelectedId] = useState<number>(0);
+  const [isDelete, setIsDelete] = useState(false);
+  const handleDelete = () => setIsDelete(!isDelete);
 
   const columns: ColumnDef<ComplaintTableType>[] = [
     {
@@ -36,7 +38,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
     {
       header: "Urgensi",
       accessorKey: "urgensi",
-      cell: ({row}) =>  {
+      cell: ({ row }) => {
         if (row.original.urgensi === "baru") {
           return (
             <Chip
@@ -53,7 +55,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
               className="text-center font-poppins"
             />
           );
-        }else if (row.original.urgensi === "sedang") {
+        } else if (row.original.urgensi === "sedang") {
           return (
             <Chip
               variant="outlined"
@@ -61,8 +63,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
               className="text-center font-poppins"
             />
           );
-        } 
-        else if (row.original.urgensi === "tinggi") {
+        } else if (row.original.urgensi === "tinggi") {
           return (
             <Chip
               variant="outlined"
@@ -72,7 +73,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           );
         }
         return null;
-      }
+      },
     },
     {
       header: "Status",
@@ -80,7 +81,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
       cell: ({ row }) => {
         if (row.original.status === "baru") {
           return (
-            <Chip 
+            <Chip
               color="red"
               value="Baru"
               className="text-center font-poppins"
@@ -88,7 +89,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           );
         } else if (row.original.status === "proses") {
           return (
-            <Chip 
+            <Chip
               color="yellow"
               value="Proses"
               className="text-center font-poppins"
@@ -96,7 +97,7 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
           );
         } else if (row.original.status === "selesai") {
           return (
-            <Chip 
+            <Chip
               color="green"
               value="Selesai"
               className="text-center font-poppins"
@@ -110,15 +111,19 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
       header: "Aksi",
       cell: ({ row }) => (
         <div className="flex gap-5">
-          <Link to={`/keluhan/edit/${row.original.id}`}>
+          {/* <Link to={`/keluhan/edit/${row.original.id}`}>
             <RiEditBoxLine
               size={18}
               className="text-custom-blue-600 cursor-pointer"
             />
-          </Link>
+          </Link> */}
           <FaTrashAlt
             size={18}
             className="text-red-900 cursor-pointer"
+            onClick={() => {
+              setSelectedId(row.original.id);
+              handleDelete();
+            }}
           />
         </div>
       ),
@@ -127,6 +132,11 @@ const TableComplaint = ({ searchValue, setSearchValue }: TableProps) => {
 
   return (
     <>
+      <DeleteComplaintModal
+        open={isDelete}
+        handleOpen={handleDelete}
+        id={selectedId}
+      />
       <Table
         data={data || []}
         columns={columns}

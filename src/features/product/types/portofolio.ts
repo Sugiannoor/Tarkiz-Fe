@@ -5,7 +5,7 @@ export type Portofolio = {
     program: string;
     description: string;
     files_id: string;
-    path_file: string;
+    path_files: string;
     start_date: string;
     end_date: string;
 }

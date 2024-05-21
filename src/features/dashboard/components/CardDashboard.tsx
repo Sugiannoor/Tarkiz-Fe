@@ -1,6 +1,7 @@
-import { Card, CardBody, CardFooter, Typography } from "@material-tailwind/react"
+import { Card, CardBody,Typography } from "@material-tailwind/react"
 import { useQuery } from "react-query";
 import { getDashboard } from "../api/dashboard";
+import Loading from "@/Components/Loading";
 type total = {
   total_users: number;
   total_contracts: number;
@@ -12,8 +13,10 @@ const CardDashboard = () => {
     queryFn: getDashboard,
   });
 
+  if (isLoading || isError) return <Loading/>
+
   return (
-    <div>
+    <div className="flex gap-5">
       <Card placeholder={""} className="mt-6 w-[100%]">
       <CardBody placeholder={""} className="flex flex-col lg:flex-row justify-center items-center">
         <div className= "grid place-content-center rounded-full bg-white w-[90px] h-[90px] border-8 border-[#005697]">

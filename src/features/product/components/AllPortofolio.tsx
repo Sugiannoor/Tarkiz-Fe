@@ -189,7 +189,7 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
           <div color="blue-gray" className="p-3 flex-grow">
             <img
               className="object-cover rounded-md"
-              src={`http://localhost:8080/${item.path_file}`}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${item.path_files}`}
               alt={item.program}
               onError={(e) => {
                 e.currentTarget.src =
@@ -215,24 +215,23 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
             >
               {item.description}
             </Typography>
-            <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5" style={{scrollbarWidth: "none"}}>
-                <Chip
-                  variant="outlined"
-                  value={item.start_date}
-                  className="font-raleway whitespace-nowrap"
-                />
+            <div
+              className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5"
+              style={{ scrollbarWidth: "none" }}
+            >
+              <Chip
+                variant="outlined"
+                value={item.start_date}
+                className="font-raleway whitespace-nowrap"
+              />
             </div>
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
             <Link to={`/portofolio/${item.id}`}>
-            <Button
-              placeholder={""}
-              size="lg"
-              fullWidth={true}
-              >
-              Selengkapnya
-            </Button>
-              </Link>
+              <Button placeholder={""} size="lg" fullWidth={true}>
+                Selengkapnya
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}

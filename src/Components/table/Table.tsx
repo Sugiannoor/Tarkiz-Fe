@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useDebounce } from "@/hooks";
 import {
@@ -16,13 +16,6 @@ import { TableHeader } from "./TableHeader";
 import { TableBody } from "./TableBody";
 import { Button, Typography } from "@material-tailwind/react";
 
-type APIParams = {
-  // current_page: number;
-  // row_per_page: number;
-  search?: string;
-  // sort?: string;
-  // sort_type?: "asc" | "desc";
-};
 
 type TableProps<T> = {
   data?: [];

@@ -6,8 +6,6 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
-  import ModalDetail from "./ModalDetail";
-  import { useState } from "react";
 import { Portofolio } from "../types/portofolio";
   
   type ProductProps = {
@@ -16,9 +14,6 @@ import { Portofolio } from "../types/portofolio";
   };
   
   export const DataPortofolio = ({ dataPortofolio, isLoading }: ProductProps) => {
-    const [isDetail, setIsDetail] = useState(false);
-    const [selectedId, setSelectedId] = useState(0);
-    const handleOpen = () => setIsDetail(!isDetail);
     if (isLoading || dataPortofolio === undefined) {
       return (
         <div className="flex flex-wrap justify-center gap-4">
@@ -192,7 +187,7 @@ import { Portofolio } from "../types/portofolio";
             <div color="blue-gray" className="p-3 flex-grow">
               <img
                 className="object-cover rounded-md"
-                src={`http://localhost:8080/${portofolio.path_file}`}
+                src={`http://localhost:8080/${portofolio.path_files}`}
                 alt={portofolio.program}
                 onError={(e) => {
                   e.currentTarget.src =
@@ -224,17 +219,12 @@ import { Portofolio } from "../types/portofolio";
                 placeholder={""}
                 size="lg"
                 fullWidth={true}
-                onClick={() => {
-                  setSelectedId(portofolio.id);
-                  handleOpen();
-                }}
               >
                 Selengkapnya
               </Button>
             </CardFooter>
           </Card>
         ))}
-        <ModalDetail open={isDetail} handleOpen={handleOpen} id={selectedId} />
       </div>
     );
   };

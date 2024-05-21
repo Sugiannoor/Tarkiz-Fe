@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { GetProductById } from "../types/product";
-import {useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductById } from "@/features/admin/api/product";
 import {
   Tab,
@@ -27,17 +27,14 @@ export const DetailProduct = () => {
     queryKey: ["product", id],
     queryFn: () => getProductById(idNum),
   });
-  const {
-    data: portofolio,
-    isLoading: isPortofolio,
-  } = useQuery<Portofolio[]>({
-    queryKey: ["product", id],
+  const { data: portofolios, isLoading: isPortofolio } = useQuery<Portofolio[]>({
+    queryKey: ["portofolios", id],
     queryFn: () => getPortofolioByIdProduct(idNum),
   });
 
-  // if (isProductLoading || isError) {
-  //   return <Loading />;
-  // }
+  if (isProductLoading || isError) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -48,7 +45,7 @@ export const DetailProduct = () => {
       <div className="flex justify-center mt-5">
         <Tabs
           id="custom-animation"
-          value="detail"
+          value="portofolio"
           className=" p-5 lg:p-0 lg:w-[80rem]"
         >
           <TabsHeader placeholder={""}>
@@ -78,12 +75,16 @@ export const DetailProduct = () => {
             <TabPanel value={"gallery"}>
               {dataProduct?.gallery == undefined ? (
                 <div>Tidak Tersedia</div>
-              ): (
-              <GalleryProduct data={dataProduct?.gallery} />
+              ) : (
+                <GalleryProduct data={dataProduct?.gallery} />
               )}
             </TabPanel>
             <TabPanel value={"portofolio"}>
-              <AllPortofolio data={portofolio} isLoading={isPortofolio}/>
+              {!portofolios ? (
+                <div>Portofolio Tidak Ada</div>
+              ) : (
+                <AllPortofolio data={portofolios} isLoading={isPortofolio} />
+              )}
             </TabPanel>
           </TabsBody>
         </Tabs>

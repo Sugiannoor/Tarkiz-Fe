@@ -39,7 +39,6 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
   const [selectedUser, setSelectedUser] = useState<Option>();
   const [portofolioName, setportofolioName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
 
   const { data: dataProduct, isLoading: isProductLoading } = useQuery({
     queryKey: ["product-label"],
@@ -79,7 +78,6 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
     setSelectedProduct(undefined);
     setSelectedUser(undefined);
     setDescription("");
-    setPrice("");
     setportofolioName("");
   };
   const handleCancel = () => {
@@ -198,26 +196,26 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
               />
             </div>
             <div className="mt-2">
-                <div className="text-lg text-[#005697] font-normal font-poppins">
-                  Gambar Produk
-                </div>
-                <FilePond
-                  id="file"
-                  name="file"
-                  onupdatefiles={(fileItems) => {
-                    if (fileItems.length > 0) {
-                      setFile(fileItems[0]);
-                    } else {
-                      setFile(undefined);
-                    }
-                  }}
-                  acceptedFileTypes={["image/jpeg", "image/png"]}
-                  dropOnPage
-                  maxFiles={1}
-                  allowMultiple={false}
-                  dropValidation
-                />
+              <div className="text-lg text-[#005697] font-normal font-poppins">
+                Gambar Produk
               </div>
+              <FilePond
+                id="file"
+                name="file"
+                onupdatefiles={(fileItems) => {
+                  if (fileItems.length > 0) {
+                    setFile(fileItems[0]);
+                  } else {
+                    setFile(undefined);
+                  }
+                }}
+                acceptedFileTypes={["image/jpeg", "image/png"]}
+                dropOnPage
+                maxFiles={1}
+                allowMultiple={false}
+                dropValidation
+              />
+            </div>
             <div className="mt-2">
               <label
                 htmlFor="files"

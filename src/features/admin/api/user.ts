@@ -35,16 +35,16 @@ export const UpdateUser = async (data: userForm) => {
     formData.append('image_path', data.image_path as File);
   }
 
-  const response = await axios.post("/dashboard/users/update", formData);
+  const response = await axios.post("/api/users/profile/update", formData);
   return response.data;
 }
 
 export const getLabelUser = async () => {
-  const response = await axios.get("/api/showuser");
+  const response = await axios.get("/api/admin/showuser");
   return response.data.data;
 };
 
 export const getLabelRole = async () => {
-  const response = await axios.get("/api/showrole");
+  const response = await axios.get("/api/admin/showrole");
   return response.data.data;
 };

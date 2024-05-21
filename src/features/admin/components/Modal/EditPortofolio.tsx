@@ -41,13 +41,13 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   const [portofolioName, setPortofolioName] = useState("");
   const [description, setDescription] = useState("");
 
-  const resetForm = () => {
-    setPortofolioDate("");
-    setEndDate("");
-    setSelectedProduct(undefined);
-    setSelectedUser(undefined);
-    setPortofolioName("");
-  };
+  // const resetForm = () => {
+  //   setPortofolioDate("");
+  //   setEndDate("");
+  //   setSelectedProduct(undefined);
+  //   setSelectedUser(undefined);
+  //   setPortofolioName("");
+  // };
   const handleCancel = () => {
     handleOpen();
   };

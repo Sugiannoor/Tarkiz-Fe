@@ -8,8 +8,6 @@ import {
   Chip,
 } from "@material-tailwind/react";
 import { GetProduct } from "../types/product";
-import ModalDetail from "./ModalDetail";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 type ProductProps = {
@@ -18,9 +16,6 @@ type ProductProps = {
 };
 
 export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
-  const [isDetail, setIsDetail] = useState(false);
-  const [selectedId, setSelectedId] = useState(0);
-  const handleOpen = () => setIsDetail(!isDetail);
   if (isLoading || dataProduct === undefined) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
@@ -194,7 +189,7 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           <div color="blue-gray" className="p-3 flex-grow">
             <img
               className="object-cover rounded-md"
-              src={`http://localhost:8080/${product.path_files}`}
+              src={`${import.meta.env.VITE_API_BASE_URL}/${product.path_files}`}
               alt={product.program}
               onError={(e) => {
                 e.currentTarget.src =
@@ -220,7 +215,10 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
             >
               {product.description}
             </Typography>
-            <div className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5" style={{scrollbarWidth: "none"}}>
+            <div
+              className="flex overflow-x-auto overflow-y-hidden mt-2 gap-5"
+              style={{ scrollbarWidth: "none" }}
+            >
               {product.tags.map((tag, index) => (
                 <Chip
                   key={index}
@@ -233,18 +231,13 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
           </CardBody>
           <CardFooter placeholder={""} className="pt-3">
             <Link to={`/product/${product.id}`}>
-            <Button
-              placeholder={""}
-              size="lg"
-              fullWidth={true}
-              >
-              Selengkapnya
-            </Button>
-              </Link>
+              <Button placeholder={""} size="lg" fullWidth={true}>
+                Selengkapnya
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}
-      <ModalDetail open={isDetail} handleOpen={handleOpen} id={selectedId} />
     </div>
   );
 };
