@@ -19,8 +19,8 @@ const UpdateComplaintForm = () => {
   const { idParams } = useParams();
   const id = Number(idParams);
   const navigate = useNavigate();
-  const [selectedStatus, setSelectedStatus] = useState<Option>();
-  const [selectUrgensi, setSelectUrgensi] = useState<Option>();
+  const [selectedStatus, setSelectedStatus] = useState<Option | null>();
+  const [selectUrgensi, setSelectUrgensi] = useState<Option | null>();
 
   const { data: dataComplaint, isLoading: isDataComplaint } =
     useQuery<Complaint>({
@@ -167,7 +167,9 @@ const UpdateComplaintForm = () => {
           />
           {dataComplaint && (
             <>
-              <div className="text-lg text-[#005697] font-normal font-poppins mt-4">Lampiran Complaint</div>
+              <div className="text-lg text-[#005697] font-normal font-poppins mt-4">
+                Lampiran Complaint
+              </div>
               <div className="flex gap-1">
                 <FaFileAlt size={20} className="text-[#005697] mt-2" />
                 <a

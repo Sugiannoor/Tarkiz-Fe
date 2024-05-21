@@ -41,12 +41,11 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
   const queryClient = useQueryClient();
   const [contractDate, setContractDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState<Option>();
-  const [selectedUser, setSelectedUser] = useState<Option>();
+  const [selectedProduct, setSelectedProduct] = useState<Option | null>();
+  const [selectedUser, setSelectedUser] = useState<Option | null>();
   const [contractName, setContractName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-
 
   const handleCancel = () => {
     handleOpen();
@@ -56,7 +55,6 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
       queryKey: ["contract", id],
       queryFn: () => getContractById(id),
     });
-  
 
   const { data: dataUser, isLoading: isUserLoading } = useQuery({
     queryKey: ["user-label"],
@@ -73,9 +71,9 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
       setSelectedUser(dataContract.user_selected);
       setContractDate(dataContract.taken_at);
       setEndDate(dataContract.deadline);
-      setPrice (dataContract.price)
+      setPrice(dataContract.price);
       setContractName(dataContract.name);
-      setDescription(dataContract.description)
+      setDescription(dataContract.description);
       setSelectedProduct(dataContract.product_selected ?? []);
     }
   }, [dataContract]);
@@ -89,7 +87,9 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.massages;
-        const errorMessages = Object.values(errors).map((error:string) => error);
+        const errorMessages = Object.values(errors).map(
+          (error: string) => error
+        );
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -98,7 +98,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
