@@ -45,14 +45,14 @@ const TabProfile = () => {
   return (
     <div className="mt-5">
       <Tabs value="my_account" orientation={isMobile ? "horizontal" : "vertical"}>
-        <TabsHeader  className="md:w-96 w-[100%] mr-16 ">
+        <TabsHeader placeholder={""}  className="md:w-96 w-[100%] mr-16 ">
           {datas.map(({ label, value }) => (
             <Tab placeholder={""} key={value} value={value} className="p-4">
               <div className="font-poppins">{label}</div>
             </Tab>
           ))}
         </TabsHeader>
-        <TabsBody className="mt-5 lg:mt-0 border-l-2 md:pl-7">
+        <TabsBody placeholder={""} className="mt-5 lg:mt-0 border-l-2 md:pl-7">
           <TabPanel key={"my_account"} value={"my_account"} className="py-0">
             <TabDetailProfile/>
           </TabPanel>

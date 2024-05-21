@@ -20,6 +20,7 @@ const InputComponent = ({
         {label}
       </label>
       <Input
+        crossOrigin={""}
       />
     </div>
   );
