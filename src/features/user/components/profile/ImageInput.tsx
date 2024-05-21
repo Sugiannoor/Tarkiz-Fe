@@ -33,7 +33,7 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
               />
             ) : (
               <img
-                src={auth.user?.image_path ?? "/user_default.png"}
+                src={auth.user?.path_files ?? "/user_default.png"}
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
               />
