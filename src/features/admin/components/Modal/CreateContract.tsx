@@ -30,8 +30,8 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
   const queryClient = useQueryClient();
   const [contractDate, setContractDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState<Option>();
-  const [selectedUser, setSelectedUser] = useState<Option>();
+  const [selectedProduct, setSelectedProduct] = useState<Option | null>();
+  const [selectedUser, setSelectedUser] = useState<Option | null>();
   const [contractName, setContractName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -55,7 +55,9 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.message;
-        const errorMessages = Object.values(errors).map((error: string) => error);
+        const errorMessages = Object.values(errors).map(
+          (error: string) => error
+        );
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -64,15 +66,15 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
   const resetForm = () => {
     setContractDate("");
     setEndDate("");
     setSelectedProduct(undefined);
     setSelectedUser(undefined);
-    setDescription("")
-    setPrice("")
+    setDescription("");
+    setPrice("");
     setContractName("");
   };
   const handleCancel = () => {
@@ -90,7 +92,7 @@ export const CreateContractModal = ({ open, handleOpen }: props) => {
       deadline: endDate,
       id_user: idClient,
       description: description,
-      price: price
+      price: price,
     };
 
     await mutateAsync(dataSubmit);

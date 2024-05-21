@@ -33,7 +33,7 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
   const [program, setProgram] = useState("");
   const [description, setDescription] = useState("");
   const [selectedTag, setSelectedTag] = useState<Option[]>([]);
-  const [selectedType, setSelectedType] = useState<Option>();
+  const [selectedType, setSelectedType] = useState<Option | null>();
   const { data: tags, isLoading: tagLoading } = useQuery({
     queryKey: ["tag"],
     queryFn: getTag,

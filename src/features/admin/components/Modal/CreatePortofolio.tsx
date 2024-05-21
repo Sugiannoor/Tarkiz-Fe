@@ -35,8 +35,8 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
   const [endDate, setEndDate] = useState("");
   const [files, setFiles] = useState<FilePondFile[]>();
   const [file, setFile] = useState<FilePondFile>();
-  const [selectedProduct, setSelectedProduct] = useState<Option>();
-  const [selectedUser, setSelectedUser] = useState<Option>();
+  const [selectedProduct, setSelectedProduct] = useState<Option | null>();
+  const [selectedUser, setSelectedUser] = useState<Option | null>();
   const [portofolioName, setportofolioName] = useState("");
   const [description, setDescription] = useState("");
 

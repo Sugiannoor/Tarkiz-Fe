@@ -53,7 +53,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
   const [program, setProgram] = useState("");
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState<Option[]>([]);
-  const [selectedType, setSelectedType] = useState<Option>();
+  const [selectedType, setSelectedType] = useState<Option | null>();
   const [filePath, setFilePath] = useState("");
 
   const { data: dataProduct, isLoading: isProductLoading } =
