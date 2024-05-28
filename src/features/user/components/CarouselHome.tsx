@@ -22,26 +22,24 @@ export const CarouselHome = () => {
         )}
       >
         <img
-          src="/IMG_4634.PNG"
+          src="/IMG_4634.webp"
           alt="image 1"
           className="h-full w-full object-cover"
         />
-        <img
-          src="/IMG_4638.PNG"
-          className="h-full w-full object-cover"
-        />
-        <img
-          src="/IMG_4639.PNG"
-          className="h-full w-full object-cover"
-        />
+        <img src="/IMG_4638.webp" className="h-full w-full object-cover" />
+        <img src="/IMG_4639.webp" className="h-full w-full object-cover" />
       </Carousel>
       <div className="absolute top-10 lg:top-20 left-1/2 lg:left-72 -translate-x-1/2 text-center font-body lg:text-left">
         <h3 className="lg:text-5xl md:text-5xl text-4xl ">
-            <span className="text-[#ffffff]">Informasi Cepat </span>
-            <div className="lg:text-6xl text-[#ffffff]">Keputusan Tepat</div>
+          <span className="text-[#ffffff]">Informasi Cepat </span>
+          <div className="lg:text-6xl text-[#ffffff]">Keputusan Tepat</div>
         </h3>
-        <div className="font-body text-custom-primary-50 font-light text-md lg:text-lg mt-4">Informasi yang cepat dihasilkan</div>
-        <div className="font-body text-custom-primary-50 font-light text-md lg:text-lg">dengan mengumpulkan data secara efektif</div>
+        <div className="font-body text-custom-primary-50 font-light text-md lg:text-lg mt-4">
+          Informasi yang cepat dihasilkan
+        </div>
+        <div className="font-body text-custom-primary-50 font-light text-md lg:text-lg">
+          dengan mengumpulkan data secara efektif
+        </div>
         <div className="mt-4 flex justify-center lg:justify-start">
           <a
             href="#"
