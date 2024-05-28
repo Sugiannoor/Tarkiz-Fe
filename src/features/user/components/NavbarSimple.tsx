@@ -31,7 +31,6 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         variant="small"
         color="blue-gray"
         className="p-1 font-medium font-raleway text-sm text-black"
-        placeholder={""}
       >
         <a href="/" className="flex items-center">
           Home
@@ -42,7 +41,6 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         variant="small"
         color="blue-gray"
         className="p-1 font-medium text-sm font-raleway text-black"
-        placeholder={""}
       >
         <a href="#service" className="flex items-center">
           Services
@@ -53,7 +51,6 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         variant="small"
         color="blue-gray"
         className="p-1 font-medium text-sm font-raleway text-black"
-        placeholder={""}
       >
         <a href="/portofolio" className="flex items-center">
           Portofolio
@@ -64,7 +61,6 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         variant="small"
         color="blue-gray"
         className="p-1 font-medium text-sm font-raleway text-black"
-        placeholder={""}
       >
         <a href="#client" className="flex items-center">
           About
@@ -79,7 +75,6 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className={`${
           fixed ? "sticky" : "relative"
         } top-0 z-10 h-max max-w-full rounded-[30px] px-4 py-4 lg:px-8 lg:py-4`}
-        placeholder={""}
       >
         <div className="flex items-center justify-between text-blue-gray-900">
           <img
@@ -90,10 +85,9 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-2">
-              <Authorization roles={["-Users", '-Admin']}>
+              <Authorization roles={["-Users", "-Admin"]}>
                 <Link to={"/login"}>
                   <Button
-                    placeholder={""}
                     variant="filled"
                     color="indigo"
                     size="sm"
@@ -104,11 +98,10 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
                 </Link>
               </Authorization>
             </div>
-            <Authorization roles={["Users", 'Admin']}>
+            <Authorization roles={["Users", "Admin"]}>
               <ProfileMenu />
             </Authorization>
             <IconButton
-              placeholder={""}
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
@@ -150,19 +143,19 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-          <Authorization roles={["Users","Admin"]}>
-            <Link to="/login" className="w-full">
-              <Button
-                fullWidth
-                variant="gradient"
-                size="sm"
-                className="font-body block"
-                placeholder=""
-                color="indigo"
-              >
-                <span>LogIn</span>
-              </Button>
-            </Link>
+            <Authorization roles={["Users", "Admin"]}>
+              <Link to="/login" className="w-full">
+                <Button
+                  fullWidth
+                  variant="gradient"
+                  size="sm"
+                  className="font-body block"
+                  placeholder=""
+                  color="indigo"
+                >
+                  <span>LogIn</span>
+                </Button>
+              </Link>
             </Authorization>
           </div>
         </Collapse>

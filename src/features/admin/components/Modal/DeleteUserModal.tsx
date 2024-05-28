@@ -15,7 +15,7 @@ type props = {
   handleOpen: () => void;
 };
 export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: deleteUser,
     onSuccess: () => {
@@ -27,29 +27,25 @@ export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
     },
     onError: ({ response }) => {
       if (response) {
-        const massage = response.data.message 
-        toast.error (massage);
+        const massage = response.data.message;
+        toast.error(massage);
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
   const handleDelete = async () => {
     await mutateAsync(id);
-
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen}>
-        <DialogHeader placeholder={""} className="font-poppins">
-          Hapus Pengguna
-        </DialogHeader>
-        <DialogBody className="font-poppins text-gray-500" placeholder={""}>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader className="font-poppins">Hapus Pengguna</DialogHeader>
+        <DialogBody className="font-poppins text-gray-500">
           Yakin Untuk Menghapus Pengguna ?
         </DialogBody>
-        <DialogFooter placeholder={""}>
+        <DialogFooter>
           <Button
-            placeholder={""}
             variant="text"
             onClick={handleOpen}
             className="mr-1 font-poppins"
@@ -57,7 +53,6 @@ export const DeleteUserModal = ({ open, handleOpen, id }: props) => {
             <span>Cancel</span>
           </Button>
           <Button
-            placeholder={""}
             className="font-poppins"
             variant="gradient"
             color="red"

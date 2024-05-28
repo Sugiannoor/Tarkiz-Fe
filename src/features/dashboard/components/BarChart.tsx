@@ -13,8 +13,6 @@ import {
 // import dynamic from "next/dynamic";
 // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-
-
 export const BarChart = () => {
   // const { data, isLoading, isError } = useQuery({
   //   queryKey: ["chart"],
@@ -116,23 +114,22 @@ export const BarChart = () => {
   //   },
   // };
   return (
-    <Card placeholder={""} className=" mt-10 lg:mt-14">
+    <Card className=" mt-10 lg:mt-14">
       <CardHeader
-        placeholder={""}
         floated={false}
         shadow={false}
         color="transparent"
         className="flex flex-col gap-4 rounded-none md:flex-row md:items-center"
       >
         <div>
-          <Typography placeholder={""} className="text-xl font-poppins font-semibold text-black">
+          <Typography className="text-xl font-poppins font-semibold text-black">
             Keluhan
-          </Typography> 
+          </Typography>
         </div>
       </CardHeader>
-      {/* <CardBody placeholder={""} className="px-2 pb-0">
+      {/* <CardBody   className="px-2 pb-0">
         <Chart type="area"{...chartConfig} />
       </CardBody> */}
     </Card>
   );
-}
+};

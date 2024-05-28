@@ -1,5 +1,6 @@
-import useAuth from '@/hooks/useAuth';
-import { FiEdit } from 'react-icons/fi';
+import useAuth from "@/hooks/useAuth";
+import { Input } from "@material-tailwind/react";
+import { FiEdit } from "react-icons/fi";
 
 type ImageUploadProps = {
   image?: File;
@@ -43,7 +44,8 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
             <FiEdit size={32} className="text-white" />
           </div>
         </div>
-        <input
+        <Input
+          crossOrigin={""}
           type="file"
           accept="image/*"
           id="imageProfileUpload"

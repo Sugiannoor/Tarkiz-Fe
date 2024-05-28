@@ -3,7 +3,7 @@ import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 
 const DetailComplaint = () => {
-    const navigate = useNavigate ();
+  const navigate = useNavigate();
   return (
     <div>
       <NavbarSimple>
@@ -14,52 +14,58 @@ const DetailComplaint = () => {
           Berikut adalah Detail Pengaduan yang diajukan
         </div>
         <table className="border-2 w-full rounded-lg">
-            <tbody>
-
-          <tr className="border-2 w-[50%] h-16 font-poppins font-light">
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Nama
-            </td>
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Flora
-            </td>
-          </tr>
-          <tr className="border-2 w-[50%] h-16 font-poppins font-light">
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              ID Contract
-            </td>
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 2
-            </td>
-          </tr>
-          <tr className="border-2 w-[50%] h-16 font-poppins font-light">
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 1
-            </td>
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 2
-            </td>
-          </tr>
-          <tr className="border-2 w-[50%] h-16 font-poppins font-light">
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 1
-            </td>
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 2
-            </td>
-          </tr>
-          <tr className="border-2 w-[50%] h-16 font-poppins font-light">
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 1
-            </td>
-            <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
-              Baris 1, Kolom 2
-            </td>
-          </tr>
-            </tbody>
+          <tbody>
+            <tr className="border-2 w-[50%] h-16 font-poppins font-light">
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Nama
+              </td>
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Flora
+              </td>
+            </tr>
+            <tr className="border-2 w-[50%] h-16 font-poppins font-light">
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                ID Contract
+              </td>
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 2
+              </td>
+            </tr>
+            <tr className="border-2 w-[50%] h-16 font-poppins font-light">
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 1
+              </td>
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 2
+              </td>
+            </tr>
+            <tr className="border-2 w-[50%] h-16 font-poppins font-light">
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 1
+              </td>
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 2
+              </td>
+            </tr>
+            <tr className="border-2 w-[50%] h-16 font-poppins font-light">
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 1
+              </td>
+              <td className="border-2 w-[50%] h-16 font-poppins font-light px-4">
+                Baris 1, Kolom 2
+              </td>
+            </tr>
+          </tbody>
         </table>
         <div className="flex justify-end mt-10">
-          <Button variant="filled" color="indigo" onClick={()=> navigate(-1)} className="font-raleway" placeholder={""}>Kembali</Button>
+          <Button
+            variant="filled"
+            color="indigo"
+            onClick={() => navigate(-1)}
+            className="font-raleway"
+          >
+            Kembali
+          </Button>
         </div>
       </NavbarSimple>
     </div>

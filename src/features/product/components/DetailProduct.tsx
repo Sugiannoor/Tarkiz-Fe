@@ -27,10 +27,12 @@ export const DetailProduct = () => {
     queryKey: ["product", id],
     queryFn: () => getProductById(idNum),
   });
-  const { data: portofolios, isLoading: isPortofolio } = useQuery<Portofolio[]>({
-    queryKey: ["portofolios", id],
-    queryFn: () => getPortofolioByIdProduct(idNum),
-  });
+  const { data: portofolios, isLoading: isPortofolio } = useQuery<Portofolio[]>(
+    {
+      queryKey: ["portofolios", id],
+      queryFn: () => getPortofolioByIdProduct(idNum),
+    }
+  );
 
   if (isProductLoading || isError) {
     return <Loading />;
@@ -48,24 +50,18 @@ export const DetailProduct = () => {
           value="portofolio"
           className=" p-5 lg:p-0 lg:w-[80rem]"
         >
-          <TabsHeader placeholder={""}>
+          <TabsHeader>
             <Tab
               value={"portofolio"}
-              placeholder={""}
               className="font-poppins text-sm lg:text-lg"
             >
               Portofolio
             </Tab>
-            <Tab
-              value={"gallery"}
-              placeholder={""}
-              className="font-poppins text-sm lg:text-lg"
-            >
+            <Tab value={"gallery"} className="font-poppins text-sm lg:text-lg">
               Gallery
             </Tab>
           </TabsHeader>
           <TabsBody
-            placeholder={""}
             animate={{
               initial: { y: 250 },
               mount: { y: 0 },

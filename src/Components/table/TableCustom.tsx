@@ -1,26 +1,25 @@
-import { Metadata } from '@/features/user/types/api';
-import {  Card, CardBody, Typography } from '@material-tailwind/react';
-import { useId } from 'react';
-import { TableSkeleton } from './TableSkeleton';
-
+import { Metadata } from "@/features/user/types/api";
+import { Card, CardBody, Typography } from "@material-tailwind/react";
+import { useId } from "react";
+import { TableSkeleton } from "./TableSkeleton";
 
 interface Props<T> {
-    title?: string;
-    header: (string | boolean)[];
-    items: T[] | undefined;
-    renderItem: (item: T, index: number) => React.ReactNode;
-    metadata?: Metadata;
-    onPageChange?: (page: number) => void;
-    loading?: boolean;
-  }
-const TableCustom =  <T,>(props: Props<T>) => {
-  const { items, renderItem, header, loading, } = props;
+  title?: string;
+  header: (string | boolean)[];
+  items: T[] | undefined;
+  renderItem: (item: T, index: number) => React.ReactNode;
+  metadata?: Metadata;
+  onPageChange?: (page: number) => void;
+  loading?: boolean;
+}
+const TableCustom = <T,>(props: Props<T>) => {
+  const { items, renderItem, header, loading } = props;
   const id = useId();
 
   return (
     <div>
-      <Card placeholder={""} className="h-full w-full">
-        <CardBody placeholder={""} className="overflow-scroll px-0">
+      <Card className="h-full w-full">
+        <CardBody className="overflow-scroll px-0">
           <table className="mt-4 w-full min-w-max table-auto text-left">
             <thead>
               <tr>
@@ -30,7 +29,6 @@ const TableCustom =  <T,>(props: Props<T>) => {
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                   >
                     <Typography
-                      placeholder={""}
                       variant="small"
                       color="blue-gray"
                       className="font-normal leading-none opacity-70"
@@ -42,7 +40,7 @@ const TableCustom =  <T,>(props: Props<T>) => {
               </tr>
             </thead>
             <tbody>
-            {loading || !items ? (
+              {loading || !items ? (
                 <TableSkeleton col={header.length} row={5} />
               ) : items.length > 0 ? (
                 items.map((item, index) => renderItem(item, index))

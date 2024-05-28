@@ -28,27 +28,24 @@ export const DeleteProductModal = ({ open, handleOpen, id }: props) => {
     onError: ({ response }) => {
       if (response) {
         const errors = response.data.message;
-        toast.error(errors); 
+        toast.error(errors);
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
   const handleDelete = async () => {
     await mutateAsync(id);
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen}>
-        <DialogHeader placeholder={""} className="font-poppins">
-          Hapus Product
-        </DialogHeader>
-        <DialogBody className="font-poppins text-gray-500" placeholder={""}>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader className="font-poppins">Hapus Product</DialogHeader>
+        <DialogBody className="font-poppins text-gray-500">
           Yakin Untuk Menghapus Product ?
         </DialogBody>
-        <DialogFooter placeholder={""}>
+        <DialogFooter>
           <Button
-            placeholder={""}
             variant="text"
             color="red"
             onClick={handleOpen}
@@ -57,7 +54,6 @@ export const DeleteProductModal = ({ open, handleOpen, id }: props) => {
             <span>Cancel</span>
           </Button>
           <Button
-            placeholder={""}
             className="font-poppins"
             variant="gradient"
             color="green"
