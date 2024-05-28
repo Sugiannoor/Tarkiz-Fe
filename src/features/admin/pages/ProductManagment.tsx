@@ -16,12 +16,12 @@ const ProductManagment = () => {
   const handleCreateProduct = () => setIsCreateProduct(!isCreateProduct);
   const handleCreateTag = () => setIsCreateTag(!isCreateTag);
   const handleCreateType = () => setIsCreateType(!isCreateType);
-  const navigate = useNavigate ()
+  const navigate = useNavigate();
 
   return (
     <div>
       <div>
-        <Breadcrumbs placeholder={""} className="bg-[#005697] px-0">
+        <Breadcrumbs className="bg-[#005697] px-0">
           <a href="#" className="opacity-100 text-white font-poppins">
             <span>Admin</span>
           </a>
@@ -36,11 +36,10 @@ const ProductManagment = () => {
       <div className="text-3xl text-white font-poppins font-semibold my-10">
         Daftar Product
       </div>
-      <Card placeholder={""} className="w-full h-full p-4">
+      <Card className="w-full h-full p-4">
         <div className="flex justify-between flex-col lg:flex-row">
           <div className="flex gap-5 mb-4 lg:mb-0">
             <Button
-              placeholder={""}
               variant="filled"
               color="blue-gray"
               className="flex gap-2"
@@ -50,11 +49,10 @@ const ProductManagment = () => {
               Tambah Produk
             </Button>
             <Button
-              placeholder={""}
               variant="filled"
               color="blue"
               className="flex gap-2"
-              onClick={()=> navigate ("/tagtype")}
+              onClick={() => navigate("/tagtype")}
             >
               <BiPlusCircle size={15} />
               Tags & Type Produk

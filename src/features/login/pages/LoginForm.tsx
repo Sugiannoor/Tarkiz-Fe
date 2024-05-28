@@ -8,28 +8,28 @@ import useAuth from "@/hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
-  const { login} = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState (false);
+  const [error, setError] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault ();
+    e.preventDefault();
     const dataSubmit = {
       username,
       password,
     };
     await login.mutateAsync(dataSubmit, {
       onSuccess: () => {
-        navigate ("/dashboard", {replace: true})
+        navigate("/dashboard", { replace: true });
       },
       onError: (err: any) => {
         toast.error(err.message);
-        setError (!error);
+        setError(!error);
         return;
       },
     });
@@ -40,16 +40,12 @@ const LoginForm = () => {
       <Card placeholder="" color="transparent" shadow={false}>
         <Typography
           className="font-poppins text-2xl"
-          placeholder={""}
           variant="h4"
           color="blue-gray"
         >
           Log in
         </Typography>
-        <Typography
-          placeholder={""}
-          className="mt-1 lg:text-lg font-poppins text-custom-gray-600"
-        >
+        <Typography className="mt-1 lg:text-lg font-poppins text-custom-gray-600">
           Silahkan Masuk dengan Akun yang sudah ada!
         </Typography>
         <form
@@ -59,7 +55,6 @@ const LoginForm = () => {
           <div className="mb-1 flex flex-col gap-6">
             <Typography
               aria-label="username"
-              placeholder={""}
               variant="h6"
               color="blue-gray"
               className="-mb-3 font-poppins"
@@ -81,7 +76,6 @@ const LoginForm = () => {
               error={error}
             />
             <Typography
-              placeholder={""}
               variant="h6"
               color="blue-gray"
               className="-mb-3 font-poppins"
@@ -102,7 +96,7 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 error={error}
               />
-             {showPassword ? (
+              {showPassword ? (
                 <FaEyeSlash
                   className="!absolute right-4 top-3 cursor-pointer"
                   size={18}
@@ -118,7 +112,6 @@ const LoginForm = () => {
             </div>
           </div>
           <Button
-            placeholder={""}
             color="indigo"
             className="mt-6 font-body"
             type="submit"

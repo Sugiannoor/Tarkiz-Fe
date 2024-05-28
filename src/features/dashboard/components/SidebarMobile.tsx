@@ -32,75 +32,64 @@ export const SidebarMobile = () => {
           onClick={() => setIsDrawer(!isDrawer)}
         />
       )}
-      <Drawer
-        placeholder={""}
-        open={isDrawer}
-        onClose={() => setIsDrawer(!isDrawer)}
-      >
-        <Card
-          placeholder={""}
-          className="h-[100vh] p-4 rounded shadow-xl shadow-blue-gray-900/5"
-        >
+      <Drawer open={isDrawer} onClose={() => setIsDrawer(!isDrawer)}>
+        <Card className="h-[100vh] p-4 rounded shadow-xl shadow-blue-gray-900/5">
           <div className="mb-2 flex items-center gap-4 p-4">
             <img src="/tarkiz-logo.webp" alt="brand" className="h-14 w-28" />
           </div>
-          <List placeholder={""}>
+          <List>
             <hr className="my-2 border-blue-gray-50" />
             <Link to={"/dashboard"}>
-              <ListItem placeholder={""} className="font-poppins p-5">
-                <ListItemPrefix placeholder={""}>
+              <ListItem className="font-poppins p-5">
+                <ListItemPrefix>
                   <FaHome className="h-5 w-5" />
                 </ListItemPrefix>
                 Dashboard
               </ListItem>
             </Link>
             <Link to={"/user"}>
-              <ListItem placeholder={""} className="font-poppins p-5">
-                <ListItemPrefix placeholder={""}>
+              <ListItem className="font-poppins p-5">
+                <ListItemPrefix>
                   <IoStatsChart className="h-5 w-5" />
                 </ListItemPrefix>
                 Manajemen User
               </ListItem>
             </Link>
             <Link to={"/product"}>
-              <ListItem placeholder={""} className="font-poppins p-5">
-                <ListItemPrefix placeholder={""}>
+              <ListItem className="font-poppins p-5">
+                <ListItemPrefix>
                   <MdOutlineScreenShare className="h-5 w-5" />
                 </ListItemPrefix>
                 Manajemen Product
               </ListItem>
             </Link>
             <Link to={"/keluhan"}>
-              <ListItem placeholder={""} className="font-poppins p-5">
-                <ListItemPrefix placeholder={""}>
+              <ListItem className="font-poppins p-5">
+                <ListItemPrefix>
                   <FaUserTimes className="h-5 w-5" />
                 </ListItemPrefix>
                 Manajemen Keluhan
               </ListItem>
             </Link>
             <Link to={"/kontrak"}>
-              <ListItem placeholder={""} className="font-poppins p-5">
-                <ListItemPrefix placeholder={""}>
+              <ListItem className="font-poppins p-5">
+                <ListItemPrefix>
                   <FaCreditCard className="h-5 w-5" />
                 </ListItemPrefix>
                 Manajemen Kontrak
               </ListItem>
             </Link>
             <Link to={"/portofolios"}>
-              <ListItem placeholder={""} className="font-poppins p-5">
-                <ListItemPrefix placeholder={""}>
+              <ListItem className="font-poppins p-5">
+                <ListItemPrefix>
                   <FaHistory className="h-5 w-5" />
                 </ListItemPrefix>
                 Manajemen Portofolio
               </ListItem>
             </Link>
             <hr className="my-2 border-blue-gray-50" />
-            <ListItem
-              placeholder={""}
-              className="font-poppins p-5"
-              onClick={logout}
-            >
-              <ListItemPrefix placeholder={""}>
+            <ListItem className="font-poppins p-5" onClick={logout}>
+              <ListItemPrefix>
                 <BiLogOut className="h-5 w-5" />
               </ListItemPrefix>
               Log Out

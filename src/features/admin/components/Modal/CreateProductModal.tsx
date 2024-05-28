@@ -104,17 +104,16 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
   return (
     <>
       <Dialog
-        placeholder={""}
         size="lg"
         open={open}
         handler={handleOpen}
         dismiss={{ escapeKey: false, outsidePress: false }}
       >
-        <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
+        <DialogHeader className="font-poppins text-[#005697]">
           Tambah Produk
         </DialogHeader>
         <form onSubmit={handleSubmit} className="overflow-y-scroll h-[40rem]">
-          <DialogBody placeholder={""} className="p-10">
+          <DialogBody className="p-10">
             <label
               htmlFor="product"
               className="text-lg text-[#005697] font-normal font-poppins"
@@ -211,9 +210,8 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               </div>
             </div>
           </DialogBody>
-          <DialogFooter placeholder={""}>
+          <DialogFooter>
             <Button
-              placeholder={""}
               variant="text"
               color="red"
               onClick={handleCancel}
@@ -222,7 +220,6 @@ export const CreateProductModal = ({ open, handleOpen }: props) => {
               <span>Cancel</span>
             </Button>
             <Button
-              placeholder={""}
               className="font-poppins"
               variant="gradient"
               color="black"

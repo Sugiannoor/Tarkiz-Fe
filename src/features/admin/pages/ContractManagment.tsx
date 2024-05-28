@@ -13,7 +13,7 @@ const ContractManagment = () => {
   return (
     <div>
       <div>
-        <Breadcrumbs placeholder={""} className="bg-[#005697] px-0">
+        <Breadcrumbs className="bg-[#005697] px-0">
           <a href="#" className="opacity-100 text-white font-poppins">
             <span>Admin</span>
           </a>
@@ -28,10 +28,9 @@ const ContractManagment = () => {
       <div className="text-3xl text-white font-poppins font-semibold my-10">
         Daftar Kontrak
       </div>
-      <Card placeholder={""} className="w-full h-full p-4">
+      <Card className="w-full h-full p-4">
         <div className="flex justify-between">
           <Button
-            placeholder={""}
             variant="filled"
             color="blue"
             className="flex gap-2"

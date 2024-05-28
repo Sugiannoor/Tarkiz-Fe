@@ -1,6 +1,6 @@
-import { Button } from '@material-tailwind/react';
-import { FaTimesCircle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Button } from "@material-tailwind/react";
+import { FaTimesCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export const UnderProgress: React.FC = () => {
   const navigate = useNavigate();
@@ -12,9 +12,7 @@ export const UnderProgress: React.FC = () => {
         <h1 className="text-3xl font-bold mb-4 text-center font-poppins mt-20 ">
           Halaman tidak ditemukan atau fitur Dalam Pengembangan
         </h1>
-        <Button placeholder={""} onClick={() => navigate(-1)}>
-          Kembali
-        </Button>
+        <Button onClick={() => navigate(-1)}>Kembali</Button>
       </div>
     </main>
   );

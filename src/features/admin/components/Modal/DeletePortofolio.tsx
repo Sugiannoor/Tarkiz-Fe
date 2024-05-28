@@ -37,16 +37,13 @@ export const DeletePortofolioModal = ({ open, handleOpen, id }: props) => {
   };
   return (
     <>
-      <Dialog placeholder={""} open={open} handler={handleOpen}>
-        <DialogHeader placeholder={""} className="font-poppins">
-          Hapus Kontrak
-        </DialogHeader>
-        <DialogBody className="font-poppins text-gray-500" placeholder={""}>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader className="font-poppins">Hapus Kontrak</DialogHeader>
+        <DialogBody className="font-poppins text-gray-500">
           Yakin Untuk Menghapus Portofolio ?
         </DialogBody>
-        <DialogFooter placeholder={""}>
+        <DialogFooter>
           <Button
-            placeholder={""}
             variant="text"
             color="red"
             onClick={handleOpen}
@@ -55,7 +52,6 @@ export const DeletePortofolioModal = ({ open, handleOpen, id }: props) => {
             <span>Cancel</span>
           </Button>
           <Button
-            placeholder={""}
             className="font-poppins"
             variant="gradient"
             color="green"

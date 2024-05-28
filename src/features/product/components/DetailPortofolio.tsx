@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import {useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Tab,
   TabPanel,
@@ -10,7 +10,7 @@ import {
 import { SpootlightsHome } from "@/features/user/components";
 import { GalleryProduct } from "./GalleryProduct";
 import Loading from "@/Components/Loading";
-import { getPortofolioById, } from "@/features/admin/api/portofolio";
+import { getPortofolioById } from "@/features/admin/api/portofolio";
 import { PortofolioUpdate } from "@/features/admin/types/portofolioTable";
 
 export const DetailPortofolio = () => {
@@ -41,17 +41,12 @@ export const DetailPortofolio = () => {
           value="gallery"
           className=" p-5 lg:p-0 lg:w-[80rem]"
         >
-          <TabsHeader placeholder={""}>
-            <Tab
-              value={"gallery"}
-              placeholder={""}
-              className="font-poppins text-sm lg:text-lg"
-            >
+          <TabsHeader>
+            <Tab value={"gallery"} className="font-poppins text-sm lg:text-lg">
               Gallery
             </Tab>
           </TabsHeader>
           <TabsBody
-            placeholder={""}
             animate={{
               initial: { y: 250 },
               mount: { y: 0 },
@@ -61,8 +56,8 @@ export const DetailPortofolio = () => {
             <TabPanel value={"gallery"}>
               {dataPortofolio?.gallery == undefined ? (
                 <div>Tidak Tersedia</div>
-              ): (
-              <GalleryProduct data={dataPortofolio?.gallery} />
+              ) : (
+                <GalleryProduct data={dataPortofolio?.gallery} />
               )}
             </TabPanel>
           </TabsBody>

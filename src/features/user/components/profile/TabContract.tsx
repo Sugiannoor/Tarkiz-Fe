@@ -12,8 +12,6 @@ import { getContractByUser } from "@/features/admin/api/contract";
 import { useQuery } from "react-query";
 import Loading from "@/Components/Loading";
 
-
-
 const TabContract = () => {
   const [selectedId, setSelectedId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
@@ -24,36 +22,31 @@ const TabContract = () => {
     queryFn: getContractByUser,
   });
 
-  if (isLoading || isError ) {
-    return <Loading/>
+  if (isLoading || isError) {
+    return <Loading />;
   }
   if (data?.length === 0) {
-    return <div>Data Tidak Tersedia</div>
+    return <div>Data Tidak Tersedia</div>;
   }
   return (
     <div>
       {data?.map(({ name, id, description }) => (
-        <Card key={id} placeholder={""} className="mt-6 w-full">
-          <CardBody placeholder={""}>
+        <Card key={id} className="mt-6 w-full">
+          <CardBody>
             <Typography
-              placeholder={""}
               variant="h5"
               color="blue-gray"
               className="mb-2 font-poppins"
             >
               {name}
             </Typography>
-            <Typography placeholder={""} className="font-poppins font-normal">
+            <Typography className="font-poppins font-normal">
               Contract ID: {id} <br />
               Program: {description} <br />
             </Typography>
           </CardBody>
-          <CardFooter
-            placeholder={""}
-            className="pt-0 flex justify-end font-poppin gap-5"
-          >
+          <CardFooter className="pt-0 flex justify-end font-poppin gap-5">
             <Button
-              placeholder={""}
               onClick={() => {
                 setSelectedId(id);
                 handleModal();
@@ -62,9 +55,7 @@ const TabContract = () => {
               Detail
             </Button>
             <Link to={`/profile/keluhan/${id}`}>
-            <Button placeholder={""} color="red">
-              Keluhkan
-            </Button>
+              <Button color="red">Keluhkan</Button>
             </Link>
           </CardFooter>
         </Card>

@@ -9,14 +9,14 @@ import { Link, useParams } from "react-router-dom";
 import { createComplaint } from "../api/createComplaint";
 
 const CreateComplaint = () => {
-  const {id} = useParams ();
-  const contractId = Number(id)
-  const [formData, setFormData] = useState ({
+  const { id } = useParams();
+  const contractId = Number(id);
+  const [formData, setFormData] = useState({
     name: "",
-    description: ""
+    description: "",
   });
   const [files, setFiles] = useState<FilePondFile[]>([]);
-  
+
   const handleFileChange = (fileItems: FilePondFile[]) => {
     setFiles(fileItems);
   };
@@ -26,7 +26,7 @@ const CreateComplaint = () => {
       ...prevFormData,
       [name]: value,
     }));
-  }
+  };
 
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createComplaint,
@@ -36,7 +36,9 @@ const CreateComplaint = () => {
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.message;
-        const errorMessages = Object.values(errors).map((error:string) => error);
+        const errorMessages = Object.values(errors).map(
+          (error: string) => error
+        );
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -45,7 +47,7 @@ const CreateComplaint = () => {
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,10 +55,10 @@ const CreateComplaint = () => {
     const { name, description } = formData;
 
     const dataSubmit = {
-    contractId,
-     name,
-     description,
-     files,
+      contractId,
+      name,
+      description,
+      files,
     };
     await mutateAsync(dataSubmit);
   };
@@ -69,7 +71,7 @@ const CreateComplaint = () => {
         </div>
         <div className="p-10 border-4 rounded-lg border-[#005697]">
           <form onSubmit={handleSubmit}>
-          <div className="text-lg text-[#005697] font-normal font-poppins mb-2">
+            <div className="text-lg text-[#005697] font-normal font-poppins mb-2">
               Judul Keluhan
             </div>
             <Input
@@ -82,11 +84,11 @@ const CreateComplaint = () => {
               className="mb-2"
               onChange={handleChange}
             />
-             <div className="text-lg text-[#005697] font-normal font-poppins mt-4 mb-2">
-              Deskripsi Keluhan 
+            <div className="text-lg text-[#005697] font-normal font-poppins mt-4 mb-2">
+              Deskripsi Keluhan
             </div>
             <Input
-            crossOrigin={""}
+              crossOrigin={""}
               id="complaint"
               placeholder="Error Ketika Menghitung ..."
               type="text"
@@ -96,22 +98,21 @@ const CreateComplaint = () => {
               onChange={handleChange}
             />
             <div className="max-w-80 mt-5 cursor-pointer">
-              <FilePond name="files" dropOnPage onupdatefiles={handleFileChange} allowMultiple maxFiles={3}/>
+              <FilePond
+                name="files"
+                dropOnPage
+                onupdatefiles={handleFileChange}
+                allowMultiple
+                maxFiles={3}
+              />
             </div>
             <div className="flex justify-end gap-5">
               <Link to={"/profile"}>
-                <Button
-                  placeholder={""}
-                  variant="text"
-                  className="font-raleway"
-                  color="red"
-                  
-                >
+                <Button variant="text" className="font-raleway" color="red">
                   Kembali
                 </Button>
               </Link>
               <Button
-                placeholder={""}
                 variant="filled"
                 className="font-raleway"
                 color="indigo"

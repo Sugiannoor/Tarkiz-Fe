@@ -2,7 +2,6 @@
 
 import { StickyScroll } from "@/Components/UI/Sticky-scroll-reveal";
 
-
 const content = [
   {
     title: "Collaborative Editing",
@@ -25,12 +24,16 @@ const content = [
       "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
   },
 ];
- const StickyScrollProduct = ({image_path}: any) => {
+const StickyScrollProduct = ({ image_path }: any) => {
   return (
     <div className="grid grid-col-1 lg:grid-cols-2 p-4 lg:p-11 gap-5">
-      <img className="w-full h-[30rem] rounded-md object-cover" src={`${image_path}`} alt="" />
+      <img
+        className="w-full h-[30rem] rounded-md object-cover"
+        src={`${image_path}`}
+        alt=""
+      />
       <StickyScroll content={content} />
     </div>
   );
-}
-export default StickyScrollProduct
+};
+export default StickyScrollProduct;

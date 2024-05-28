@@ -90,7 +90,7 @@ const TagTypeManagment = () => {
   const tableHead = ["ID", "Label", ""];
   return (
     <div>
-      <Breadcrumbs placeholder={""} className="bg-[#005697] px-0">
+      <Breadcrumbs className="bg-[#005697] px-0">
         <a href="#" className="opacity-100 text-white font-poppins">
           <span>Admin</span>
         </a>
@@ -106,8 +106,8 @@ const TagTypeManagment = () => {
       </div>
       <div className="flex flex-col lg:flex-row justify-between gap-5">
         <div className="w-full">
-          <Card placeholder={""}>
-            <CardBody placeholder={""}>
+          <Card>
+            <CardBody>
               <div className="flex justify-center text-xl text-[#005697] font-semibold font-poppins mb-5">
                 Tambah Tag
               </div>
@@ -130,7 +130,6 @@ const TagTypeManagment = () => {
                 />
                 <div className="flex justify-end mt-5">
                   <Button
-                    placeholder={""}
                     className="font-poppins"
                     variant="filled"
                     color="indigo"
@@ -145,7 +144,7 @@ const TagTypeManagment = () => {
           </Card>
         </div>
         <div className="w-full mr-5">
-          <Card className="h-full overflow-y-scroll max-h-[300px]" placeholder={""}>
+          <Card className="h-full overflow-y-scroll max-h-[300px]">
             <table className="w-full min-w-max table-auto text-left">
               <thead>
                 <tr>
@@ -155,7 +154,6 @@ const TagTypeManagment = () => {
                       className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
                     >
                       <Typography
-                        placeholder={""}
                         variant="small"
                         color="blue-gray"
                         className="font-poppins font-semibold text-md leading-none opacity-70"
@@ -175,7 +173,6 @@ const TagTypeManagment = () => {
                       <tr key={index}>
                         <td className={classes}>
                           <Typography
-                            placeholder={""}
                             variant="small"
                             color="blue-gray"
                             className="font-poppins"
@@ -185,7 +182,6 @@ const TagTypeManagment = () => {
                         </td>
                         <td className={classes}>
                           <Typography
-                            placeholder={""}
                             variant="small"
                             color="blue-gray"
                             className="font-poppins"
@@ -197,17 +193,15 @@ const TagTypeManagment = () => {
                           <FaTrashAlt
                             size={18}
                             className="text-red-900 cursor-pointer"
-                            onClick={()=> {
-                              setSelectedId (value),
-                              handleDeleteTag ()
+                            onClick={() => {
+                              setSelectedId(value), handleDeleteTag();
                             }}
                           />
                           <RiEditBoxLine
                             size={18}
                             className="text-custom-blue-600 cursor-pointer"
-                            onClick={()=> {
-                              setSelectedId (value),
-                              handleEditTag ()
+                            onClick={() => {
+                              setSelectedId(value), handleEditTag();
                             }}
                           />
                         </td>
@@ -226,8 +220,8 @@ const TagTypeManagment = () => {
       </div>
       <div className="flex flex-col lg:flex-row justify-between gap-5 mt-5">
         <div className="w-full flex-grow">
-          <Card placeholder={""}>
-            <CardBody placeholder={""}>
+          <Card>
+            <CardBody>
               <div className="flex justify-center text-xl text-[#005697] font-semibold font-poppins mb-5">
                 Tambah Type
               </div>
@@ -250,7 +244,6 @@ const TagTypeManagment = () => {
                 />
                 <div className="flex justify-end mt-5">
                   <Button
-                    placeholder={""}
                     className="font-poppins"
                     variant="filled"
                     color="indigo"
@@ -265,7 +258,7 @@ const TagTypeManagment = () => {
           </Card>
         </div>
         <div className="w-full mr-5 flex-grow">
-          <Card className="h-full overflow-scroll max-h-[300px]" placeholder={""}>
+          <Card className="h-full overflow-scroll max-h-[300px]">
             <table className="w-full table-auto text-left table-scrollable">
               <thead>
                 <tr>
@@ -275,7 +268,6 @@ const TagTypeManagment = () => {
                       className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
                     >
                       <Typography
-                        placeholder={""}
                         variant="small"
                         color="blue-gray"
                         className="font-poppins font-semibold text-md leading-none opacity-70"
@@ -295,7 +287,6 @@ const TagTypeManagment = () => {
                       <tr key={index}>
                         <td className={classes}>
                           <Typography
-                            placeholder={""}
                             variant="small"
                             color="blue-gray"
                             className="font-poppins"
@@ -305,7 +296,6 @@ const TagTypeManagment = () => {
                         </td>
                         <td className={classes}>
                           <Typography
-                            placeholder={""}
                             variant="small"
                             color="blue-gray"
                             className="font-poppins"
@@ -354,7 +344,7 @@ const TagTypeManagment = () => {
         id={selectedId}
         open={isEditType}
       />
-       <DeleteTagModal
+      <DeleteTagModal
         handleOpen={handleDeleteTag}
         id={selectedId}
         open={isDeleteTag}

@@ -16,7 +16,6 @@ import { TableHeader } from "./TableHeader";
 import { TableBody } from "./TableBody";
 import { Button, Typography } from "@material-tailwind/react";
 
-
 type TableProps<T> = {
   data?: [];
   columns: ColumnDef<T>[];
@@ -52,7 +51,6 @@ const Table = <T,>({
             ...column,
             cell: () => (
               <Typography
-                placeholder={""}
                 as="div"
                 variant="paragraph"
                 className="mb-2 h-3 w-30 rounded-full bg-gray-300"
@@ -99,7 +97,6 @@ const Table = <T,>({
       </table>
       <div className="flex gap-2 justify-end m-5">
         <Button
-          placeholder={""}
           variant="outlined"
           size="sm"
           disabled={!table.getCanPreviousPage()}
@@ -108,7 +105,6 @@ const Table = <T,>({
           Previous
         </Button>
         <Button
-          placeholder={""}
           variant="outlined"
           size="sm"
           onClick={() => table.nextPage()}

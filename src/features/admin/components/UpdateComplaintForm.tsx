@@ -243,7 +243,6 @@ const UpdateComplaintForm = () => {
           />
           <div className="flex justify-end mt-10">
             <Button
-              placeholder={""}
               variant="text"
               color="red"
               className="mr-1 font-poppins"
@@ -252,7 +251,6 @@ const UpdateComplaintForm = () => {
               <span>Cancel</span>
             </Button>
             <Button
-              placeholder={""}
               className="font-poppins"
               variant="gradient"
               color="black"

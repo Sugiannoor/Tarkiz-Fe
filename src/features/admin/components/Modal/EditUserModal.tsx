@@ -62,7 +62,9 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
     onError: ({ response }) => {
       if (response) {
         const errors: { [key: string]: string } = response.data.message;
-        const errorMessages = Object.values(errors).map((error:string) => error);
+        const errorMessages = Object.values(errors).map(
+          (error: string) => error
+        );
         errorMessages.forEach((errorMessage: string, index) => {
           if (index === 0) {
             toast.error(errorMessage);
@@ -71,7 +73,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
       } else {
         toast.error("Terjadi kesalahan saat memproses permintaan.");
       }
-    }
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -82,16 +84,15 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
   return (
     <>
       <Dialog
-        placeholder={""}
         open={open}
         handler={handleOpen}
         dismiss={{ escapeKey: false, outsidePress: false }}
       >
-        <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
+        <DialogHeader className="font-poppins text-[#005697]">
           Edit Pengguna
         </DialogHeader>
         <form onSubmit={handleSubmit}>
-          <DialogBody placeholder={""} className="p-10">
+          <DialogBody className="p-10">
             <div className="text-lg text-[#005697] font-normal font-poppins">
               Nama Lengkap
             </div>
@@ -162,9 +163,8 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
               onChange={handleChange}
             />
           </DialogBody>
-          <DialogFooter placeholder={""}>
+          <DialogFooter>
             <Button
-              placeholder={""}
               variant="text"
               color="red"
               onClick={handleOpen}
@@ -173,7 +173,6 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
               <span>Cancel</span>
             </Button>
             <Button
-              placeholder={""}
               className="font-poppins"
               variant="gradient"
               color="black"

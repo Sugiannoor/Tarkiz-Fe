@@ -129,20 +129,19 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   return (
     <>
       <Dialog
-        placeholder={""}
         open={open}
         handler={handleOpen}
         dismiss={{ escapeKey: false, outsidePress: false }}
         className="h-[95%] overflow-y-scroll"
       >
-        <DialogHeader className="font-poppins text-[#005697]" placeholder={""}>
+        <DialogHeader className="font-poppins text-[#005697]">
           Edit Kegiatan
         </DialogHeader>
         {isProductLoading ? (
           <Loading />
         ) : (
           <form onSubmit={handleSubmit}>
-            <DialogBody placeholder={""} className="p-10">
+            <DialogBody className="p-10">
               <div className="text-lg text-[#005697] font-normal font-poppins">
                 Judul Kegiatan
               </div>
@@ -288,9 +287,8 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                 />
               </div>
             </DialogBody>
-            <DialogFooter placeholder={""}>
+            <DialogFooter>
               <Button
-                placeholder={""}
                 variant="text"
                 color="red"
                 onClick={handleCancel}
@@ -299,7 +297,6 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                 <span>Cancel</span>
               </Button>
               <Button
-                placeholder={""}
                 className="font-poppins"
                 variant="filled"
                 color="black"

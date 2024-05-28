@@ -16,7 +16,6 @@ const ErrorFallback = ({ error }: FallbackProps) => {
       </h2>
       <p className="text-red-500 font-poppins">{error.message}</p>
       <Button
-        placeholder={""}
         className="mt-4"
         onClick={() => window.location.assign(window.location.origin)}
       >

@@ -20,13 +20,8 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {[...Array(2)].map((_, index) => (
-          <Card
-            key={index}
-            placeholder={""}
-            className="mt-6 w-96 animate-pulse"
-          >
+          <Card key={index} className="mt-6 w-96 animate-pulse">
             <CardHeader
-              placeholder={""}
               shadow={false}
               floated={false}
               className="relative grid h-56 place-items-center bg-gray-300"
@@ -46,9 +41,8 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 />
               </svg>
             </CardHeader>
-            <CardBody placeholder={""}>
+            <CardBody>
               <Typography
-                placeholder={""}
                 as="div"
                 variant="h1"
                 className="mb-4 h-3 w-56 rounded-full bg-gray-300"
@@ -56,7 +50,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 &nbsp;
               </Typography>
               <Typography
-                placeholder={""}
                 as="div"
                 variant="paragraph"
                 className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -64,7 +57,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 &nbsp;
               </Typography>
               <Typography
-                placeholder={""}
                 as="div"
                 variant="paragraph"
                 className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -72,7 +64,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 &nbsp;
               </Typography>
               <Typography
-                placeholder={""}
                 as="div"
                 variant="paragraph"
                 className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -80,7 +71,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 &nbsp;
               </Typography>
               <Typography
-                placeholder={""}
                 as="div"
                 variant="paragraph"
                 className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -88,9 +78,8 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 &nbsp;
               </Typography>
             </CardBody>
-            <CardFooter placeholder={""} className="pt-0">
+            <CardFooter className="pt-0">
               <Button
-                placeholder={""}
                 disabled
                 tabIndex={-1}
                 className="h-8 w-20 bg-gray-300 shadow-none hover:shadow-none"
@@ -100,9 +89,8 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
             </CardFooter>
           </Card>
         ))}
-        <Card placeholder={""} className="mt-6 w-96 animate-pulse">
+        <Card className="mt-6 w-96 animate-pulse">
           <CardHeader
-            placeholder={""}
             shadow={false}
             floated={false}
             className="relative grid h-56 place-items-center bg-gray-300"
@@ -122,9 +110,8 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               />
             </svg>
           </CardHeader>
-          <CardBody placeholder={""}>
+          <CardBody>
             <Typography
-              placeholder={""}
               as="div"
               variant="h1"
               className="mb-4 h-3 w-56 rounded-full bg-gray-300"
@@ -132,7 +119,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               &nbsp;
             </Typography>
             <Typography
-              placeholder={""}
               as="div"
               variant="paragraph"
               className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -140,7 +126,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               &nbsp;
             </Typography>
             <Typography
-              placeholder={""}
               as="div"
               variant="paragraph"
               className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -148,7 +133,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               &nbsp;
             </Typography>
             <Typography
-              placeholder={""}
               as="div"
               variant="paragraph"
               className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -156,7 +140,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               &nbsp;
             </Typography>
             <Typography
-              placeholder={""}
               as="div"
               variant="paragraph"
               className="mb-2 h-2 w-full rounded-full bg-gray-300"
@@ -164,9 +147,8 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               &nbsp;
             </Typography>
           </CardBody>
-          <CardFooter placeholder={""} className="pt-0">
+          <CardFooter className="pt-0">
             <Button
-              placeholder={""}
               disabled
               tabIndex={-1}
               className="h-8 w-20 bg-gray-300 shadow-none hover:shadow-none"
@@ -183,7 +165,6 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
       {data.map((item) => (
         <Card
           key={item.id}
-          placeholder={""}
           className="w-full flex flex-col max-w-[25rem] shadow-lg mb-4"
         >
           <div color="blue-gray" className="p-3 flex-grow">
@@ -197,10 +178,9 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               }}
             />
           </div>
-          <CardBody placeholder={""}>
+          <CardBody>
             <div className="mb-3 flex items-center justify-between">
               <Typography
-                placeholder={""}
                 variant="h5"
                 color="blue-gray"
                 className="font-medium font-poppins"
@@ -208,11 +188,7 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
                 {item.program}
               </Typography>
             </div>
-            <Typography
-              placeholder={""}
-              color="gray"
-              className=" truncate font-poppins"
-            >
+            <Typography color="gray" className=" truncate font-poppins">
               {item.description}
             </Typography>
             <div
@@ -226,9 +202,9 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
               />
             </div>
           </CardBody>
-          <CardFooter placeholder={""} className="pt-3">
+          <CardFooter className="pt-3">
             <Link to={`/portofolio/${item.id}`}>
-              <Button placeholder={""} size="lg" fullWidth={true}>
+              <Button size="lg" fullWidth={true}>
                 Selengkapnya
               </Button>
             </Link>
