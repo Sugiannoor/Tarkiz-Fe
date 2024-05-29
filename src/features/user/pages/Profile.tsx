@@ -1,14 +1,12 @@
-import { NavbarSimple } from "../components/NavbarSimple"
-import TabProfile from "../components/profile/TabProfile"
+import { NavbarSimple } from "../components/NavbarSimple";
+import TabProfile from "../components/profile/TabProfile";
 
-const Profile = () => {
+export const Profile = () => {
   return (
     <>
-    <NavbarSimple>
-    <TabProfile/>
-    </NavbarSimple>
+      <NavbarSimple>
+        <TabProfile />
+      </NavbarSimple>
     </>
-  )
-}
-
-export default Profile
+  );
+};

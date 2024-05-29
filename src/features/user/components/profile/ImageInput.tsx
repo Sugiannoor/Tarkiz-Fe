@@ -28,12 +28,14 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
           <div className="w-full h-full">
             {image ? (
               <img
+                loading="lazy"
                 src={URL.createObjectURL(image)}
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
               />
             ) : (
               <img
+                loading="lazy"
                 src={auth.user?.path_files ?? "/user_default.png"}
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"

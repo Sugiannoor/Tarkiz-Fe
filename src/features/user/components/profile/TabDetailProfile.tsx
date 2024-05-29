@@ -7,6 +7,7 @@ const TabDetailProfile = () => {
     <div>
       <div className="flex justify-center my-28">
         <img
+          loading="lazy"
           className="h-48 w-48 rounded-full object-cover object-center"
           src={
             `${import.meta.env.VITE_API_BASE_URL}/${user?.path_files}` ??

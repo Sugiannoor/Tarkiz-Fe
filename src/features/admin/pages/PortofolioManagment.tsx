@@ -5,7 +5,7 @@ import { BiPlusCircle } from "react-icons/bi";
 import TablePortofolio from "../components/Table/TablePortofolio";
 import { CreatePortofolioModal } from "../components/Modal/CreatePortofolio";
 
-const PortofoliotManagment = () => {
+export const PortofoliotManagment = () => {
   const [isCreatePortofolio, setIsCreatePortofolio] = useState(false);
   const [search, setSearch] = useState("");
   const handleCreatePortofolio = () =>
@@ -51,5 +51,3 @@ const PortofoliotManagment = () => {
     </div>
   );
 };
-
-export default PortofoliotManagment;

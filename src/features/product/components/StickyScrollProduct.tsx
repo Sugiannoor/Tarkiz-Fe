@@ -28,6 +28,7 @@ const StickyScrollProduct = ({ image_path }: any) => {
   return (
     <div className="grid grid-col-1 lg:grid-cols-2 p-4 lg:p-11 gap-5">
       <img
+        loading="lazy"
         className="w-full h-[30rem] rounded-md object-cover"
         src={`${image_path}`}
         alt=""

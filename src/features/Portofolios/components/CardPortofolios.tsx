@@ -24,6 +24,7 @@ export const CardPortofolios = ({ data }: params) => {
         >
           <div color="blue-gray" className="p-3 flex-grow">
             <img
+              loading="lazy"
               className="object-cover rounded-md"
               src={`http://localhost:8080/${item.path_file}`}
               onError={(e) => {

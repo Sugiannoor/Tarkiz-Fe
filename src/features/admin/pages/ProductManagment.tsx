@@ -8,7 +8,7 @@ import { CreateTagModal } from "../components/Modal/CreateTagModal";
 import { CreateTypeModal } from "../components/Modal/CreateTypeModal";
 import { useNavigate } from "react-router-dom";
 
-const ProductManagment = () => {
+export const ProductManagment = () => {
   const [isCreateProduct, setIsCreateProduct] = useState(false);
   const [isCreateTag, setIsCreateTag] = useState(false);
   const [isCreateType, setIsCreateType] = useState(false);
@@ -71,5 +71,3 @@ const ProductManagment = () => {
     </div>
   );
 };
-
-export default ProductManagment;

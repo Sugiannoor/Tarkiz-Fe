@@ -1,18 +1,17 @@
-import LoginForm from './LoginForm'
+import LoginForm from "./LoginForm";
 
-const Login = () => {
+export const Login = () => {
   return (
-    <div className='lg:grid grid-cols-2 flex justify-center items-center h-screen'>
-      <div className='hidden lg:block'>
-      <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-        alt="image 1"
-        className="h-screen object-cover rounded-xl"
+    <div className="lg:grid grid-cols-2 flex justify-center items-center h-screen">
+      <div className="hidden lg:block">
+        <img
+          loading="lazy"
+          src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+          alt="image 1"
+          className="h-screen object-cover rounded-xl"
         />
-        </div>
+      </div>
       <LoginForm />
     </div>
-  )
-}
-
-export default Login
+  );
+};

@@ -8,7 +8,7 @@ import { useMutation } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { createComplaint } from "../api/createComplaint";
 
-const CreateComplaint = () => {
+export const CreateComplaint = () => {
   const { id } = useParams();
   const contractId = Number(id);
   const [formData, setFormData] = useState({
@@ -128,5 +128,3 @@ const CreateComplaint = () => {
     </main>
   );
 };
-
-export default CreateComplaint;

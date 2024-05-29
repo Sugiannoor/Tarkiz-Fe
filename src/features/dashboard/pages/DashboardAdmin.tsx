@@ -2,7 +2,7 @@ import { Breadcrumbs } from "@material-tailwind/react";
 import CardDashboard from "../components/CardDashboard";
 import { BarChart } from "../components/BarChart";
 
-const DashboardAdmin = () => {
+export const DashboardAdmin = () => {
   return (
     <div>
       <Breadcrumbs className="bg-[#005697] px-0">
@@ -29,5 +29,3 @@ const DashboardAdmin = () => {
     </div>
   );
 };
-
-export default DashboardAdmin;

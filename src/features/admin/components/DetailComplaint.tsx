@@ -2,7 +2,7 @@ import { NavbarSimple } from "@/features/user/components";
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 
-const DetailComplaint = () => {
+export const DetailComplaint = () => {
   const navigate = useNavigate();
   return (
     <div>
@@ -71,5 +71,3 @@ const DetailComplaint = () => {
     </div>
   );
 };
-
-export default DetailComplaint;

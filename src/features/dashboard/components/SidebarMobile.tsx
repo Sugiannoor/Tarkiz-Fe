@@ -35,7 +35,12 @@ export const SidebarMobile = () => {
       <Drawer open={isDrawer} onClose={() => setIsDrawer(!isDrawer)}>
         <Card className="h-[100vh] p-4 rounded shadow-xl shadow-blue-gray-900/5">
           <div className="mb-2 flex items-center gap-4 p-4">
-            <img src="/tarkiz-logo.webp" alt="brand" className="h-14 w-28" />
+            <img
+              loading="lazy"
+              src="/tarkiz-logo.webp"
+              alt="brand"
+              className="h-14 w-28"
+            />
           </div>
           <List>
             <hr className="my-2 border-blue-gray-50" />
