@@ -16,7 +16,7 @@ const Bubble = () => {
       <div className="fixed bottom-4 right-4">
         <SpeedDial>
           <SpeedDialHandler>
-            <IconButton size="lg" className="rounded-full">
+            <IconButton aria-label="Bubble Contact" size="lg" className="rounded-full">
               <IoMdChatboxes className="hidden h-5 w-5 group-hover:block" />
               <IoChatboxEllipses className="block h-5 w-5 group-hover:hidden" />
             </IconButton>

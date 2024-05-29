@@ -5,7 +5,7 @@ const ProductList = () => {
   return (
     <div id="service" className="bg-[#161C2D] w-full rounded-xl flex justify-center items-center py-16 mt-5">
       <div className="w-4/5">
-        <div className="font-raleway text-[#005697] text-center lg:text-left  lg:text-xl font-bold mb-5">
+        <div className="font-raleway text-custom-primary-50 text-center lg:text-left  lg:text-xl font-extrabold mb-5">
           SERVICES
         </div>
         <div className="font-poppins text-center text-2xl lg:text-left lg:text-3xl font-bold text-custom-primary-50">
@@ -19,7 +19,7 @@ const ProductList = () => {
               </div>
               <div className="font-raleway font-normal text-custom-primary-50 mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/web"}>
+              <Link to={"/product/web"} aria-label="product web">
             <div className="bg-custom-blue-900 rounded-full flex items-center hover:bg-custom-blue-800 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>
@@ -32,7 +32,7 @@ const ProductList = () => {
               </div>
               <div className="font-raleway font-normal text-black mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/android"}>
+              <Link to={"/product/android"} aria-label="product android">
             <div className="bg-custom-dark-100 rounded-full flex items-center hover:bg-custom-gray-600 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>
@@ -45,7 +45,7 @@ const ProductList = () => {
               </div>
               <div className="font-raleway font-normal text-black mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/consultant"}>
+              <Link to={"/product/consultant"} aria-label="product consultant">
             <div className="bg-custom-dark-100 rounded-full flex items-center hover:bg-custom-gray-600 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>
@@ -58,7 +58,7 @@ const ProductList = () => {
               </div>
               <div className="font-raleway font-normal text-black mt-2">47 Jobs</div>
             </div>
-              <Link to={"/product/maintance"}>
+              <Link to={"/product/maintance"} aria-label="product maintance">
             <div className="bg-custom-dark-100 rounded-full flex items-center hover:bg-custom-gray-600 transition-colors duration-300 ease-in-out">
               <IoIosArrowRoundForward className="text-white" size={65}/>
             </div>

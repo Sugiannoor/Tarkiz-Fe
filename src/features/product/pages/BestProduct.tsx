@@ -25,7 +25,7 @@ export const BestProduct = () => {
         </CardHeader>
         <CardBody className="flex flex-col justify-center">
           <Typography
-            variant="h6"
+            variant="h4"
             className="mb-4 text-3xl lg:text-5xl font-poppins text-black text-center"
           >
             Web Development
@@ -76,7 +76,7 @@ export const BestProduct = () => {
         </CardHeader>
         <CardBody className="flex flex-col justify-center">
           <Typography
-            variant="h6"
+            variant="h4"
             className="mb-4 text-3xl lg:text-5xl font-poppins text-black text-center"
           >
             Android Developer
