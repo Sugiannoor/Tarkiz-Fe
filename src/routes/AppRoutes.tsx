@@ -1,32 +1,110 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import WebProduct from "@/features/product/pages/WebProduct";
-import Layout from "@/features/admin/layout/Layout";
-import DashboardAdmin from "@/features/dashboard/pages/DashboardAdmin";
-import UserManagment from "@/features/admin/pages/UserManagment";
-import { UnderProgress } from "@/features/user/pages/UnderProgress";
-import CreateComplaint from "@/features/user/components/CreateComplaint";
-import ProductManagment from "@/features/admin/pages/ProductManagment";
-import { Home } from "@/features/user/pages/Home";
-import Profile from "@/features/user/pages/Profile";
-import Login from "@/features/login/pages/LoginPage";
-import Register from "@/features/register/pages/RegisterPage";
-import UpdateComplaint from "@/features/admin/pages/UpdateComplaint";
-import DetailComplaint from "@/features/admin/components/DetailComplaint";
-import ComplaintManagment from "@/features/admin/pages/ComplaintManagment";
-import ContractManagment from "@/features/admin/pages/ContractManagment";
-import { AdminRoutes } from "./AdminRoutes";
-import { ProfilRoutes } from "./ProfileRoute";
-import AndroidProduct from "@/features/product/pages/AndroidProduct";
-import ConsultantProduct from "@/features/product/pages/ConsultantProduct";
-import MaintanceProduct from "@/features/product/pages/MaintanceProduct";
-import { ContractPrint } from "@/features/admin/components/ContractPrint";
-import TagTypeManagment from "@/features/admin/pages/TagTypeManagment";
-import { LoginRoutes } from "./LoginRoutes";
-import { LandingRoutes } from "./LandingRoutes";
-import { DetailProduct } from "@/features/product/components/DetailProduct";
-import PortofoliotManagment from "@/features/admin/pages/PortofolioManagment";
-import PortofolioPage from "@/features/product/pages/PortofolioPage";
-import { DetailPortofolio } from "@/features/product/components/DetailPortofolio";
+import { lazyImport } from "@/utils/lazyimport";
+const { WebProduct } = lazyImport(
+  () => import("@/features/product/pages/WebProduct"),
+  "WebProduct"
+);
+const { Layout } = lazyImport(
+  () => import("@/features/admin/layout/Layout"),
+  "Layout"
+);
+const { DashboardAdmin } = lazyImport(
+  () => import("@/features/dashboard/pages/DashboardAdmin"),
+  "DashboardAdmin"
+);
+const { UserManagment } = lazyImport(
+  () => import("@/features/admin/pages/UserManagment"),
+  "UserManagment"
+);
+const { UnderProgress } = lazyImport(
+  () => import("@/features/user/pages/UnderProgress"),
+  "UnderProgress"
+);
+const { CreateComplaint } = lazyImport(
+  () => import("@/features/user/components/CreateComplaint"),
+  "CreateComplaint"
+);
+const { ProductManagment } = lazyImport(
+  () => import("@/features/admin/pages/ProductManagment"),
+  "ProductManagment"
+);
+const { Home } = lazyImport(() => import("@/features/user/pages/Home"), "Home");
+const { Profile } = lazyImport(
+  () => import("@/features/user/pages/Profile"),
+  "Profile"
+);
+const { Login } = lazyImport(
+  () => import("@/features/login/pages/LoginPage"),
+  "Login"
+);
+const { Register } = lazyImport(
+  () => import("@/features/register/pages/RegisterPage"),
+  "Register"
+);
+const { UpdateComplaint } = lazyImport(
+  () => import("@/features/admin/pages/UpdateComplaint"),
+  "UpdateComplaint"
+);
+const { DetailComplaint } = lazyImport(
+  () => import("@/features/admin/components/DetailComplaint"),
+  "DetailComplaint"
+);
+const { ComplaintManagment } = lazyImport(
+  () => import("@/features/admin/pages/ComplaintManagment"),
+  "ComplaintManagment"
+);
+const { ContractManagment } = lazyImport(
+  () => import("@/features/admin/pages/ContractManagment"),
+  "ContractManagment"
+);
+const { AdminRoutes } = lazyImport(
+  () => import("./AdminRoutes"),
+  "AdminRoutes"
+);
+const { ProfilRoutes } = lazyImport(
+  () => import("./ProfileRoute"),
+  "ProfilRoutes"
+);
+const { AndroidProduct } = lazyImport(
+  () => import("@/features/product/pages/AndroidProduct"),
+  "AndroidProduct"
+);
+const { ConsultantProduct } = lazyImport(
+  () => import("@/features/product/pages/ConsultantProduct"),
+  "ConsultantProduct"
+);
+const { MaintanceProduct } = lazyImport(
+  () => import("@/features/product/pages/MaintanceProduct"),
+  "MaintanceProduct"
+);
+const { TagTypeManagment } = lazyImport(
+  () => import("@/features/admin/pages/TagTypeManagment"),
+  "TagTypeManagment"
+);
+const { LoginRoutes } = lazyImport(
+  () => import("./LoginRoutes"),
+  "LoginRoutes"
+);
+const { LandingRoutes } = lazyImport(
+  () => import("./LandingRoutes"),
+  "LandingRoutes"
+);
+const { DetailProduct } = lazyImport(
+  () => import("@/features/product/components/DetailProduct"),
+  "DetailProduct"
+);
+const { PortofoliotManagment } = lazyImport(
+  () => import("@/features/admin/pages/PortofolioManagment"),
+  "PortofoliotManagment"
+);
+const { PortofolioPage } = lazyImport(
+  () => import("@/features/product/pages/PortofolioPage"),
+  "PortofolioPage"
+);
+const { DetailPortofolio } = lazyImport(
+  () => import("@/features/product/components/DetailPortofolio"),
+  "DetailPortofolio"
+);
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -48,8 +126,6 @@ export const AppRoutes: React.FC = () => {
           <Route path="/product/consultant" element={<ConsultantProduct />} />
           <Route path="/product/maintance" element={<MaintanceProduct />} />
         </Route>
-        <Route path="/kontrak/print/:id" element={<ContractPrint />} />
-
         <Route element={<AdminRoutes element={<Layout />} />}>
           <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/user" element={<UserManagment />} />

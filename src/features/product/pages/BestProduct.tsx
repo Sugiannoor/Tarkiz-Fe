@@ -17,6 +17,7 @@ export const BestProduct = () => {
           className="m-0 lg:w-[55%] shrink-0 rounded-r-none"
         >
           <img
+            loading="lazy"
             src="/web.webp"
             alt="card-image"
             className="h-full w-full object-cover"
@@ -67,6 +68,7 @@ export const BestProduct = () => {
           className="m-0 lg:w-[55%] shrink-0 rounded-r-none"
         >
           <img
+            loading="lazy"
             src="/android.webp"
             alt="card-image"
             className="h-full w-full object-cover"

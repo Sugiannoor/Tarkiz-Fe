@@ -24,7 +24,7 @@ interface Option {
   label: string;
 }
 
-const TagTypeManagment = () => {
+export const TagTypeManagment = () => {
   const queryClient = useQueryClient();
   const [tag, setTag] = useState("");
   const [type, setType] = useState("");
@@ -357,5 +357,3 @@ const TagTypeManagment = () => {
     </div>
   );
 };
-
-export default TagTypeManagment;

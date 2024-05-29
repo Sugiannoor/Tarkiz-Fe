@@ -7,6 +7,7 @@ export function GalleryProduct({ data }: param) {
       {data?.map((gallery, index) => (
         <div key={index}>
           <img
+            loading="lazy"
             className="h-40 w-full max-w-full rounded-lg object-cover object-center"
             src={`${import.meta.env.VITE_API_BASE_URL}/${gallery}`}
             alt="gallery Product Tarkiz"

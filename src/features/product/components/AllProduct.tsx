@@ -169,6 +169,7 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
         >
           <div color="blue-gray" className="p-3 flex-grow">
             <img
+              loading="lazy"
               className="object-cover rounded-md"
               src={`${import.meta.env.VITE_API_BASE_URL}/${product.path_files}`}
               alt={product.program}

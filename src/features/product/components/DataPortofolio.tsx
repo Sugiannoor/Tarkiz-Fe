@@ -167,6 +167,7 @@ export const DataPortofolio = ({ dataPortofolio, isLoading }: ProductProps) => {
         >
           <div color="blue-gray" className="p-3 flex-grow">
             <img
+              loading="lazy"
               className="object-cover rounded-md"
               src={`http://localhost:8080/${portofolio.path_files}`}
               alt={portofolio.program}

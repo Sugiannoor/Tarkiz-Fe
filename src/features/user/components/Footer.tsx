@@ -24,7 +24,7 @@ export const Footer = () => {
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
           <div>
-            <img src="\tarkiz-logo.webp" alt="tarkiz-logo" />
+            <img loading="lazy" src="\tarkiz-logo.webp" alt="tarkiz-logo" />
             <div className="font-raleway font-semibold mt-5">
               Tarkiz Paz Banua
             </div>

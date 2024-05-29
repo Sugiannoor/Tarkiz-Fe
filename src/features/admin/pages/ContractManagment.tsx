@@ -5,7 +5,7 @@ import { BiPlusCircle } from "react-icons/bi";
 import TableContract from "../components/Table/TableContract";
 import { CreateContractModal } from "../components/Modal/CreateContract";
 
-const ContractManagment = () => {
+export const ContractManagment = () => {
   const [isCreateContracrt, setIsCreateContract] = useState(false);
   const [search, setSearch] = useState("");
   const handleCreateContract = () => setIsCreateContract(!isCreateContracrt);
@@ -50,5 +50,3 @@ const ContractManagment = () => {
     </div>
   );
 };
-
-export default ContractManagment;

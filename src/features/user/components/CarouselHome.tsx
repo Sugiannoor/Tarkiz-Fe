@@ -23,11 +23,21 @@ export const CarouselHome = () => {
       >
         <img
           src="/IMG_4634.webp"
-          alt="image 1"
+          alt="image hero"
           className="h-full w-full object-cover"
         />
-        <img src="/IMG_4638.webp" className="h-full w-full object-cover" />
-        <img src="/IMG_4639.webp" className="h-full w-full object-cover" />
+        <img
+          loading="lazy"
+          src="/IMG_4638.webp"
+          className="h-full w-full object-cover"
+          alt="image hero"
+        />
+        <img
+          loading="lazy"
+          src="/IMG_4639.webp"
+          className="h-full w-full object-cover"
+          alt="image hero"
+        />
       </Carousel>
       <div className="absolute top-10 lg:top-20 left-1/2 lg:left-72 -translate-x-1/2 text-center font-body lg:text-left">
         <h3 className="lg:text-5xl md:text-5xl text-4xl ">

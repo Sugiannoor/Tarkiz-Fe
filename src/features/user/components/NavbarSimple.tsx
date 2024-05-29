@@ -78,6 +78,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
       >
         <div className="flex items-center justify-between text-blue-gray-900">
           <img
+            loading="lazy"
             src="/tarkiz-logo.webp"
             alt="tarkiz-logo"
             className="w-20 h-auto lg:w-35 lg:h-auto"

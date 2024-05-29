@@ -3,7 +3,7 @@ import { Breadcrumbs, Card } from "@material-tailwind/react";
 import Search from "@/Components/Search";
 import TableComplaint from "../components/Table/TableComplaint";
 
-const ComplaintManagment = () => {
+export const ComplaintManagment = () => {
   const [search, setSearch] = useState("");
   return (
     <div>
@@ -32,5 +32,3 @@ const ComplaintManagment = () => {
     </div>
   );
 };
-
-export default ComplaintManagment;

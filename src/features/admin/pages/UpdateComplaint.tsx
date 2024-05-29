@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@material-tailwind/react";
 import UpdateComplaintForm from "../components/UpdateComplaintForm";
 
-const UpdateComplaint = () => {
+export const UpdateComplaint = () => {
   return (
     <div className="lg:mx-4">
       <Breadcrumbs className="bg-[#005697] px-0">
@@ -28,5 +28,3 @@ const UpdateComplaint = () => {
     </div>
   );
 };
-
-export default UpdateComplaint;

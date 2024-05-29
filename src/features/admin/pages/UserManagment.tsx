@@ -5,7 +5,7 @@ import { Breadcrumbs, Button, Card } from "@material-tailwind/react";
 import Search from "@/Components/Search";
 import { BiPlusCircle } from "react-icons/bi";
 
-const UserManagment = () => {
+export const UserManagment = () => {
   const [isCreateUser, setIsCreateUser] = useState(false);
   const [search, setSearch] = useState<string>("");
   const handleCreateUser = () => setIsCreateUser(!isCreateUser);
@@ -46,5 +46,3 @@ const UserManagment = () => {
     </div>
   );
 };
-
-export default UserManagment;
