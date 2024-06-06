@@ -4,9 +4,9 @@ type props = {
   title?: string;
   subTitle?: string;
   description?: string;
-}
+};
 
-export const SpootlightsHome = ({title, subTitle, description}: props) => {
+export const SpootlightsHome = ({ title, subTitle, description }: props) => {
   return (
     <div className="-mt-28 lg:mx-0 h-[40rem] w-full rounded-md flex items-center justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
       <Spotlight
@@ -23,4 +23,4 @@ export const SpootlightsHome = ({title, subTitle, description}: props) => {
       </div>
     </div>
   );
-}
+};

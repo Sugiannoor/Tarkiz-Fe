@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
   const [openNav, setOpenNav] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -34,7 +34,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className="p-1 font-medium font-raleway text-sm text-black"
         href="/"
       >
-          Home
+        Home
       </Typography>
       <Typography
         as="a"
@@ -43,7 +43,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className="p-1 font-medium text-sm font-raleway text-black"
         href="/#service"
       >
-          Services
+        Services
       </Typography>
       <Typography
         as="a"
@@ -52,7 +52,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         className="p-1 font-medium text-sm font-raleway text-black"
         href="/portofolio"
       >
-          Portofolio
+        Portofolio
       </Typography>
       <Typography
         as="a"
@@ -84,15 +84,15 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
             <div className="hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-2">
               <Authorization roles={["-Users", "-Admin"]}>
-                  <Button
-                    variant="filled"
-                    color="indigo"
-                    size="sm"
-                    className="hidden font-raleway lg:inline-block"
-                    onClick={()=> navigate("/login")}
-                  >
-                    Login
-                  </Button>
+                <Button
+                  variant="filled"
+                  color="indigo"
+                  size="sm"
+                  className="hidden font-raleway lg:inline-block"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </Button>
               </Authorization>
             </div>
             <Authorization roles={["Users", "Admin"]}>
@@ -103,6 +103,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
+              aria-label="Humburger Button"
             >
               {openNav ? (
                 <svg
