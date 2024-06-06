@@ -34,7 +34,6 @@ export const CarouselHome = () => {
             {new Array(length).fill("").map((_, i) => (
               <span
                 key={i}
-                aria-label="Carausel Button"
                 className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
                   activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
                 }`}
