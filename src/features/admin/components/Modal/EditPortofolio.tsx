@@ -222,7 +222,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
               </div>
               <div className="mt-2">
                 <div className="text-lg text-[#005697] font-normal font-poppins">
-                  Gambar Produk
+                  Gambar Portofolio
                 </div>
                 {dataPortofolio?.path_files && (
                   <div className="flex gap-1">

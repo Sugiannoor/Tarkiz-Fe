@@ -196,7 +196,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
             </div>
             <div className="mt-2">
               <div className="text-lg text-[#005697] font-normal font-poppins">
-                Gambar Produk
+                Gambar Portofolio
               </div>
               <FilePond
                 id="file"

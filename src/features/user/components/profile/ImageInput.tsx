@@ -8,7 +8,7 @@ type ImageUploadProps = {
 };
 
 const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
-  const auth = useAuth();
+  const {user} = useAuth();
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -37,7 +37,10 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
             ) : (
               <img
                 loading="lazy"
-                src={auth.user?.path_files || "/user_default.png"}
+                src={
+                  `${import.meta.env.VITE_API_BASE_URL}/${user?.path_files}` ??
+                  "/user_default.png"
+                }
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
                 style={{ width: "140px", height: "140px" }}
