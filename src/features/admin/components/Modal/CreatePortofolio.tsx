@@ -220,7 +220,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
                 htmlFor="files"
                 className="text-lg text-[#005697] font-normal font-poppins"
               >
-                Gallery Product
+                Gallery Portofolio
               </label>
               <FilePond
                 name="files"

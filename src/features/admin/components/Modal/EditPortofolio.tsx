@@ -257,7 +257,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
               </div>
               <div className="mt-2">
                 <div className="text-lg text-[#005697] font-normal font-poppins">
-                  Gallery Product
+                  Gallery Portofolio
                 </div>
                 {dataPortofolio?.gallery && (
                   <div className="flex flex-col gap-1">
