@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { UseMutationResult, useMutation, useQuery, useQueryClient } from "react-query";
 import storage from "@/utils/storage";
 import { LoginProps, LoginResponse } from "@/features/login/types";
@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const fetchUserData = async () => {
     const accessToken = localStorage.getItem("access_token");
-
     if (accessToken) {
       const user = await getUser();
       const newRole = generateNewRole(user);
@@ -32,7 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return null;
   };
 
-  const { data: User, isLoading } = useQuery({
+  const { data: User, isLoading, refetch } = useQuery({
     queryKey: ["auth"],
     queryFn: fetchUserData,
   });
@@ -47,6 +46,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       queryClient.setQueryData(["auth"], updatedUser);
     },
   });
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      refetch();
+    }
+  }, [refetch]);
+  if (isLoading) {
+    return <Loading />;
+  }
   
   const logout = () => {
     localStorage.clear();

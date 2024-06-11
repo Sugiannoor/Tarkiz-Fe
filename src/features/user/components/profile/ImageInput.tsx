@@ -31,7 +31,6 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
                 src={URL.createObjectURL(image)}
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
-                style={{ width: "140px", height: "140px" }}
 
               />
             ) : (
@@ -43,7 +42,6 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
                 }
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
-                style={{ width: "140px", height: "140px" }}
               />
             )}
           </div>
