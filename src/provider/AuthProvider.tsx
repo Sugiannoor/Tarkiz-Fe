@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return null;
   };
 
-  const { data: User, isLoading, refetch } = useQuery({
+  const { data: User, isLoading,} = useQuery({
     queryKey: ["auth"],
     queryFn: fetchUserData,
   });
@@ -46,11 +46,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       queryClient.setQueryData(["auth"], updatedUser);
     },
   });
-  useEffect(() => {
-    if (localStorage.getItem("access_token")) {
-      refetch();
-    }
-  }, [refetch]);
   if (isLoading) {
     return <Loading />;
   }

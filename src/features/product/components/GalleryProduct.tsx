@@ -8,7 +8,7 @@ export function GalleryProduct({ data }: param) {
         <div key={index}>
           <img
             loading="lazy"
-            className="h-40 w-full max-w-full rounded-lg object-cover object-center"
+            className="w-full max-w-full rounded-lg object-cover object-center"
             src={`${import.meta.env.VITE_API_BASE_URL}/${gallery}`}
             alt="gallery Product Tarkiz"
           />
