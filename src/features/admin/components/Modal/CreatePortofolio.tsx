@@ -118,7 +118,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
         <form onSubmit={handleSubmit}>
           <DialogBody className="p-10">
             <div className="text-lg text-[#005697] font-normal font-poppins">
-              Judul Kontrak
+              Judul Portofolio
             </div>
             <Input
               crossOrigin={""}

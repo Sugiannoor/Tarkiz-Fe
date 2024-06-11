@@ -135,7 +135,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
         className="h-[95%] overflow-y-scroll"
       >
         <DialogHeader className="font-poppins text-[#005697]">
-          Edit Kegiatan
+          Edit Portofolio
         </DialogHeader>
         {isProductLoading ? (
           <Loading />
@@ -143,7 +143,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
           <form onSubmit={handleSubmit}>
             <DialogBody className="p-10">
               <div className="text-lg text-[#005697] font-normal font-poppins">
-                Judul Kegiatan
+                Judul Portofolio
               </div>
               <Input
                 crossOrigin={""}
@@ -151,7 +151,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                 variant="static"
                 id="portofolio_name"
                 name="portofolio_name"
-                placeholder="Nama Kegiatan"
+                placeholder="Nama Portofolio"
                 value={portofolioName}
                 onChange={(e) => setPortofolioName(e.target.value)}
               />
@@ -176,7 +176,7 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
                 />
               </div>
               <div className="text-lg text-[#005697] font-normal font-poppins">
-                Tanggal Kegiatan
+                Tanggal Portofolio
               </div>
               <Input
                 crossOrigin={""}

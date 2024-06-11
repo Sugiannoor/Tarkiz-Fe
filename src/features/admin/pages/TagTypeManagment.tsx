@@ -95,7 +95,7 @@ export const TagTypeManagment = () => {
           <span>Admin</span>
         </a>
         <a
-          href="/kontrak"
+          href="/tagtype"
           className="font-poppins text-white hover:text-gray-300 transition-colors duration-300 ease-in-out"
         >
           Manajemen Tag & Type
