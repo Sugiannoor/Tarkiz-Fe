@@ -9,7 +9,6 @@ type ImageUploadProps = {
 
 const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
   const auth = useAuth();
-
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -26,19 +25,22 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
       >
         <div className="w-48 h-48 rounded-full overflow-hidden mx-auto">
           <div className="w-full h-full">
-            {image ? (
+          {image ? (
               <img
                 loading="lazy"
                 src={URL.createObjectURL(image)}
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
+                style={{ width: "140px", height: "140px" }}
+
               />
             ) : (
               <img
                 loading="lazy"
-                src={auth.user?.path_files ?? "/user_default.png"}
+                src={auth.user?.path_files || "/user_default.png"}
                 alt="user-picture"
                 className="object-cover object-center w-full h-full"
+                style={{ width: "140px", height: "140px" }}
               />
             )}
           </div>
