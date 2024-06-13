@@ -7,7 +7,7 @@ import {
   TabsBody,
   TabsHeader,
 } from "@material-tailwind/react";
-import { SpootlightsHome } from "@/features/user/components";
+import { NavbarSimple, SpootlightsHome } from "@/features/user/components";
 import { GalleryProduct } from "./GalleryProduct";
 import Loading from "@/Components/Loading";
 import { getPortofolioById } from "@/features/admin/api/portofolio";
@@ -31,6 +31,7 @@ export const DetailPortofolio = () => {
 
   return (
     <>
+      <NavbarSimple />
       <SpootlightsHome
         title={dataPortofolio?.program}
         description={dataPortofolio?.description}

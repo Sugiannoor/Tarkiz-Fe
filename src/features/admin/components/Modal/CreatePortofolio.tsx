@@ -118,7 +118,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
         <form onSubmit={handleSubmit}>
           <DialogBody className="p-10">
             <div className="text-lg text-[#005697] font-normal font-poppins">
-              Judul Kontrak
+              Judul Portofolio
             </div>
             <Input
               crossOrigin={""}
@@ -196,7 +196,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
             </div>
             <div className="mt-2">
               <div className="text-lg text-[#005697] font-normal font-poppins">
-                Gambar Produk
+                Gambar Portofolio
               </div>
               <FilePond
                 id="file"
@@ -220,7 +220,7 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
                 htmlFor="files"
                 className="text-lg text-[#005697] font-normal font-poppins"
               >
-                Gallery Product
+                Gallery Portofolio
               </label>
               <FilePond
                 name="files"

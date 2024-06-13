@@ -6,7 +6,7 @@ import {
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProfileMenu from "./ProfileMenu";
 import { Authorization } from "@/Components/Authorization/Authorization";
 
@@ -16,6 +16,7 @@ type Props = {
 };
 
 export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
+  const navigate = useNavigate();
   const [openNav, setOpenNav] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -27,44 +28,40 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
-        as="li"
+        as="a"
         variant="small"
         color="blue-gray"
         className="p-1 font-medium font-raleway text-sm text-black"
+        href="/"
       >
-        <a href="/" className="flex items-center">
-          Home
-        </a>
+        Home
       </Typography>
       <Typography
-        as="li"
+        as="a"
         variant="small"
         color="blue-gray"
         className="p-1 font-medium text-sm font-raleway text-black"
+        href="/#service"
       >
-        <a href="#service" className="flex items-center">
-          Services
-        </a>
+        Services
       </Typography>
       <Typography
-        as="li"
+        as="a"
         variant="small"
         color="blue-gray"
         className="p-1 font-medium text-sm font-raleway text-black"
+        href="/portofolio"
       >
-        <a href="/portofolio" className="flex items-center">
-          Portofolio
-        </a>
+        Portofolio
       </Typography>
       <Typography
-        as="li"
+        as="a"
         variant="small"
         color="blue-gray"
         className="p-1 font-medium text-sm font-raleway text-black"
+        href="/#about"
       >
-        <a href="#client" className="flex items-center">
-          About
-        </a>
+        About
       </Typography>
     </ul>
   );
@@ -87,16 +84,15 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
             <div className="hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-2">
               <Authorization roles={["-Users", "-Admin"]}>
-                <Link to={"/login"}>
-                  <Button
-                    variant="filled"
-                    color="indigo"
-                    size="sm"
-                    className="hidden font-raleway lg:inline-block"
-                  >
-                    <span>Login</span>
-                  </Button>
-                </Link>
+                <Button
+                  variant="filled"
+                  color="indigo"
+                  size="sm"
+                  className="hidden font-raleway lg:inline-block"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </Button>
               </Authorization>
             </div>
             <Authorization roles={["Users", "Admin"]}>
@@ -107,6 +103,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
+              aria-label="Humburger Button"
             >
               {openNav ? (
                 <svg
