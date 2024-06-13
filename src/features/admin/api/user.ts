@@ -35,7 +35,7 @@ export const UpdateUser = async (data: userForm) => {
     formData.append('image_path', data.image_path as File);
   }
 
-  const response = await axios.post("/api/users/profile/update", formData);
+  const response = await axios.post("/dashboard/users/profile/update", formData);
   return response.data;
 }
 
