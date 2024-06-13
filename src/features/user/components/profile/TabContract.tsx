@@ -17,16 +17,16 @@ const TabContract = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleModal = () => setOpen(!open);
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["table-contract"],
     queryFn: getContractByUser,
   });
 
-  if (isLoading || isError) {
+  if (isLoading ) {
     return <Loading />;
   }
   if (data?.length === 0 || data === undefined) {
-    return <div>Kontrak Tidak Tersedia</div>;
+    return <div className="text-lg font-medium">Kontrak Tidak Tersedia</div>;
   }
   return (
     <div>

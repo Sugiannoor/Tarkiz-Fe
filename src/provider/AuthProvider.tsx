@@ -14,7 +14,7 @@ import Loading from "@/Components/Loading";
 
 type AuthContextType = {
   user: UserInterface | null;
-  login: UseMutationResult<LoginResponse, unknown, LoginProps, unknown>;
+  login: UseMutationResult<LoginResponse, any, LoginProps, unknown>;
   logout: () => void;
 };
 

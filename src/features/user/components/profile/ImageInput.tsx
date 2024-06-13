@@ -1,5 +1,4 @@
 import useAuth from "@/hooks/useAuth";
-import { Input } from "@material-tailwind/react";
 import { FiEdit } from "react-icons/fi";
 
 type ImageUploadProps = {
@@ -45,12 +44,11 @@ const ImageUpload = ({ image, setImage }: ImageUploadProps) => {
               />
             )}
           </div>
-          <div className="absolute inset-0 bg-black opacity-0 rounded-full hover:opacity-50 flex items-center justify-center">
-            <FiEdit size={32} className="text-white" />
+          <div className="absolute inset-0 bg-black opacity-0 rounded-full hover:opacity-50 flex items-center justify-center h-48">
+            <FiEdit size={30} className="text-white" />
           </div>
         </div>
-        <Input
-          crossOrigin={""}
+        <input
           type="file"
           accept="image/*"
           id="imageProfileUpload"
