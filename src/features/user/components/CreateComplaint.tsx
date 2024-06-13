@@ -4,11 +4,13 @@ import { FilePondFile } from "filepond";
 import { useState } from "react";
 import { FilePond } from "react-filepond";
 import toast from "react-hot-toast";
-import { useMutation } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { createComplaint } from "../api/createComplaint";
 
 export const CreateComplaint = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { id } = useParams();
   const contractId = Number(id);
   const [formData, setFormData] = useState({
@@ -31,7 +33,9 @@ export const CreateComplaint = () => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: createComplaint,
     onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["table-complaint"] });
       toast.success("Komplain dikirim");
+      navigate(-1);
     },
     onError: ({ response }) => {
       if (response) {

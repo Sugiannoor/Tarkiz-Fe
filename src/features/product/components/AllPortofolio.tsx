@@ -16,7 +16,7 @@ type PortofolioProps = {
 };
 
 export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
-  if (isLoading || data === undefined) {
+  if (isLoading) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {[...Array(2)].map((_, index) => (
@@ -157,6 +157,13 @@ export const AllPortofolio = ({ data, isLoading }: PortofolioProps) => {
             </Button>
           </CardFooter>
         </Card>
+      </div>
+    );
+  }
+  if (data === undefined || data.length === 0) {
+    return (
+      <div className="text-lg font-semibold mt-3 text-center">
+        Data Portofolio Tidak Tersedia{" "}
       </div>
     );
   }

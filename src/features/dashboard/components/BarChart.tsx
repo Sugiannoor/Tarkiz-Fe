@@ -8,6 +8,7 @@ import {
 import { getChart } from "../api/dashboard";
 import Loading from "@/Components/Loading";
 import { useQuery } from "react-query";
+import Chart from "react-apexcharts";
 
 export const BarChart = () => {
   const { data, isLoading, isError } = useQuery({

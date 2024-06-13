@@ -99,7 +99,7 @@ export const EditProductModal = ({ open, handleOpen, id }: props) => {
     },
     onError: ({ response }) => {
       if (response) {
-        const errors: { [key: string]: string } = response.data.massages;
+        const errors: { [key: string]: string } = response.data.errors;
         const errorMessages = Object.values(errors).map(
           (error: string) => error
         );

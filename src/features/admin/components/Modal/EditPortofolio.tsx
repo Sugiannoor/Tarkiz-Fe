@@ -80,13 +80,15 @@ export const EditPortofolioModal = ({ open, handleOpen, id }: props) => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: UpdatePortofolio,
     onSuccess: () => {
-      queryClient.invalidateQueries("table-portofolio");
+      queryClient.invalidateQueries({
+        queryKey: ["table-portofolio"],
+      });
       toast.success("Portofolio berhasil diperbaharui");
       handleOpen();
     },
     onError: ({ response }) => {
       if (response) {
-        const errors: { [key: string]: string } = response.data.massages;
+        const errors: { [key: string]: string } = response.data.message;
         const errorMessages = Object.values(errors).map(
           (error: string) => error
         );

@@ -25,12 +25,12 @@ const TabContract = () => {
   if (isLoading || isError) {
     return <Loading />;
   }
-  if (data?.length === 0) {
-    return <div>Data Tidak Tersedia</div>;
+  if (data?.length === 0 || data === undefined) {
+    return <div>Kontrak Tidak Tersedia</div>;
   }
   return (
     <div>
-      {data?.map(({ name, id, description }) => (
+      {data.map(({ name, id, description }) => (
         <Card key={id} className="mt-6 w-full">
           <CardBody>
             <Typography
