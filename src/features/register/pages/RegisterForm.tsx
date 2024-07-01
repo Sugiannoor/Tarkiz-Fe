@@ -91,7 +91,6 @@ const RegisterForm = () => {
               type="text"
               id="full_name"
               name="full_name"
-              required
               onChange={handleChange}
               value={formData.full_name}
               placeholder="Nama Lengkap Anda"
@@ -114,7 +113,6 @@ const RegisterForm = () => {
               type="text"
               id="username"
               name="username"
-              required
               onChange={handleChange}
               value={formData.username}
               placeholder="Nama Akun"
@@ -137,7 +135,6 @@ const RegisterForm = () => {
               type="email"
               id="email"
               name="email"
-              required
               onChange={handleChange}
               value={formData.email}
               placeholder="name@mail.com"
@@ -160,7 +157,6 @@ const RegisterForm = () => {
               type="string"
               id="number_phone"
               name="number_phone"
-              required
               onChange={handleChange}
               value={formData.number_phone}
               placeholder="Ex. 08xxx"
@@ -181,7 +177,6 @@ const RegisterForm = () => {
               type="password"
               id="password"
               name="password"
-              required
               onChange={handleChange}
               value={formData.password}
               size="lg"

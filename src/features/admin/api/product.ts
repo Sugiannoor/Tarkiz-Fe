@@ -19,7 +19,7 @@ export const createProduct = async (data: CreateProduct) => {
     data.gallery.forEach((documentation) => {
       formData.append(`gallery[]`, documentation.file);
     });
-}
+  }
   // Melakukan permintaan POST dengan FormData
   const response = await axios.post("/api/admin/products", formData);
   return response.data;
@@ -47,7 +47,7 @@ export const getLabelProduct = async () => {
 };
 export const UpdateProducts = async (data: UpdateProduct) => {
   const formData = new FormData();
-  formData.append("id", data.id.toString())
+  formData.append("id", data.id.toString());
   formData.append("program", data.program);
   formData.append("description", data.description);
   if (data.type) {
@@ -60,8 +60,13 @@ export const UpdateProducts = async (data: UpdateProduct) => {
   if (data.photo) {
     formData.append("photo", data.photo.file);
   }
+  if (data.gallery && data.gallery.length > 0) {
+    data.gallery.forEach((documentation) => {
+      formData.append(`gallery[]`, documentation.file);
+    });
+  }
   const response = await axios.post("/api/admin/products/update", formData);
-  return response.data
+  return response.data;
 };
 
 export const getProductById = async (id: number) => {
@@ -79,44 +84,43 @@ export const getAllProduct = async () => {
 };
 
 export const createTag = async (tag: string) => {
-  const response = await axios.post("/api/admin/tag",
-    JSON.stringify({ tag }),
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-  return response.data
-}
+  const response = await axios.post("/api/admin/tag", JSON.stringify({ tag }), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.data;
+};
 export const createType = async (type: string) => {
-  const response = await axios.post("/api/admin/type",
+  const response = await axios.post(
+    "/api/admin/type",
     JSON.stringify({ type }),
     {
       headers: {
         "Content-Type": "application/json",
       },
     }
-  )
-  return response.data
-}
+  );
+  return response.data;
+};
 type TypeUpdate = {
   id: number;
-  type: string
-}
+  type: string;
+};
 
 export const updateType = async (data: TypeUpdate) => {
-  const response = await axios.put(`/api/admin/type`, data)
-  return response.data
-}
+  const response = await axios.put(`/api/admin/type`, data);
+  return response.data;
+};
 
 type TypeTags = {
   id: number;
-  tag: string
-}
+  tag: string;
+};
 export const updateTag = async (data: TypeTags) => {
-  const response = await axios.put(`/api/admin/tag`, data)
-  return response.data
-}
+  const response = await axios.put(`/api/admin/tag`, data);
+  return response.data;
+};
 
 export const deleteType = async (id: number) => {
   const response = await axios.delete("/api/admin/type", {
@@ -125,7 +129,7 @@ export const deleteType = async (id: number) => {
     },
   });
   return response.data.data;
-}
+};
 export const deleteTag = async (id: number) => {
   const response = await axios.delete("/api/admin/tag", {
     params: {
@@ -133,4 +137,4 @@ export const deleteTag = async (id: number) => {
     },
   });
   return response.data.data;
-}
+};

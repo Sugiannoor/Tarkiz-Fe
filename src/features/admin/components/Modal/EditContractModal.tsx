@@ -86,7 +86,7 @@ export const EditContractModal = ({ open, handleOpen, id }: props) => {
     },
     onError: ({ response }) => {
       if (response) {
-        const errors: { [key: string]: string } = response.data.massages;
+        const errors: { [key: string]: string } = response.data.message;
         const errorMessages = Object.values(errors).map(
           (error: string) => error
         );

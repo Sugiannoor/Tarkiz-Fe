@@ -32,7 +32,7 @@ export const BestProduct = () => {
           </Typography>
           <Typography
             color="gray"
-            className="mb-8 text-center font-raleway  text-xl lg:text-2xl font-normal"
+            className="mb-8 text-center font-raleway  text-xl lg:text-xl font-normal"
           >
             Membantu perusahaan mengoptimalkan proses keuangan melalui solusi
             teknologi terkini dan berkualitas tinggi.
@@ -83,7 +83,7 @@ export const BestProduct = () => {
           </Typography>
           <Typography
             color="gray"
-            className="mb-8 text-center font-raleway  text-xl lg:text-2xl font-normal"
+            className="mb-8 text-center font-raleway text-xl lg:text-xl font-normal"
           >
             Membantu perusahaan mengoptimalkan proses keuangan melalui solusi
             teknologi terkini dan berkualitas tinggi.

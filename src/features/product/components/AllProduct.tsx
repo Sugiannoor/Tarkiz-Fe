@@ -16,7 +16,7 @@ type ProductProps = {
 };
 
 export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
-  if (isLoading || dataProduct === undefined) {
+  if (isLoading) {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {[...Array(2)].map((_, index) => (
@@ -157,6 +157,13 @@ export const AllProduct = ({ dataProduct, isLoading }: ProductProps) => {
             </Button>
           </CardFooter>
         </Card>
+      </div>
+    );
+  }
+  if (dataProduct?.length === 0 || dataProduct === undefined) {
+    return (
+      <div className="text-lg font-semibold mt-3 text-center">
+        Data produk Tidak Tersedia{" "}
       </div>
     );
   }

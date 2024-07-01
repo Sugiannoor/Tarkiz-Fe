@@ -8,7 +8,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { UpdateUser, getUserById } from "../../api/user";
+import { UpdateUserByAdmin, getUserById } from "../../api/user";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -53,7 +53,7 @@ export const EditUserModal = ({ open, handleOpen, id }: props) => {
     }
   }, [data]);
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: UpdateUser,
+    mutationFn: UpdateUserByAdmin,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["table-user"] });
       toast.success("Data berhasil diperbaharui");

@@ -51,7 +51,9 @@ export const CreatePortofolioModal = ({ open, handleOpen }: props) => {
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: CreatePortofolio,
     onSuccess: () => {
-      queryClient.invalidateQueries("table-portofolio");
+      queryClient.invalidateQueries({
+        queryKey: ["table-portofolio"],
+      });
       toast.success("Portofolio berhasil ditambahkan");
       handleOpen();
       resetForm();

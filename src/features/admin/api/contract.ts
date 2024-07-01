@@ -12,7 +12,7 @@ export const deleteContract = async (id: number) => {
   return response.data;
 };
 export const getContractById = async (id: number) => {
-  const response = await axios.get("/api/admin/contracts/show", {
+  const response = await axios.get("/dashboard/contracts/show", {
     params: {
       id,
     },

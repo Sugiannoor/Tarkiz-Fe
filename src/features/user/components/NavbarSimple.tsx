@@ -140,6 +140,7 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
         </div>
         <Collapse open={openNav}>
           {navList}
+          <Authorization roles={["-Users", "-Admin"]}>
           <div className="flex items-center gap-x-1">
             <Link to="/login" className="w-full">
               <Button
@@ -149,11 +150,12 @@ export const NavbarSimple: React.FC<Props> = ({ children, fixed }: Props) => {
                 className="font-body block"
                 placeholder=""
                 color="indigo"
-              >
+                >
                 <span>LogIn</span>
               </Button>
             </Link>
           </div>
+                </Authorization>
         </Collapse>
       </Navbar>
       {children}

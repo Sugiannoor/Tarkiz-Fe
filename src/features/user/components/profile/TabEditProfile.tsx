@@ -124,7 +124,7 @@ const TabEditProfile = () => {
       </div>
       <Textarea
         className="mt-2"
-        placeholder="Deskripsi"
+        placeholder="Alamat Anda"
         variant="outlined"
         id="address"
         name="address"

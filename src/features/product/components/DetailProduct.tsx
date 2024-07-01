@@ -76,7 +76,7 @@ export const DetailProduct = () => {
               )}
             </TabPanel>
             <TabPanel value={"portofolio"}>
-              {!portofolios ? (
+              {portofolios?.length === 0 ? (
                 <div>Portofolio Tidak Ada</div>
               ) : (
                 <AllPortofolio data={portofolios} isLoading={isPortofolio} />
