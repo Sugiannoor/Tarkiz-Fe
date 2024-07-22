@@ -123,7 +123,7 @@ export const BarChart = () => {
         </div>
       </CardHeader>
       <CardBody className="px-2 pb-0">
-        <Chart type="area" {...chartConfig} />
+      <Chart type="bar" options={{ ...chartConfig.options, xaxis:  { categories: chartConfig.options.xaxis.categories }, title: { align: "left" } }} series={[{ data: data }]} height={chartConfig.height} />
       </CardBody>
     </Card>
   );

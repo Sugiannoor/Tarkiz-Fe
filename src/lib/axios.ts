@@ -2,7 +2,7 @@ import storage from '@/utils/storage';
 import Axios from 'axios';
 
 
-const baseURL = import.meta.env.VITE_API_BASE_URL;
+const baseURL = "https://backend.t-paz.com" || import.meta.env.VITE_API_BASE_URL;
 
 export const axios = Axios.create({
   baseURL
